@@ -2,14 +2,17 @@ package com.stockMarket.entity;
 
 import java.util.Date;
 
-public class TestEntity {
+public class Demo {
 	int id;
 	Date createTime;
 	Date updateTime;
 	String content;
 
-	public TestEntity(int id, Date createTime, Date updateTime, String content) {
-		super();
+	public Demo() {
+		this(0, null, null, "");
+	}
+	
+	public Demo(int id, Date createTime, Date updateTime, String content) {
 		this.id = id;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
