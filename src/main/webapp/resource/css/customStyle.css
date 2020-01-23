@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* 에스코어 드림 폰트 */
+@font-face {
+	font-family: "에스코어 드림";
+	src: url(../fonts/SCDREAM4.OTF) format('opentype');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "에스코어 드림";
+	src: url(../fonts/SCDREAM5.OTF) format('opentype');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "에스코어 드림";
+	src: url(../fonts/SCDREAM6.OTF) format('opentype');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "에스코어 드림";
+	src: url(../fonts/SCDREAM7.OTF) format('opentype');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "에스코어 드림";
+	src: url(../fonts/SCDREAM9.OTF) format('opentype');
+	font-weight: 900;
+}
+
+/* 서울 한강체 */
+@font-face{
+	font-family: "서울한강체";
+	src: url(../fonts/SEOULHANGANGL.TTF) format('truetype');
+	font-weight: lighter;
+}
+
+@font-face{
+	font-family: "서울한강체";
+	src: url(../fonts/SEOULHANGANGM.TTF) format('truetype');
+	font-weight: normal;
+}
+
+@font-face{
+	font-family: "서울한강 장체";
+	src: url(../fonts/서울한강 장체L.TTF) format('truetype');
+	font-weight: lighter;
+}
+
+@font-face{
+	font-family: "서울한강 장체";
+	src: url(../fonts/서울한강 장체M.TTF) format('truetype');
+	font-weight: normal;
+}
+@font-face{
+	font-family: 제주;
+	src: url(../fonts/JejuMyeongjo.ttf) format('truetype');
+	--font-weight: normal;
+}
+
+/* 커서 포인터 수정 */
+body {
+	cursor: url("../images/cusor.png"), pointer;
+}
+
+/* 커스텀 스크롤 바 */
+.scrollbar {
+	height:100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+/*.force-overflow {
+	min-height: 500;
+}*/
+
+/**  custom-scrollbar-style */
+.custom-scrollbar-style::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.custom-scrollbar-style::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background: rgba(0,0,0,0.1);
+	border: 1px solid #ccc;
+}
+
+.custom-scrollbar-style::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: linear-gradient(left, #fff, #efefef);
+	border: 1px solid #aaa;
+}
+
+.custom-scrollbar-style::-webkit-scrollbar-thumb:hover {
+	background-color: #555;
+}
+
+.custom-scrollbar-style::-webkit-scrollbar-thumb:active {
+	background: linear-gradient(left, #22ADD4, #1E98BA);
+}

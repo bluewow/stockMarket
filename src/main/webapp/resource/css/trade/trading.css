@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+/* 
+참조 사이트 
+	flex 기능 : https://heropy.blog/2018/11/24/css-flexible-box/
+	button 기능 : https://nanati.me/css-button-design/
+ */
+
+/* ----------- button ------------ */
+.button {
+	background-color: rgb(242, 242, 242);
+	border-radius: 10px;
+	font-size: 0.88em;
+	font-weight: bold;
+	padding: 1% 2%; /* button font<->wrapper interval  */	
+ 	border: none; 	
+	outline: none;
+}
+
+
+.button-status {
+    padding: 1% 18%;
+    margin: 5% 0 5% 0;
+}
+
+.button-button {
+    padding: 5% 18%;
+    margin: 8% 0 5% 0;
+}
+
+.shadow {
+	background-color:  rgb(156, 157, 159);
+	color: rgb(124, 125, 127); 
+}
+
+.text {
+	width: 30%;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+	outline: none;
+	text-align: center;
+	background: none;
+	height: 30px;
+ 	margin-right: 10px
+}
+
+.caret-up {
+	position: absolute;	
+} 
+.caret-down {
+	position: absolute;
+	top: 15px;
+}
+
+.animation:active {
+	position: relative;
+	top: 3px;
+	background-color: #13bfd7;
+	color: white;
+}
+
+.animation:hover {
+  background-color: #13bfd7;
+  color: white;
+  transition: 1s;
+}
+
+.animation-1:active {
+	top: 1px;
+}
+.animation-2:active {
+	top: 16px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ----------- Chart ------------ */
+
+
+/* ----------- Page ------------ */
+	
+#trading-container {
+	width: 90%;
+	min-width: 460px;
+    max-width: 741px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.page-top {
+	height: 10%;
+	padding: 0% 8%;
+	display: flex;
+    align-items: baseline;
+}
+
+.page-mid {
+	padding: 0% 8%;
+	display: flex;
+	margin-bottom: 2%;
+	justify-content: space-between;
+	/* min-height: 45%; */
+}
+
+.page-bottom {
+	/* min-height: 40%; */
+	    padding: 0% 4%;
+	}
+	.page-bottom > #page-bottom-box {
+ 		display: flex;
+		justify-content: space-between;
+		text-align: center;
+	}
+	.page-bottom #page-bottom-box .show-button-align {
+		width: 50%;
+	} 
+
+#title {
+    font-size: 26px;
+    font-weight: bold; 
+    padding-top: 5%;
+}
+
+#title-ass {
+    font-size: 16px;
+    font-weight: bold;
+    color : red; 
+    padding-left: 5%;
+}
+
+
+#chartSell {
+	margin-top: 10px;
+	border: 3px solid #2D9AF2;
+    border-radius: 10px;
+    background: #2D9AF222;
+}
+
+#chartBuy {
+	margin-top: 10px;
+	border: 3px solid #F40006;
+    border-radius: 10px;
+    background: #F4000622;
+}
+
+.chart-string {
+	text-align: center;
+	font-weight: bold;
+}
+

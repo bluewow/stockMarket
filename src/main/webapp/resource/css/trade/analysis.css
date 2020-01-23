@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/* 
+참조 사이트 
+	flex 기능 : https://heropy.blog/2018/11/24/css-flexible-box/
+	button 기능 : https://nanati.me/css-button-design/
+ */
+ 
+#analysis-container {
+	width: 90%;
+	min-width: 300px;
+    max-width: 600px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.page-top {
+	height: 18%;
+	padding: 0% 8%;
+	}
+	
+	.page-top > #stockName {
+		text-align:left;
+		font-weight: bold;
+		font-size: 26px;
+		line-height: 150%;
+		padding-top: 5%;
+	}
+	.page-top #capture {
+		font-size: 0.9em;
+		background-color: #13bfd7; 
+		color: white;
+		padding: 6px 23px;
+		border-radius: 11px;
+		border: none; 	
+		outline: none;
+	}
+
+.page-mid > div {
+	display: flex;
+	justify-content: space-around;
+}
+
+.page-bottom {
+
+}
+
+#stockName > div:nth-child(2) {
+	display: contents
+}
+
+#stockName > span {
+	font-size: medium;
+}
+
+.chart-string {
+	text-align: center;
+	font-weight: bold;
+}
+
+

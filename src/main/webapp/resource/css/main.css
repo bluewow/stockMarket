@@ -1,0 +1,354 @@
+@charset "UTF-8";
+
+@import "header.css";
+
+@import "card.css";
+
+@import "moblie.css";
+
+@import "tablet.css";
+
+.visiblity {
+	visibility: hidden;
+}
+
+body {
+	background: #fff;
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	font-size: 2.3em;
+	font-family: "에스코어 드림";
+	color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+	letter-spacing: -.1rem;
+	margin-bottom: 2.0rem;
+	margin-top: 0;
+}
+
+h1 {
+	font-size: 2.5em;
+}
+
+h2 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1.6em;
+}
+
+h4 {
+	font-size: 1.4em;
+}
+
+h5, h6 {
+	color: #555;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	letter-spacing: .05em;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+h6 {
+	color: #888;
+	font-size: 0.8em;
+}
+
+p.text-large {
+	font-size: 1.5em;
+}
+
+p.text-small {
+	font-size: 0.75em;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+a {
+	color: #35cebe;
+}
+
+a:focus, a:hover {
+	color: #25beae;
+}
+
+.text-muted {
+	color: #888;
+}
+
+hr {
+	border: 0;
+	border-top: 0.1rem solid #f4f5f6;
+	margin: 3.0rem 0;
+}
+
+.circle {
+	border-radius: 499rem;
+}
+
+td, th {
+	border-bottom: 0.1rem solid #eee;
+}
+
+/*For demo purposes only*/
+a.anchor {
+	display: block;
+	position: relative;
+	top: -140px;
+	visibility: hidden;
+}
+
+.grid-example {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.grid-example .column {
+	background: #ddd;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+}
+
+.credit {
+	text-align: center;
+	margin-top: 30px;
+	color: #666;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/*Margins*/
+.m-0 {
+	margin: 0;
+}
+
+.mt-1 {
+	margin: 1rem;
+}
+
+.mt-2 {
+	margin: 2rem;
+}
+
+.mt-3 {
+	margin: 3rem;
+}
+
+/*Forms Elements & Buttons*/
+input[type='email'], input[type='number'], input[type='password'], input[type='search'],
+	input[type='tel'], input[type='text'], input[type='url'], textarea,
+	select {
+	border: 1px solid #f9f9f9 !important;
+}
+
+input[type='email']:focus, input[type='number']:focus, input[type='password']:focus,
+	input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus,
+	input[type='url']:focus, textarea:focus, select:focus {
+	border: 1px solid #35cebe !important;
+}
+
+.button, button, input[type='button'], input[type='reset'], input[type='submit']
+	{
+	background-color: #35cebe;
+	border: 0.1rem solid #35cebe;
+	border-radius: 499rem;
+	font-size: 1.15rem;
+}
+
+.button:focus, .button:hover, button:focus, button:hover, input[type='button']:focus,
+	input[type='button']:hover, input[type='reset']:focus, input[type='reset']:hover,
+	input[type='submit']:focus, input[type='submit']:hover {
+	background-color: #333;
+	border-color: #333;
+	color: #fff;
+	outline: 0;
+}
+
+.button[disabled], button[disabled], input[type='button'][disabled],
+	input[type='reset'][disabled], input[type='submit'][disabled] {
+	cursor: default;
+	opacity: .5;
+}
+
+.button[disabled]:focus, .button[disabled]:hover, button[disabled]:focus,
+	button[disabled]:hover, input[type='button'][disabled]:focus, input[type='button'][disabled]:hover,
+	input[type='reset'][disabled]:focus, input[type='reset'][disabled]:hover,
+	input[type='submit'][disabled]:focus, input[type='submit'][disabled]:hover
+	{
+	background-color: #35cebe;
+	border-color: #35cebe;
+}
+
+.button.button-outline, button.button-outline, input[type='button'].button-outline,
+	input[type='reset'].button-outline, input[type='submit'].button-outline
+	{
+	background-color: transparent;
+	color: #35cebe;
+}
+
+.button.button-outline:focus, .button.button-outline:hover, button.button-outline:focus,
+	button.button-outline:hover, input[type='button'].button-outline:focus,
+	input[type='button'].button-outline:hover, input[type='reset'].button-outline:focus,
+	input[type='reset'].button-outline:hover, input[type='submit'].button-outline:focus,
+	input[type='submit'].button-outline:hover {
+	background-color: transparent;
+	border-color: #333;
+	color: #333;
+}
+
+.button.button-outline[disabled]:focus, .button.button-outline[disabled]:hover,
+	button.button-outline[disabled]:focus, button.button-outline[disabled]:hover,
+	input[type='button'].button-outline[disabled]:focus, input[type='button'].button-outline[disabled]:hover,
+	input[type='reset'].button-outline[disabled]:focus, input[type='reset'].button-outline[disabled]:hover,
+	input[type='submit'].button-outline[disabled]:focus, input[type='submit'].button-outline[disabled]:hover
+	{
+	border-color: inherit;
+	color: #35cebe;
+}
+
+.button.button-clear, button.button-clear, input[type='button'].button-clear,
+	input[type='reset'].button-clear, input[type='submit'].button-clear {
+	background-color: transparent;
+	border-color: transparent;
+	color: #35cebe;
+}
+
+.button.button-clear:focus, .button.button-clear:hover, button.button-clear:focus,
+	button.button-clear:hover, input[type='button'].button-clear:focus,
+	input[type='button'].button-clear:hover, input[type='reset'].button-clear:focus,
+	input[type='reset'].button-clear:hover, input[type='submit'].button-clear:focus,
+	input[type='submit'].button-clear:hover {
+	background-color: transparent;
+	border-color: transparent;
+	color: #333;
+}
+
+.button.button-clear[disabled]:focus, .button.button-clear[disabled]:hover,
+	button.button-clear[disabled]:focus, button.button-clear[disabled]:hover,
+	input[type='button'].button-clear[disabled]:focus, input[type='button'].button-clear[disabled]:hover,
+	input[type='reset'].button-clear[disabled]:focus, input[type='reset'].button-clear[disabled]:hover,
+	input[type='submit'].button-clear[disabled]:focus, input[type='submit'].button-clear[disabled]:hover
+	{
+	color: #35cebe;
+}
+
+input[type='email'], input[type='number'], input[type='password'], input[type='search'],
+	input[type='tel'], input[type='text'], input[type='url'], textarea,
+	select {
+	border: 0.1rem solid #eee !important;
+	border-radius: .4rem;
+	box-shadow: none;
+}
+
+input[type='email'], input[type='number'], input[type='password'], input[type='search'],
+	input[type='tel'], input[type='text'], input[type='url'], select {
+	max-width: 60rem;
+}
+
+input[type='email']:focus, input[type='number']:focus, input[type='password']:focus,
+	input[type='search']:focus, input[type='tel']:focus, input[type='text']:focus,
+	input[type='url']:focus, textarea:focus, select:focus {
+	border-color: #35cebe;
+	outline: 0;
+}
+
+select {
+	background:
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#eeeeee" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
+		center right no-repeat;
+	padding-right: 3.0rem;
+}
+
+select:focus {
+	background-image:
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#f02563" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>');
+}
+
+#main-content {
+	background: #fff;
+	width: 80% !important;
+	padding: 40px 3.5rem !important;
+	margin-top: 95px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+#main-content .page-heading {
+	margin-bottom: 20px;
+}
+
+.alert {
+	padding: 10px 20px;
+	border-radius: .5rem;
+	margin-bottom: 20px;
+	color: #fff;
+	background-color: #888;
+}
+
+.alert .fa {
+	margin-right: 5px;
+}
+
+.badge {
+	padding: 5px 10px;
+	border-radius: 499px;
+	color: #fff;
+	font-size: .8em;
+	height: 28px;
+	min-width: 28px;
+	text-align: center;
+	background-color: #888;
+}
+
+.background-primary {
+	background: #35cebe;
+}
+
+.background-success {
+	background: #aee460;
+}
+
+.background-warning {
+	background: #f4cd4a;
+}
+
+.background-danger {
+	background: #fc4660;
+}
+
+.progress-bar {
+	display: block;
+	background: #f9f9f9;
+	height: 10px;
+	border-radius: 499rem;
+	margin-bottom: 20px;
+	margin-top: -20px;
+}
+
+.progress-bar .progress {
+	display: block;
+	height: 10px;
+	border-radius: 499rem;
+}

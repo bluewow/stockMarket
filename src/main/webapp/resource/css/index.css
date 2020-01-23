@@ -1,0 +1,161 @@
+@charset "UTF-8";
+@import "reset.css";
+
+body {
+  /* -ms-overflow-style: none; */
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  /* display: none; */
+}
+
+#main-page{
+  height: 100%;
+  background: linear-gradient(to right, #13bfd7, #88dfeb);
+}
+
+#index-navigator{
+  --border: 1px solid red;
+  position: fixed;
+  top: 50%;
+  right: 15px;
+  width: 30px;
+  height: 81px;
+}
+
+.wrap{
+  position: relative;
+}
+/* ============================================================ */
+
+#main-page div:first-child{
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+#main-page #logo {
+  color: #f9f9f9;
+}
+
+#main-page .main-contents:not(.link) {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 600px;
+}
+
+#main-page .bg-img {
+  background: url("../images/index_main_page.png") no-repeat center;
+  opacity: 0;
+  width: 80%;
+  height: 70%;
+  position: absolute;
+  top: 20%;
+  right: 0;
+}
+
+/* =================================================================== */
+#main-page .main-contents h1 {
+  color: #f9f9f9;
+  margin-top: 210px;
+}
+#main-page .main-contents h2 {
+  opacity:0;
+  margin-top: 210px;
+}
+#main-page .main-contents a {
+  width: 180px;
+  height: 60px;
+  border-radius: 10px;
+  color: #f9f9f9;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 3330;
+  
+}
+#main-page .main-contents a:hover {
+  background: #35cebe;
+  border:  #35cebe;
+  opacity: 0.5;
+}
+
+#index-navigator .circle {
+  transition: .2s;
+  border-radius: 1rem;
+  width: 13px;
+  height: 13px;
+  background-color: rgba(0,0,0,.2);
+  cursor: pointer
+}
+
+#index-navigator .circle {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 70%);
+}
+
+#index-navigator .circle.active {
+  width: 24px;
+  height: 24px;
+  background-color: #35cebe;
+}
+/* 2번째 sub-page============================================ */
+#sub-page div {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 400px;
+  margin-top: 350px;
+
+}
+#sub-page p:first-child{
+  font-size: 30px;
+  font-weight:700;
+  
+}
+#sub-page p:last-child{
+  font-size: 50px;
+  font-weight:900;
+  color:#35cebe;
+}
+/* 3번째 footer-page========================================================*/
+#footer-page{
+  width: 100%;
+  position: absolute;
+  margin-top: 350px;
+}
+.box{
+  display: flex;
+  margin-top: 600px;
+  margin-left: 250px;
+}
+.box2{
+  margin-left: 30px;
+  
+}
+.box3 {
+  width: 100%;
+  height: 96px;
+  padding: 24px 0px;
+  background-color: rgba(240,240,240,0.5);
+  margin-top: 50px;
+ 
+}
+.magin{
+  margin-left: 250px;
+}
+.border1{
+  width: 100%; margin: 0px auto; margin-left: 200px;
+}
+.border2{
+  width: 100%; margin: 0px auto; color: rgba(0,0,0,0.5);
+}
+.border3{
+  width: 100%; margin: 0px auto; color: rgba(0,0,0,0.5);
+  
+}
+.flex{
+  display: flex;
+}

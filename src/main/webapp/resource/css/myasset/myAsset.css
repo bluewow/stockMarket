@@ -1,0 +1,231 @@
+@charset "UTF-8";
+@import url("../reset.css");
+
+.visable-none{
+	display: none;
+}
+
+
+.wrap {
+	position: relative;
+}
+
+
+.title{
+	font-family: "에스코어 드림";
+	font-weight: 600;
+	font-size: 1em;
+	letter-spacing: 0.07em;
+	color:  #585B5E;
+
+	display: inline-block;
+}
+
+#titleAssetTrend .my-asset-info .buttons .selected-button{
+	font-family: "에스코어 드림";
+	font-weight: 500;	
+	font-size: 0.7em;
+	color: #FFFFFF;
+
+	margin-left: 15px;
+	background: #13BFD7;
+	padding: 5px 16px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+section{
+	padding-top: 5%;
+}
+
+#card {
+	height: 100vh;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+	#card-top{
+		height: 50%;
+	}
+
+	#card-bottom{
+		height: 40%;
+	}
+
+	
+	#titleAssetTrend{
+		height: 15%;
+	}
+
+		#titleAssetTrend > div:first-child+div {
+			position: absolute;
+			top: 15%;
+			right: 0%;
+			display: inline-block;
+
+			font-family: 서울한강체;
+			font-weight: bold;
+			font-size: 0.75em;
+			letter-spacing: 0.05em;
+			color:  #585B5E;
+			
+			background: #efefef;
+			padding: 0.18em 1.5em 0.0em 1.5em;
+			border-radius: 10px;
+		}
+
+		#titleAssetTrend .my-asset-info{
+		display: block;
+		padding-top: 10px;
+		}
+	
+			#titleAssetTrend .my-asset-info .buttons {
+				display: flex;
+				padding-bottom: 5px;
+			}
+
+				#titleAssetTrend .my-asset-info .buttons li {
+					font-family: "에스코어 드림";
+					font-weight: 500;
+					font-size: 0.7em;
+					color:  #585B5E;
+
+					margin-right: 15px;
+					background: #efefef;
+					padding: 5px 16px;
+					border-radius: 20px;
+					cursor: pointer;
+				}
+
+				#titleAssetTrend .my-asset-info .buttons li:hover{
+					color: #FFFFFF;
+					background: #13BFD7;
+				}
+				
+
+				#titleAssetTrend .my-asset-info .buttons li:first-of-type {
+					margin-left: 0px;
+				}
+
+				#titleAssetTrend .my-asset-info+p {
+					font-family: "에스코어 드림";
+					font-weight: 600;
+					font-size: 1.2em;
+					letter-spacing: 0.09em;
+					color:  #585B5E;
+
+					vertical-align: middle;
+					position: absolute;
+					top: 30px;
+					right: 0px;
+
+				}
+
+
+	#assetTrend {
+		padding-top: 5px;
+		text-align: center;
+		height: 85%;
+	}
+	
+		#assetTrend #graph-assetTrend {
+			--background: #8080c0;
+			height: 100%;
+			width: inherit;
+			
+		}
+
+	#assetDistribution {		
+		padding-top: 20px;
+		text-align: center;
+		display: flex;
+		height: 75%;
+	}
+
+	
+	
+	#assetDistribution #graph-assetDistr {
+		display: inline-block;
+		--background: #8080c0;
+		height: 100%;
+		width: 50%;
+		align-content: center;
+		
+	}	
+	
+	#assetDistribution #graph-assetDistr .graph{
+		width: 100%;
+		height: 100%;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		
+	}
+		/* #labelOverlay {
+			width: 90px;
+			height: 45px;
+			position: absolute;
+			text-align: center;
+			cursor: default;
+		}
+	
+			#labelOverlay p {
+				line-height: 0.3;
+				padding:0;
+				margin: 8px;
+			}
+			
+			#labelOverlay p.used-size {
+				line-height: 1.5;
+				font-family: "에스코어 드림";
+				font-weight: 700;
+				font-size: 0.7em;
+				letter-spacing: 0.09em;
+				color:  #585B5E;
+			}
+			
+			#labelOverlay p.total-size {
+				line-height: 0.75;
+				font-family: "에스코어 드림";
+				font-weight: 700;
+				font-size: 0.7em;
+				letter-spacing: 0.09em;
+				color:  #585B5E;
+			} */
+		  
+
+		/* #assetDistribution #graph-assetDistr .graph .bb-chart{
+			--position:absolute;
+            max-width:100%; max-height:100%;	
+			z-index: 1;
+		} */
+		
+		#assetDistribution	#list-stock {
+			display: flex;
+			-background: #ff8040;
+			height: 100%;
+			width: 50%;
+		}
+	
+			#assetDistribution #list-stock .list {
+				display: flex;
+				flex-direction: column;
+				margin: auto;
+				text-align: left;
+			}
+
+			#assetDistribution #list-stock .list img{
+				display: inline-block;
+				padding-right: 12px;
+				height: 1.2em;                               
+				width: 35px;
+			}
+
+			#assetDistribution #list-stock .list td{
+				padding: 6px 0px;
+				font-family: 서울한강체;
+				font-weight: bold;
+				font-size: 0.7em;
+				color: #585B5E;	
+			}
+			

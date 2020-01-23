@@ -1,0 +1,258 @@
+@charset "UTF-8";
+
+/* 
+	Modal 팝업
+ */
+ 
+ .pop-up, 
+.sign-up-pop-up, 
+.profile-pop-up,
+.pop-up-profile-image {
+	visibility:hidden;  
+    z-index: 100;
+    position: absolute;
+    background-color: rgb(255, 255, 255); 
+    width: calc(22vw);
+    left: 37.5vw;
+    top: 15%;
+    border-radius: 15px;
+    min-width: 300px;
+    min-height: 530px;
+    box-shadow: 5px 5px 10px 5px grey;
+}
+
+.pop-up .pop-up-top, 
+.sign-up-pop-up .pop-up-top,
+.profile-pop-up .pop-up-top {
+    background-color: rgb(19, 191, 215);
+    min-height: 17%;
+    color: white;
+    border-radius: 15px 15px 0px 0px;
+    font-weight: bold;
+    font-size: 1.8em;
+	padding: 6% 0% 4% 12%;
+    line-height: normal;
+}
+
+.pop-up .pop-up-border, 
+.sign-up-pop-up .pop-up-border,
+.profile-pop-up .pop-up-border {
+	height: 83%;
+	}
+.pop-up .pop-up-border .pop-up-context, 
+.sign-up-pop-up .pop-up-border .pop-up-context,
+.profile-pop-up .pop-up-border .pop-up-context {
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.pop-up-context .text {
+    margin: 8% 0% 0% 0%;
+    font-size: 1.2em;
+    font-weight: 550;
+    padding-left: 5%;
+    color: #585B5E;
+}
+
+.pop-up-context .box {
+	border-radius: 10px;
+    border: 2px solid #dee2e6 !important;
+    margin-bottom: 0px;
+}
+
+.pop-up-context .box:hover {
+	border-radius: 10px;
+    border: 2px solid #35CEBE !important;
+    margin-bottom: 0px;
+}
+ 
+.pop-up-context .login-box input {
+	background-color: #F2F2F2;
+	margin: 12% 0% 0% 0%;
+    color: #585B5E;
+    font-size: 1.2em;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.pop-up-context hr {
+	display: block;
+	border: 0.5px solid #dee2e6;
+	margin: 8% 0% 0% 0%;
+}
+
+.pop-up-context .check-box input {
+	background-color: white;
+	margin: 12% 0% 0% 0%;
+    color: #909090;;
+    font-size: 1em;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.pop-up-context .check-box input:last-child {
+	background-color: white;
+	margin: 12% 0% 12% 0%;
+    color: #909090;;
+    font-size: 1em;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* backgroud 처리 */
+.pop-up-wrapper {
+	visibility: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+input.top-bottom-margin {
+	margin: 12% 0% 12% 0 !important;
+}
+
+/* 
+	로그인/로그아웃/회원 Button
+ */
+ 
+.personal {
+    right: 3rem;
+    position: absolute;
+    bottom: 1.5rem;
+}
+ .personal input {
+    background-color: transparent !important; 
+    border: none;
+    font-size: 0.9em; 
+    font-weight: 500;
+
+}
+ .personal .small {
+ 	margin-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-size: 0.9em;
+	font-weight:500;
+}
+
+/*
+	아이콘
+*/
+
+.user-section a {
+	float: none;
+}
+
+/* 
+	animation
+*/ 
+.animation-1:active {
+	position: relative;
+	top: 3px;
+	background-color: #13bfd7 !important;
+	color: white !important;
+}
+
+.animation-1:hover {
+  background-color: #13bfd7 !important;
+  color: white !important;
+  transition: 1s;
+}
+
+.animation-2:active {
+	position: relative;
+	top: 3px;
+}
+
+
+/* 
+	프로필 수정부분 추가 CSS
+ */
+ .profile-image-box {
+ text-align:center;
+ }
+
+.pop-up-top-subline {
+	font-size : 0.9em;
+	position : relative;
+	top: -5px;
+}
+.pop-up-top-profile {
+	font-size : 0.8em;
+	margin-left : 30px;
+}
+.pop-up-top-id {
+	font-size : 0.6em;
+	position : relative;
+	top: -2px;
+}
+
+.profile-photo-modi {
+	width:70px;
+	height:auto;
+	position : relative;
+	top: -10px;
+	left : -25px;
+}
+
+.pop-up-profile-image {
+    background-color: rgb(19, 191, 215);
+    min-height: 17%;
+    height:50%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.8em;
+    line-height: normal;
+}
+.profile-image-select {
+	display:inline-block;
+}
+
+.profile-image-list {
+	margin:4%;
+	display:inline-block;
+	width:90%;
+	height:85%;
+	overflow-y: scroll;
+	background: white;
+	border-radius:0px;
+}
+.images {
+	height:70px;
+	width:70px;
+	margin-left:3px;
+	margin-right:3px;
+	margin-top:10px;
+	margin-bottom:10px;
+	border:solid 5px #ffffff;
+	border-radius:50%;
+}
+
+.images:hover {
+	opacity:0.5;
+}
+.image-selected {
+	border:solid 5px #88b4f7;
+}
+
+.profile-img-select-submit {
+    background-color: #F2F2F2 !important;
+    margin: 0% 0% 0% 0%;
+    color: #585B5E !important;
+    font-size: 0.7em !important;
+    border: none;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+}

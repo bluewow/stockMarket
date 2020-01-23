@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+header{
+	width:100%;
+}
+
+button{
+    
+}
+
+.manageStocks{
+	box-sizing: border-box;
+	padding:20px;
+	text-align:right;
+	margin-bottom:80px;
+
+}
+table {
+	text-align: center;
+	border-collapse: collapse;
+	width: 93%;
+	margin-right: 10%;
+	margin-left: 4%;
+	font-size: 100%;
+	margin-top: 5%;
+}
+tr{
+	border-bottom-style: solid;
+    border-width: 1.5px;
+    border-color: #efefef;
+}
+
+thead{
+	border-bottom-style: solid;
+	border-bottom: 3.5px solid #efefef;
+	border-left: none;
+}
+th{
+	font-family: "에스코어 드림";
+	font-weight: 500;
+	font-size: 1em;
+	color: #585B5E;	
+	text-align:center;
+	border-bottom:3px solid #ada8a8;
+	border-left:none;
+	padding: 0px 10px 5px 10px
+}
+td{
+	
+	font-family: "서울한강체";
+	font-weight: bold;
+	font-size: 1em;
+	color: #585B5E;
+	text-align:right;
+	 border-bottom: 1px solid #ada8a8;
+	 --margin-top: 10px;
+	 padding: 10px;
+}
+.firstTd{
+	text-align:center;
+}
+
+span{
+	font-size:1em;
+	
+}
+
+tr:nth-child(6) {
+    color: beige !important;
+}
+
+.down{
+	color:#689ABC;
+	text-align:right;
+}
+
+.up{
+	color:#BF737C;
+	text-align:right;
+}
+
+#scroll {
+    max-height: 480px;
+    min-height: 300px;
+    overflow-y: scroll;
+}
+
+.card-footer{
+	display: flex;
+box-sizing: border-box;
+padding:0rem;
+z-index:1;
+left:15;
+width:93%;
+height: 80px;
+position:fixed ;
+background-color: #efefef;
+bottom:10;
+}
+
+.prearea{
+	margin:10px;
+	display: inline-block;
+	height:80px;
+	width:50%;
+}
+.backarea{
+    margin:10px;
+	display: inline-block;
+	height:80px;
+	width:50%;
+}
+
+.prearea :first-child{
+	float: left;
+}
+
+.prearea :nth-child(3){
+    float: left;
+    margin-top:10px;
+}
+.prearea :nth-child(4){
+ margin-top:10px;
+}
+
+
+.backarea :first-child{
+   float: left;
+}
+
+.backarea :nth-child(3){
+    float: left;
+    margin-top:10px;
+}
+.backarea :nth-child(4){
+ margin-top:10px;

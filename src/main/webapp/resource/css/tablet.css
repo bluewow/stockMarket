@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+ /* Tablet */
+ @media (min-width: 640px) and (max-width: 800px) {
+    #sidebar {
+      width: 30% !important; }
+  
+    #main-content {
+      width: 100% !important;
+ }
+  
+    .navbar .row .column,
+    .navbar .row .column.column-10,
+    .navbar .row .column.column-20,
+    .navbar .row .column.column-25,
+    .navbar .row .column.column-33,
+    .navbar .row .column.column-40,
+    .navbar .row .column.column-50,
+    .navbar .row .column.column-60,
+    .navbar .row .column.column-66,
+    .navbar .row .column.column-67,
+    .navbar .row .column.column-75,
+    .navbar .row .column.column-80,
+    .navbar .row .column.column-90,
+    .navbar .row .column.column-100 {
+      width: 50%;
+      max-width: 50%; }
+    .navbar .site-title {
+      font-size: 18px !important;
+      padding-top: 5px; }
+  
+    .row.grid-responsive {
+      flex-direction: column; }
+  
+    .row.grid-responsive .column,
+    .row.grid-responsive .column.column-10,
+    .row.grid-responsive .column.column-20,
+    .row.grid-responsive .column.column-25,
+    .row.grid-responsive .column.column-33,
+    .row.grid-responsive .column.column-40,
+    .row.grid-responsive .column.column-50,
+    .row.grid-responsive .column.column-60,
+    .row.grid-responsive .column.column-66,
+    .row.grid-responsive .column.column-67,
+    .row.grid-responsive .column.column-75,
+    .row.grid-responsive .column.column-80,
+    .row.grid-responsive .column.column-90,
+    .row.grid-responsive .column.column-100 {
+      display: block;
+      width: 100%;
+      max-width: 100%; }
+  
+    .card .canvas-wrapper {
+      width: 90%; }
+  
+    .user-section {
+      margin-right: 20px; }
+      .user-section .username {
+        display: none; } }

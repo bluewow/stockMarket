@@ -1,0 +1,343 @@
+@charset "UTF-8";
+
+@import url("../customStyle.css");
+/*!
+ * Copyright (c) 2017 ~ present NAVER Corp.
+ * billboard.js project is licensed under the MIT license
+ * 
+ * billboard.js, JavaScript chart library
+ * http://naver.github.io/billboard.js/
+ * 
+ * @version 1.11.1
+ */
+/*-- Chart --*/
+.bb {
+	height: inherit;
+}
+
+.bb svg {
+	height: inherit !important;
+	font: 10px sans-serif;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.bb .bb-axis {
+	font-family: 서울한강체;
+	font-weight: 500;
+	font-size: 1.2em;
+	color: rgb(150, 150, 150);
+}
+
+.bb path, .bb line {
+	fill: none;
+	stroke: "none";
+}
+
+.bb text, .bb .bb-button {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.bb-legend-item-tile, .bb-xgrid-focus, .bb-ygrid, .bb-event-rect,
+	.bb-bars path {
+	shape-rendering: crispEdges;
+}
+
+.bb-chart-arc path { -
+	-stroke: #fff;
+}
+
+.bb-chart-arc text {
+	fill: #585B5E;
+	font-family: "에스코어 드림";
+	font-size: 1.2em;
+	font-weight: 700;
+}
+
+/*-- Axis --*/
+.bb-axis {
+	shape-rendering: crispEdges;
+}
+
+/*-- Grid --*/
+.bb-grid line {
+	stroke: rgba(255, 255, 255, 0); -
+	-stroke: #aaa;
+}
+
+.bb-ygrid-lines line {
+	stroke: #efefef;
+}
+
+.bb-grid text {
+	fill: #aaa;
+}
+
+.bb-xgrid, .bb-ygrid {
+	stroke-dasharray: 3 3;
+}
+
+/*-- Text on Chart --*/
+.bb-text.bb-empty {
+	fill: #808080;
+	font-size: 2em;
+}
+
+/*-- Line --*/
+.bb-line {
+	stroke-width: 1px;
+}
+
+/* Line custom */
+.bb .line-class-data1 {
+	stroke-width: 2px;
+	stroke: #13BFD7 !important;
+	z-index: 1;
+}
+
+/*-- Point --*/
+.bb-circle._expanded_ {
+	stroke-width: 1px;
+	stroke: white;
+}
+
+.bb-selected-circle {
+	fill: white;
+	stroke-width: 2px;
+}
+
+/*-- Bar --*/
+.bb-bar {
+	stroke-width: 0;
+}
+
+.bb-bar._expanded_ {
+	fill-opacity: 0.75;
+}
+
+/*-- Focus --*/
+.bb-target.bb-focused {
+	opacity: 1;
+}
+
+.bb-target.bb-focused path.bb-line, .bb-target.bb-focused path.bb-step {
+	stroke-width: 2px;
+}
+
+.bb-target.bb-defocused { 
+	-opacity: 0.3 !important;
+}
+
+/*-- Region --*/
+.bb-region {
+	fill: steelblue;
+	fill-opacity: .1;
+}
+
+/*-- Zoom region --*/
+.bb-zoom-brush {
+	fill-opacity: .1;
+}
+
+.bb-zoom-rect {
+	height: 270;
+}
+
+/*-- Brush --*/
+.bb-brush .extent {
+	fill-opacity: .1;
+}
+
+/*-- Select - Drag --*/
+/*-- Legend --*/
+.bb-legend-item {
+	font-size: 12px;
+	user-select: none;
+}
+
+.bb-legend-item-hidden {
+	opacity: 0.15;
+}
+
+.bb-legend-background {
+	opacity: 0.75;
+	fill: white;
+	stroke: lightgray;
+	stroke-width: 1;
+}
+
+/*-- Title --*/
+.bb-title {
+	font: 14px sans-serif;
+}
+
+/*-- Tooltip --*/
+.bb-tooltip-container {
+	z-index: 10;
+	user-select: none;
+}
+
+.bb-tooltip {
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: #efefef;
+	empty-cells: show;
+	opacity: 0.9;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	/* -webkit-box-shadow: 7px 7px 12px -9px #777777;
+  -moz-box-shadow: 7px 7px 12px -9px #777777;
+  --box-shadow: 7px 7px 12px -9px #777777;*/
+}
+/* .bb-tooltip tbody { 
+    border:1px solid black;
+    border-radius: 20px;
+  } */
+.bb-tooltip tr { 
+	-border: 1px solid #CCC;
+}
+
+.bb-tooltip th { 
+	-background-color: #c9c9c9;
+	font-family: 서울한강체;
+	font-size: 0.7em;
+	padding: 5px 0px 0px 5px;
+	color: #9bb8c9;
+	text-align: left;
+}
+
+.bb-tooltip td {
+	font-family: 서울한강체;
+	font-size: 0.9em;
+	padding: 6px 5px 4px 0px;
+	color: #585b5e;
+	-background-color: #c9c9c9; 
+	-border-left: 1px dotted #999;
+}
+
+.bb-tooltip td>span, .bb-tooltip td>svg {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 6px;
+}
+
+.bb-tooltip .name {
+	visibility: hidden;
+}
+
+.bb-tooltip .value {
+	text-align: right;
+}
+
+/*-- Area --*/
+.bb-area {
+	stroke-width: 0;
+	opacity: 0.2;
+}
+
+/*-- Arc --*/
+.bb-chart-arcs-title {
+	dominant-baseline: middle;
+	font-family: "에스코어 드림";
+	font-size: 1.2em;
+	font-weight: 700;
+	color: #585b5e;
+}
+
+.bb-chart-arcs-gauge-title {
+	dominant-baseline: middle;
+	font-size: 2.7em;
+}
+
+.bb-chart-arcs .bb-chart-arcs-background {
+	fill: #e0e0e0;
+	stroke: none;
+}
+
+.bb-chart-arcs .bb-chart-arcs-gauge-unit {
+	fill: #000;
+	font-size: 16px;
+}
+
+.bb-chart-arcs .bb-chart-arcs-gauge-max {
+	fill: #777;
+}
+
+.bb-chart-arcs .bb-chart-arcs-gauge-min {
+	fill: #777;
+}
+
+.bb-chart-arc .bb-gauge-value {
+	fill: #000;
+}
+
+/*-- Radar --*/
+.bb-chart-radars .bb-levels polygon {
+	fill: none;
+	stroke: #848282;
+	stroke-width: .5px;
+}
+
+.bb-chart-radars .bb-levels text {
+	fill: #848282;
+}
+
+.bb-chart-radars .bb-axis line {
+	stroke: #848282;
+	stroke-width: .5px;
+}
+
+.bb-chart-radars .bb-axis text {
+	font-size: 1.15em;
+	cursor: default;
+}
+
+.bb-chart-radars .bb-shapes polygon {
+	fill-opacity: .2;
+	stroke-width: 1px;
+}
+
+/*-- Button --*/
+.bb-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.bb-button .bb-zoom-reset {
+	font-size: 11px;
+	border: solid 1px #ccc;
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/*-- Subcahrt custom --*/
+.bb .overlay {
+  fill: #efefef30;
+  stroke: #efefef;
+  stroke-width: 1.5px;
+}
+
+.bb .selection {
+	fill: #9bb8c9;
+	min-width: 55px !important;
+}
+
+.handle {
+  fill: #efefef;
+  width: 7px;
+  height: 13px;
+  y: 3;}
+
+  /* distr-chart custom */
+
+  #graph-assetDistr svg{
+	margin-top: 18px;
+  }
+
+/*# sourceMappingURL=billboard.css.map*/

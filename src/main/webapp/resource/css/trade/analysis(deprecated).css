@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+/* 
+참조 사이트 
+	flex 기능 : https://heropy.blog/2018/11/24/css-flexible-box/
+	button 기능 : https://nanati.me/css-button-design/
+ */
+ 
+#analysis-container {
+	width: 90%;
+	min-width: 300px;
+    max-width: 600px;
+	margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box; /*for fit container*/
+}
+
+
+.page-top {
+	min-height: 18%;
+	padding: 0% 8%;
+	position: relative;
+	 }
+
+	.page-top > #stockName {
+		display: inline-block;
+		text-align:left;
+		font-weight: bold;
+		font-size: 1.5em;
+		line-height: 150%;
+		padding-top: 5%;
+	}
+	.page-top > #capture {
+		bottom: 35%;
+    	right: 10%;
+	    position: absolute;
+		font-size: 1.2em;
+		background-color: #13bfd7; 
+		color: white;
+		padding: 6px 23px;
+		border-radius: 11px;
+		 	border: none; 	
+	outline: none;
+	}
+
+.page-mid {
+	display: flex;
+	min-height: 34%;
+	}
+	.page-mid .page-right-write {
+		font-size: 1.1em;
+		color: rgb(88, 91, 94); 
+		margin-bottom: 1px;
+	}
+	
+	.page-mid > .page-left-chart {
+		width: 50%;
+	}
+
+	.page-mid > .page-right-chart {
+		width: 50%;
+	}
+	
+	.page-mid > .page-right-chart .progress-right-chart {
+		height: 4px;
+	    margin-bottom: 8%;
+	    width: 80%;
+	}
+
+.page-bottom {
+	min-height: 40%;
+	position: relative;
+	padding: 0% 4%;
+	}
+	.page-bottom > #comment {
+		z-index: 1;
+		position: absolute;
+		font-size: 1.5em;
+		background-color: #13bfd7; 
+		color: white;
+		padding: 2.5% 3% 2.5% 5%;
+		border-radius: 15px 15px 0px 15px;
+	}
+	.page-bottom > #chart-bottom{
+		position: absolute;
+		margin:32px 0px 20px 15px;
+		background-color: rgb(242, 242, 242);
+		width: 85%;
+  		border-radius: 15px;
+  		min-height: 80%;
+  		color: rgb(88,91,94);
+
+	}
+
+	#chart-bottom > .content {
+		/* background-color: green; */ 
+		font-weight: 550;
+		min-width: 25%;
+		display: flex;
+		margin: 5% 0% 1% 4%;	
+	}
+	
+	#chart-bottom .margin-content {
+		margin: 9% 0% 1% 4%;
+	}
+	.content .content-first {
+		width: 25%;
+	}
+	.content .content-second{
+		width: 60%;
+	}
+	.content .content-third {
+		width: 15%;
+		padding-left: 3%;
+	}
+.progress {
+	overflow: hidden;
+	height: 25px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    box-shadow: none;
+    background-color: rgb(226, 227, 227);
+}
+
+.progress .progress-bar {
+    text-align: left;
+    text-indent: 10px;
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+.progress-red {
+	background-color: rgb(191, 115, 124);	
+}
+
+.progress-red-weak {
+	background-color: rgb(229, 199, 199);	
+}
+
+.progress-blue {
+	background-color: rgb(191, 115, 124);	
+}
+
+.progress-blue-weak {
+	background-color: rgb(179, 204, 221);
+}
+
+/* icon */
+.fa-lg {
+	text-indent: 3px;
+    font-size: 0.83333333em;
+    line-height: .75em;
+    vertical-align: 85%;
+    color: rgb(119, 121, 124);
+}
+
+.fa-arrow-up {
+	color: rgb(193, 39, 45);	
+	font-size: 1.8em;
+}
+
+.fa-arrow-down {
+	color: rgb(26, 116, 191);
+	font-size: 1.8em;
+}
+
+/* tooltip */
+.tool-tip {
+	position: relative;
+	display: inline-block;
+}
+.tool-tip .tool-tip-content {
+	visibility: hidden;  
+    width: calc(50vw + 50%);
+    background-color: rgb(162, 162, 162, 0.7);
+    padding: 10px 10px 5px 10px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    left: -100px;
+    bottom: 25px;
+    font-size: 0.92em; 
+    border-radius: 15px;
+}
+
+.tool-tip:hover .tool-tip-content {
+	visibility: visible; 
+}
+
+.tool-tip-content hr {
+	margin: 2%;
+}
+
+.tool-tip-content:before {
+	border-width: 13px;
+    left: 95px;
+    top: 100%;
+    border-color: rgb(162, 162, 162, 0.7) transparent transparent transparent;
+    border-style: solid;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+

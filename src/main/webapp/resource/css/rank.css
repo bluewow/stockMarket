@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+/* ===레이아웃============================================== */
+body {
+    --margin: 0;
+    --padding: 0;
+    height: 100%;
+}
+
+#contaner {
+    width: 90%;
+    --min-width: 460px;
+    max-width: 600px;
+    min-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    position: relative;
+}
+
+#contaner>div:first-child {
+    border: 5px solid #fff;
+    align-content: center;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
+
+#contaner>div:last-child {
+    background: #f2f2f2;
+    border: 3px solid #31bfd7;
+    width: 90%;
+    -min-width: 460px;
+    -max-width: 600px;
+    height: 61px;
+    align-content: center;
+    /* box-sizing: border-box; */
+    position: fixed;
+    bottom: 0px;
+}
+
+/* ===컨턴츠============================================== */
+.rank-Table {
+}
+
+.rank-Table table {
+    text-align: center;
+    font-size: 11pt;
+    border-collapse: collapse;
+}
+
+.rank-Table table thead{
+    border-bottom-style: solid;
+	border-bottom: 3.5px solid #efefef;
+	border-left: none;
+}
+
+.rank-Table table thead td{
+	font-family: "에스코어 드림";
+	font-weight: 500;
+	font-size: 1em;
+	color: #585B5E;
+	text-align: center;
+	border-bottom: 3px solid #ada8a8;
+	border-left: none;
+	padding: 0px 10px 5px 10px	
+}
+
+#contaner tbody tr {
+    height: 60px;
+     border-bottom: 1.5px solid #efefef;
+}
+
+#contaner tbody tr> :nth-child(1) {
+	font-family: "에스코어 드림";
+	font-weight: 500;
+    font-size: 0.9em;	
+}
+
+#contaner tbody tr> :nth-child(4),
+#contaner tbody tr> :nth-child(5){
+    font-family: "제주";
+    font-size: 0.9em;
+    font-weight: lighter;
+}
+
+#contaner tbody tr> .assetsGrowth{
+	color: #BF737C;
+	font-weight: bold;
+}
+
+#contaner tbody td {
+	font-family: "서울한강체";
+	color: #585B5E;
+	font-weight: bold;
+}  	
+        
+    .rank-Table .rank, .profileImg{
+        min-width: 50px;
+        max-width: 150px;
+    }
+    
+    tbody .profileImg{
+        --background: no-repeat url("../images/sample.png") center;
+        --background-size: 40px 40px;
+    }
+    
+    tbody .profileImg img{
+        width: 40px;
+        height: 40px;
+    }
+    
+    .rank-Table .name{
+        min-width: 50px;
+        width: 300px;
+        text-align: left;
+    }
+    
+    .rank-Table .assets, .assetsGrowth{
+    	min-width: 50px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .rank-Table tbody .name {
+        text-align: left;
+    }
+    tbody .assetsGrowth{
+        color: #cf969c;    
+    }
+    
+#myRank> tr> .rank {
+	min-width: 70px;	
+} 
+
+#myRank> tr> .profileImg {
+	min-width: 70px;	
+} 

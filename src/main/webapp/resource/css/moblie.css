@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/* Mobile */
+@media (max-width: 640px) {
+    .row, .row.grid-responsive {
+      flex-direction: column; }
+  
+    .row.grid-responsive .column,
+    .row.grid-responsive .column.column-10,
+    .row.grid-responsive .column.column-20,
+    .row.grid-responsive .column.column-25,
+    .row.grid-responsive .column.column-33,
+    .row.grid-responsive .column.column-40,
+    .row.grid-responsive .column.column-50,
+    .row.grid-responsive .column.column-60,
+    .row.grid-responsive .column.column-66,
+    .row.grid-responsive .column.column-67,
+    .row.grid-responsive .column.column-75,
+    .row.grid-responsive .column.column-80,
+    .row.grid-responsive .column.column-90,
+    .row.grid-responsive .column.column-100 {
+      display: block;
+      width: 100%;
+      max-width: 100%; }
+  
+    .navbar {
+      height: auto;
+      position: static; }
+      .navbar .user-section {
+        text-align: left; }
+      .navbar .row .column,
+      .navbar .row .column.column-10,
+      .navbar .row .column.column-20,
+      .navbar .row .column.column-25,
+      .navbar .row .column.column-33,
+      .navbar .row .column.column-40,
+      .navbar .row .column.column-50,
+      .navbar .row .column.column-60,
+      .navbar .row .column.column-66,
+      .navbar .row .column.column-67,
+      .navbar .row .column.column-75,
+      .navbar .row .column.column-80,
+      .navbar .row .column.column-90,
+      .navbar .row .column.column-100 {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 20px; }
+      .navbar a.site-title {
+        margin-left: 0; }
+      .navbar .col-search .search-btn {
+        top: 12px; }
+      .navbar input[type=text] {
+        margin: 0; }
+  
+    #sidebar {
+      position: static;
+      width: 100% !important;
+      padding: 10px 20px !important;
+      margin: 0;
+      height: auto;
+      left: 0; }
+  
+    #main-content {
+      width: 100% !important;
+      display: block !important;
+      margin: 0;
+      padding: 1.5rem !important; }
+  
+    .card .card-title, .card .card-block {
+      padding: 10px 15px; }
+  
+    .user-section {
+      display: none; } }

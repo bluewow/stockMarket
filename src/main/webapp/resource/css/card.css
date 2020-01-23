@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.visiable-none {
+	display: none;
+}
+.card {
+	border: hidden;
+	border-radius: 3%;
+	background: #efefef;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+	margin-bottom: 20px;
+	min-width: 501px;
+	height: 720px;
+	padding-bottom: 120%;
+}
+
+.card .card-block {
+	border: 1px rgba(0, 0, 0, .125);
+	border-radius: 3%;
+	position: absolute;
+	padding: 5px 5px;
+	width: 100%;
+	height: 100%;
+}
+
+.card .card-block .nav-tabs .nav-link {
+	border: 1px solid transparent;
+	border-top-left-radius: 1.4rem;
+	border-top-right-radius: 1.4rem;
+	min-width: 110;
+	text-align: center;
+	
+}
+
+.card .card-block .nav-tabs .nav-link:hover {
+	color:#585B5E;
+}
+
+.card .card-block .nav-tabs .nav-link-s {
+	text-align: center;
+	width: 110px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+	color: #495057;
+	font-weight: 500;
+}
+
+li a {
+	color: #c9c9c9;
+	font-weight: 500;
+}
+
+.card .card-block .tab-content {
+	position: relative;
+	background: #fff;
+	height: calc(100% - 50px);
+	border-bottom-left-radius: 3%;
+	border-bottom-right-radius: 3%;
+}
+
+.card .card-block iframe {
+	border: none;
+	width: 100%;
+	height: 100%;
+}
