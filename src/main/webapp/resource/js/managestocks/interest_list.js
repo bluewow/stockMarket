@@ -140,9 +140,9 @@ window.addEventListener("load", function () {
 
 	interestLoad();
 
-	setInterval(function () {
-		interestLoad();
-	}, 5000);
+//	setInterval(function () {
+//		interestLoad();
+//	}, 5000);
 
 	tbody.onclick = function (e) {
 		e.preventDefault();
