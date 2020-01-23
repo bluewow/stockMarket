@@ -2,8 +2,10 @@ package com.stockmarket.www.dao;
 //쿼리문...
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import com.stockmarket.www.entity.CommunityBoard;
 
+@Mapper
 public interface CommunityBoardDao {
 	List<CommunityBoard> getCommunityBoardList(int page, String field, String query, String stockCode, int loginId);
 	List<CommunityBoard> getReplyList(int boardId);
