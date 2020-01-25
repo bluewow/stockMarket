@@ -1,9 +1,13 @@
 package com.stockmarket.www.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
 import com.stockmarket.www.entity.CaptureMemo;
 import com.stockmarket.www.entity.CaptureMemoView;
 
+@Mapper
 public interface CaptureMemoDao {
 	CaptureMemo get(int id);
 	List<CaptureMemoView> getList(int id);
