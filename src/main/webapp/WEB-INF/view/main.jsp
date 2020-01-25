@@ -18,23 +18,23 @@
 >
 
 <!-- Template Styles -->
-<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/font-awesome.min.css">
 
 <!-- CSS Reset -->
-<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
 
 <!-- Milligram CSS minified -->
-<link rel="stylesheet" type="text/css" href="./css/milligram.min.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/milligram.min.css">
 
 <!-- Main Styles -->
-<link rel="stylesheet" type="text/css" href="./css/main.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/main.css">
 
-<link rel="stylesheet" type="text/css" href="./css/tablet.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/tablet.css">
 
 <!--  pop-up -->
-<link rel="stylesheet" type="text/css" href="./css/popup.css">
-<script src="./js/popup/popup.js"></script>
-<script src="./js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="/resource/css/popup.css">
+<script src="/resource/js/popup/popup.js"></script>
+<script src="/resource/js/main.js"></script>
 
 <!--[if lt IE 9]>
    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -145,7 +145,6 @@
 
 
          <!-- 주식 캡처 카드 -->
-
          <section class="column column-33">
             <div id="card3" class="card">
                <div class="card-block">
@@ -164,7 +163,6 @@
                   </section>
                </div>
             </div>
-
          </section>
 
 
@@ -257,7 +255,8 @@
                               </iframe></div>
 
                         </div>
-                        </section>
+                     </section>
+                  </div>
                </div>
             </section>
 
