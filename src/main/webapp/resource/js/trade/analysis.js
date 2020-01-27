@@ -3,7 +3,7 @@ var codeNum = "005930"; // 삼성전자
 window.addEventListener("message", function(e) {
 	if (e.data && (e.data.length == 6)) { // codeNum
 		codeNum = e.data;
-		refleshPrice();
+		updatePrice();
 		chartUpdate();
 	
 	}
@@ -11,10 +11,21 @@ window.addEventListener("message", function(e) {
 
 window.addEventListener("load", function() {
 	bb.defaults();
-	refleshPrice();
+	updatePrice();
 	chartUpdate();
 	captureAction();
 });
+
+function updatePrice() {
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "/card/trade/analysis-json?codeNum=" + codeNum);
+	ajax.onload = function() {
+//		console.log(ajax.responseText); //for debugging
+		var obj = JSON.parse(ajax.responseText);
+		curStockUpdateForm(obj);
+	}
+	ajax.send();
+}
 
 function captureAction() {
 	var button = document.querySelector("#capture");
@@ -24,13 +35,14 @@ function captureAction() {
 	
 	button.onclick = function(e) {
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET", "../../card/trade/analysis?capture=on&codeNum=" + codeNum);
+		ajax.open("GET", "/card/trade/capture-json?codeNum=" + codeNum);
 		ajax.onload = function() {
+//			console.log(ajax.responseText); //for debugging
 			//data send to capture Card
 			var frame = parent.document.querySelector("#capture-window");
 			frame.contentWindow.postMessage(
 					{capture: ajax.responseText }, 
-					"http://localhost:8080/card/capturememo/captureMemo.jsp");
+					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
 			
 			//캡쳐버튼시 카드이동
 			parent.document.querySelector("#capture-tab").click(); 
@@ -64,16 +76,6 @@ function curStockUpdateForm(obj) {
 		if(obj.status == "보합")
 			stockNameSpan[i].style.color = "black";
 	}
-}
-
-function refleshPrice() {
-	var ajax = new XMLHttpRequest();
-	ajax.open("GET", "../../card/trade/analysis?codeNum=" + codeNum);
-	ajax.onload = function() {
-		var obj = JSON.parse(ajax.responseText);
-		curStockUpdateForm(obj);
-	}
-	ajax.send();
 }
 
 bb.defaults({
