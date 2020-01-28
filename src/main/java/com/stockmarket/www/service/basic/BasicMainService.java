@@ -19,7 +19,11 @@ public class BasicMainService implements MainService {
 	}
 
 	@Override
-	public int updateCardPos(Member member) {
+	public int updateCardPos(int id, String cardPos) {
+		Member member = getMember(id);
+		cardPos = cardPos.replaceAll("[\\[|\\]|\"]", "");
+		member.setCardPos(cardPos);
+		
 		return memberDao.updateMember(member);
 	}	
 }

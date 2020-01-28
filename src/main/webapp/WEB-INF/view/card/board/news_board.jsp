@@ -12,12 +12,12 @@
 
 <!-- Template Styles -->
 <link rel="stylesheet" type="text/css"
-	href="../../css/font-awesome.min.css">
+	href="../../../../resource/css/font-awesome.min.css">
 
 <!-- CSS Reset -->
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+<link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
 
-<link href="../../css/board/news_board.css" type="text/css" rel="stylesheet">
+<link href="../../../../resource/css/board/news_board.css" type="text/css" rel="stylesheet">
 
 
 </head>

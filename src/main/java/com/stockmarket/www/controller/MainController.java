@@ -56,18 +56,14 @@ public class MainController {
 	public int mainJsonPost(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Object tempId = session.getAttribute("id");
+		String cardPos = request.getParameter("cardPos");
 		
 		int id = -1;
 		
 		if(tempId != null)
 			id = (Integer)tempId;
-				
-		Member member = service.getMember(id);
-		String cardPos = request.getParameter("cardPos");
-		cardPos = cardPos.replaceAll("[\\[|\\]|\"]", "");
-		member.setCardPos(cardPos);
-		
-		int result = service.updateCardPos(member);
+						
+		int result = service.updateCardPos(id, cardPos);
 		         
 		return result;
 	}

@@ -10,33 +10,25 @@ public class Member {
 	private long vMoney;
 	private int profileImg;
 	private String cardPos;
+	private long totalAsset;
 	private Date regdate;
 	
 	public Member() {
-	
+		this(0, "", "", "", 0, 0, "", 0, null);		
 	}
 	
 	// insert, update를 위한 생성자
 	public Member(String email, String nickName, String password, long vMoney) {
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		this.vMoney = vMoney;
+		this(0, email, password, nickName, vMoney, 0, "", 0, null);
 	}
 	
 	// select를 위한 생성자
 	public Member(int id, String email, String nickName, String password, long vMoney, String cardPos, int profileImg) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		this.vMoney = vMoney;
-		this.cardPos = cardPos;
-		this.profileImg = profileImg;
+		this(id, email, password, nickName, vMoney, profileImg, cardPos, 0, null);
 	}
 	
-	public Member(int id, String email, String password, String nickName, long vMoney, int profileImg, String cardPos,
-			Date regdate) {
+	public Member(int id, String email, String password, String nickName, long vMoney, int profileImg, String cardPos, 
+			long totalAsset, Date regdate) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -44,6 +36,7 @@ public class Member {
 		this.vMoney = vMoney;
 		this.profileImg = profileImg;
 		this.cardPos = cardPos;
+		this.totalAsset = totalAsset;
 		this.regdate = regdate;
 	}
 
@@ -112,15 +105,24 @@ public class Member {
 		this.regdate = regdate;
 	}
 
+	public long getTotalAsset() {
+		return totalAsset;
+	}
+
+	public void setTotalAsset(long totalAsset) {
+		this.totalAsset = totalAsset;
+	}
+
 	@Override
 	public String toString() {
-		return "id:" + id + "," + 
-				"email:" + email + "," + 
-				"nickName:" + nickName + "," +
-				"password:" + password + "," +
-				"vMoney:" + vMoney + "," +
-				"cardPos:" + cardPos + "," +
-				"profileImg:" + profileImg + "," +
+		return "id:" + id + ", " + 
+				"email:" + email + ", " + 
+				"nickName:" + nickName + ", " +
+				"password:" + password + ", " +
+				"vMoney:" + vMoney + ", " +
+				"cardPos:" + cardPos + ", " +
+				"profileImg:" + profileImg + ", " +
+				"totalAsset:" + totalAsset + ", " +
 				"regdate:" + regdate;
 	}
 }
