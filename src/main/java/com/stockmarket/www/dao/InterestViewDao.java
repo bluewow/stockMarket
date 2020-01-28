@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.stockmarket.www.entity.InterestView;
+import com.stockmarket.www.entity.InterestStockView;
 
 
 @Mapper
 public interface InterestViewDao {
 	
-	List<InterestView> getInterestStockList(int id);
+	List<InterestStockView> getInterestStockList(int id);
 
 }

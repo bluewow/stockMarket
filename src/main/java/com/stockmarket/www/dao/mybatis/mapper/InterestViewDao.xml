@@ -5,8 +5,9 @@
   <mapper namespace="com.stockmarket.www.dao.InterestViewDao">
   
   
-  <select id="getInterestStockList" resultType="com.stockmarket.www.entity.HaveStockView">
-  SELECT * FROM interestStockView WHERE id = #{id}
+  <select id="getInterestStockList" resultType="com.stockmarket.www.entity.InterestStockView">
+  SELECT * FROM interestStockView where id=#{id}
   </select>
+  
   
   </mapper>
