@@ -66,7 +66,7 @@ public class CommunityBoardController {
 				service.getCommunityBoardList(page, field, query, stockCode, id)); // 컨트롤러가 할 일은 데이터를 준비하는
 		model.addAttribute("loginId", id);
 
-		return "communityBoard";
+		return "card/board/community_board";
 	}
 	
 	//커뮤니티보드 (페이지,필드,My) 요청 리스트

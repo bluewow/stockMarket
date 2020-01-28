@@ -8,17 +8,17 @@
 
 <meta charset="utf-8">
 <!-- CSS Reset --> 
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+<link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
 <!-- download fontawesome.com -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<link rel="stylesheet" href="../../css/billboard.css">
-<script src = "../../js/billboard.js"></script>
+<link rel="stylesheet" href="../../../../resource/css/billboard.css">
+<script src = "../../../../resource/js/billboard.js"></script>
 
 <!-- ref analysis.css -->
-<link rel="stylesheet" href="../../css/trade/analysis.css">
-<script type="text/javascript" src="../../js/trade/analysis.js"></script>
+<link rel="stylesheet" href="../../../../resource/css/trade/analysis.css">
+<script type="text/javascript" src="../../../../resource/js/trade/analysis.js"></script>
 
 </head>
 <body>
@@ -27,9 +27,9 @@
 	<header class="page-top">
 		<div id="stockName">
 			<div></div>	<!-- 종목명 -->
-			<c:if test="${not empty sessionScope.id }">
+			<c:if test="${not empty sessionScope.id }"> 
 				<input class="animation" id="capture" type="button" value="캡쳐하기">
-			</c:if>
+ 			</c:if> 
 			<br>
 			<div></div>		<!-- 현재가 -->
 			<span></span> 	<!-- up/down 기호-->
@@ -61,8 +61,7 @@
 
 	<!-- --------------- page-bottom -------------- -->
 	<section class="page-bottom">
-<!-- 		<div>누적측정률</div>
-		<div>최신측정률</div> -->
+	<!-- TODO 누적측정률, 최신측정률 -->
 	</section>
 	
 </div>

@@ -99,12 +99,12 @@ window.addEventListener("load", function(){
 
 	        } else if(e.target.value == "로그아웃") {
 	            //로그아웃시 session 만료
-	            var request = new XMLHttpRequest();
-	            request.open("GET", "/login?loginStatus=logout");
-	            request.onload = function() {
+	            var ajax = new XMLHttpRequest();
+	            ajax.open("GET", "/login-json?status=logout");
+	            ajax.onload = function() {
 	                location.reload(true);
 	            }
-	            request.send();
+	            ajax.send();
 
 	        } else {
 	            //프로필

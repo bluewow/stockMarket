@@ -49,7 +49,7 @@ public class NewsBoardController {
 		
 	
 		
-		return "newsBoard";
+		return "card/board/news_board";
 	}
 
 }

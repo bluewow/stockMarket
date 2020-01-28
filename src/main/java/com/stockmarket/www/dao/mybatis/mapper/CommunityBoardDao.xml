@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stockmarket.www.dao.CommunityBoardDao">
+	<!-- 게시판 목록  -->
+	<select id="getCommunityBoardList" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select b.* from (
+			select bv.*, (
+				select boardId From InterestBoard where memberId='${param5}' and boardId = bv.id
+			) Interest from BoardView bv
+		) b where ${param2} like '%${param3}%' and stockCode like '%${param4}%' order by id desc limit ${param1},10;
+	</select>
+	
+	<!-- 게시글 댓글 갯수  -->
+	<select id="getReplyCnt" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select replyCnt from BoardView where ${param1} like '%${param2}%';
+	</select>
+	
+	<!-- 게시글 내용 -->
+	<select id="getCommunityBoardDetail" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select b.id id, b.title title, b.writerId writerId, b.regdate regdate, b.content content, b.hit hit, s.companyName companyName 
+			from Board b left outer join KoreaStocks s on b.stockCode = s.stockCode where id=${param1};
+	</select>
+	
+	<!-- 해당 게시글의 댓글목록 -->
+	<select id="getReplyList" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select * from Reply where boardId=${param1} order by regdate desc;
+	</select>
+	
+	<!-- 마지막 댓글 번호(댓글 입력시 Ajax로 변환하기 때문에 강제적으로 댓글 번호 가져오기 위한 쿼리 -->
+	<select id="lastReplyNum" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select * from Reply order by id desc limit 0,1;
+	</select>
+	
+	<!-- 게시판 입력 -->
+	<insert id="insertCommunityBoard" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		insert into Board (title, writerId, content, stockCode) values ( #{title}, #{writerId}, #{content}, #{stocCode} );
+	</insert>
+	
+	<!-- 게시판 수정 -->
+	<update id="updateCommunityBoard" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		update Board set title=#{title}, writerId=#{writerId}, content=#{content}, stockCode=#{stocCode} where id=#{id};
+	</update>
+	
+	<!-- 게시판 삭제 -->
+	<delete id="deleteCommunityBoard" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		delete from Board where id={#id};
+	</delete>
+	
+	<!-- 댓글 입력 -->
+	<insert id="insertReply" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		insert into Reply (reContent, writerId, boardId) values ( #{reContent}, #{writerId}, #{boardId} );
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		update Reply set reContent=#{reContent} where id=#{id};
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		delete from Reply where id={#id};
+	</delete>
+	
+	<!-- 댓글 일괄 삭제(게시글 삭제 시 연관된 댓글 삭제) -->
+	<delete id="deleteReplys" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		delete from Reply where boardId={#boardId};
+	</delete>
+	
+	<!-- 즐겨찾기 게시글 목록 -->
+	<select id="selectInterestBoard" resultType="com.stockmarket.www.entity.CommunityBoard">
+		select * from interestBoard where memberId=${memberId} and boardId=${boardId};
+	</select>
+	
+	<!-- 즐겨찾기 게시글 추가 -->
+	<insert id="insertInterestBoard" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		insert into interestBoard (memberId, boardId) values ( #{memberId},#{boardId} );
+	</insert>
+	
+	<!-- 즐겨찾기 게시글 삭제 -->
+	<delete id="deleteInterestBoard" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		delete from interestBoard where memberId=${memberId} and boardId=${boardId};
+	</delete>
+	
+	<!-- 즐겨찾기 게시글 일괄삭제(게시글 삭제 시)  -->
+	<delete id="deleteInterestBoards" parameterType="com.stockmarket.www.entity.CommunityBoard">
+		delete from interestBoard where boardId=${boardId};
+	</delete>
+	
+</mapper>
+
+
+
