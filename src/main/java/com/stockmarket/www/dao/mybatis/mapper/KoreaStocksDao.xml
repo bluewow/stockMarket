@@ -6,5 +6,28 @@
 	<select id="get" resultType="com.stockmarket.www.entity.KoreaStocks">
 		SELECT * FROM KoreaStocks WHERE stockCode=#{codeNum}
 	</select>
+	
+	<select id="getList" resultType="com.stockmarket.www.entity.KoreaStocks">
+		SELECT * FROM KOREASTOCKS
+	</select>
+	
+	<select id="searchCompany" resultType="com.stockmarket.www.entity.KoreaStocks">
+		SELECT * FROM KOREASTOCKS WHERE companyname =#{compnayName}
+	</select>
+	
+	<insert id="insert" parameterType="com.stockmarket.www.entity.KoreaStocks">
+		NSERT INTO KOREASTOCKS (COMPANYNAME, STOCKCODE, SECTORS, MAINPRODUCT, STOCKEDDAY, SETTLEMENTMONTH, REPRESENTATIVENAME, WEBSITE, LOCATION)
+				+ VALUES (#{COMPANYNAME},#{STOCKCODE},#{SECTORS},#{MAINPRODUCT},#{STOCKEDDAY},#{SETTLEMENTMONTH},#{REPRESENTATIVENAME},#{WEBSITE},#{LOCATION})
+	</insert>
+	
+	
+	<update id="update">
+	<!-- parameterType을 설정해줘야 하나요? -->
+		UPDATE KoreaStocks SET companyname=#{src} WHERE companyname=#{target}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM KOREASTOCKS
+	</delete>
 	<!-- TODO getList, insert, delete, searchCompany, update -->
 </mapper>
