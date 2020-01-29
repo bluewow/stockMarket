@@ -22,4 +22,8 @@ public class BasicDemoService implements DemoService{
 		return demoDao.getMemberList();	// demoDao에 getList 호출
 	}
 	
+	public static void main(String[] args) {
+		BasicDemoService demo = new BasicDemoService();
+		demo.getMemberList();
+	}
 }

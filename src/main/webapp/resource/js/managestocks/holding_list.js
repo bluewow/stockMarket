@@ -281,9 +281,9 @@ window
 					
 					holdingLoad();
 
-					setInterval(function() {
-						holdingLoad();
-					}, 5000);
+//					setInterval(function() {
+//						holdingLoad();
+//					}, 5000);
 					});
 
 

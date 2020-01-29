@@ -8,7 +8,7 @@ window.addEventListener("message", function (e) {
 		function interestLoad() {
 
 			var interestAjax = new XMLHttpRequest();
-			interestAjax.open("GET", "../../card/managestocks/interestlist-json", true);
+			interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
 
 			// 서블릿의 실행이 완료되었을때 실행
 			interestAjax.onload = function () {
@@ -67,7 +67,7 @@ window.addEventListener("message", function (e) {
 				sendData = sendData.join('&');
 
 				var delRequest = new XMLHttpRequest();
-				delRequest.open("POST", "../../card/managestocks/interestlist-json", true)
+				delRequest.open("POST", "../../card/managestocks/interest_list_json", true)
 				delRequest.setRequestHeader('Content-Type',
 					'application/x-www-form-urlencoded');
 				delRequest.onload = function () {
@@ -88,7 +88,7 @@ window.addEventListener("load", function () {
 	function interestLoad() {
 
 		var interestAjax = new XMLHttpRequest();
-		interestAjax.open("GET", "../../card/managestocks/interestlist-json", true);
+		interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
 		// 서블릿의 실행이 완료되었을때 실행	
 
 		interestAjax.onload = function () {
@@ -140,9 +140,9 @@ window.addEventListener("load", function () {
 
 	interestLoad();
 
-	setInterval(function () {
-		interestLoad();
-	}, 5000);
+//	setInterval(function () {
+//		interestLoad();
+//	}, 5000);
 
 	tbody.onclick = function (e) {
 		e.preventDefault();
@@ -158,7 +158,7 @@ window.addEventListener("load", function () {
 			sendData = sendData.join('&');
 
 			var delRequest = new XMLHttpRequest();
-			delRequest.open("POST", "../../card/managestocks/interestlist-json", true)
+			delRequest.open("POST", "../../card/managestocks/interest_list_json", true)
 			delRequest.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
 			delRequest.onload = function () {

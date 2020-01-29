@@ -6,5 +6,31 @@
 	<select id="get" resultType="com.stockmarket.www.entity.KoreaStocks">
 		SELECT * FROM KoreaStocks WHERE stockCode=#{codeNum}
 	</select>
+	
+	<select id="getList" resultType="com.stockmarket.www.entity.KoreaStocks">
+		SELECT * FROM KoreaStocks
+	</select>
+	
+	<select id="searchCompany" resultType="com.stockmarket.www.entity.KoreaStocks">
+		SELECT * FROM KoreaStocks WHERE companyName =#{compnayName}
+	</select>
+	
+	<insert id="insert" parameterType="com.stockmarket.www.entity.KoreaStocks">
+		INSERT INTO KoreaStocks (companyName, stockCode, sectors, mainProduck, stockedDay, settlementMonth, representativeName, website, location)
+				+ VALUES (#{companyName},#{stockCode},#{sectors},#{mainProduck},#{stockedDay},#{settlementMonth},#{representativeName},#{website},#{location})
+	</insert>
+	
+	
+	<update id="update">
+		UPDATE KoreaStocks SET companyName=#{src} WHERE companyName=#{target}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM KoreaStocks
+	</delete>
+	
+	<select id="searchCompany" resultType="com.stockmarket.www.entity.KoreaStocks">
+		SELECT * FROM KoreaStocks WHERE companyName=#{compnayName}
+	</select>
 	<!-- TODO getList, insert, delete, searchCompany, update -->
 </mapper>

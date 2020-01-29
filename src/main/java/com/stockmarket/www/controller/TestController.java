@@ -16,20 +16,20 @@ import com.stockmarket.www.entity.Member;
 
 @RestController
 public class TestController {
-//	@Autowired
-//	private MemberDao dao;
-	
 	@Autowired
-	private CaptureMemoDao dao;
+	private MemberDao dao;
+	
+//	@Autowired
+//	private CaptureMemoDao dao;
 
 	@ResponseBody
 	@GetMapping("/test")
 	public String test() {
 		// ###Member mapper Test#############################################
 		// getMemberList Test
-//		List<Member> list = dao.getMemberList();
-//		for(Member m : list)
-//			System.out.println(m.toString());
+		List<Member> list = dao.getMemberList();
+		for(Member m : list)
+			System.out.println(m.toString());
 		
 		// getRankerList Test
 //		List<Member> list = dao.getRankerList();
