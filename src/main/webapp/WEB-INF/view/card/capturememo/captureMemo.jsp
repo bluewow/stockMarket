@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
-<link rel="stylesheet" type="text/css" href="../../css/captureMemo.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/captureMemo.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -18,10 +18,10 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!--다운 받아서 포함 시키기-->
-<script src = "../../js/billboard.js"></script>
-<link rel="stylesheet" href="../../css/billboard.css">
+<script src = "/resource/js/billboard.js"></script>
+<link rel="stylesheet" href="/resource/css/billboard.css">
 
-<script src="../../js/capture/capture.js"></script>
+<script src="/resource/js/capture/capture.js"></script>
 
 <title>Insert title here</title>
 </head>

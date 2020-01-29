@@ -11,7 +11,7 @@ class CaptureMemo {
 	}
 
 	loadList(callback) {
-		$.getJSON("captureMemo-json")
+		$.getJSON("captureMemo-json-list")
 		.done(function(list) {
 			let trTemplate = document.querySelector(".tr-template-list");
 			let content = $(".content");
@@ -60,7 +60,7 @@ class CaptureMemo {
 
 	chartDataCrawling(data1) {
 		return new Promise(function(resovle, reject){
-			$.getJSON("captureMemo-data-crawling-json?id="+data1.id)
+			$.getJSON("captureMemo-json-dataCrawling?id="+data1.id)
 				.done(function(data2) {
 					resovle(data2);
 				})
@@ -112,7 +112,7 @@ class CaptureMemo {
 		return new Promise(function(resovle, reject){
 			let memoId = target.parent().attr("dataset.id");
 			
-			$.getJSON("captureMemo-detail-json?memoId=" + memoId)
+			$.getJSON("captureMemo-json-detail?memoId=" + memoId)
 			.done(function(result) {
 				resovle(result);
 			})
@@ -127,8 +127,13 @@ class CaptureMemo {
 		data.id = target.parent().attr("dataset.id");
 		data.title = $(".memo > div").eq(0).children().first().val();
 		data.content = $(".memo > div").eq(1).children().first().val();
-		
-		$.post("captureMemo-json-update", JSON.stringify(data))
+
+		$.ajax({
+			type: "POST",
+			url: "captureMemo-json-update",
+			data: JSON.stringify(data),
+			contentType:"application/json; charset=utf-8"
+		})
 		.done(function(result) {
 			if(result == 1) {
 				target.parent().find("td").eq(1).text($(".memo > div").eq(0).children().first().val());
@@ -142,7 +147,7 @@ class CaptureMemo {
 	deleteDetail(target){
 		return new Promise(function(resovle, reject){
 			let memoId = target.parent().parent().attr("dataset.id");
-			$.post("captureMemo-delete-json", "memoId=" + memoId)
+			$.get("captureMemo-json-delete?memoId=" + memoId)
 			.done(function() {
 				resovle();
 			})
@@ -196,10 +201,10 @@ window.addEventListener("message", function(e) {
     if (data) {
         var request = new XMLHttpRequest();
 
-        request.open("POST", "captureMemo-json", true);
+        request.open("POST", "captureMemo-json-insert", true);
         request.setRequestHeader(
             "Content-Type",
-            "application/x-www-form-urlencoded"
+            "application/json"
         );
         request.onload = function() {
 			let captureMemo = new CaptureMemo();

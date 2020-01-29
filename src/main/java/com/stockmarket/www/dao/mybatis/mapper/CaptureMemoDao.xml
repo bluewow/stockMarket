@@ -7,7 +7,9 @@
 		select * from CaptureMemo where id=#{id}
 	</select>
 	<select id="getList" resultType="com.stockmarket.www.entity.CaptureMemo">
-		select * from CaptureMemo where id=#{id}
+		select s.companyName, c.title, c.regdate, c.memberId, c.id
+		from CaptureMemo c join KoreaStocks s on c.codeNum = s.stockCode 
+		where memberId=#{memberId} order by regdate desc
 	</select>
 	<insert id="insert">
 		
