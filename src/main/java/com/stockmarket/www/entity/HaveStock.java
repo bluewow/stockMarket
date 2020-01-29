@@ -3,7 +3,7 @@ package com.stockmarket.www.entity;
 public class HaveStock {
 	
 	private int memberId;
-	private String stockId;
+	private String stockCode;
 	private int quantity;
 	private int sum;
 	
@@ -11,10 +11,10 @@ public class HaveStock {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public HaveStock(int memberId, String stockId, int quantity, int sum) {
+	public HaveStock(int memberId, String stockCode, int quantity, int sum) {
 		super();
 		this.memberId = memberId;
-		this.stockId = stockId;
+		this.stockCode = stockCode;
 		this.quantity = quantity;
 		this.sum = sum;
 	}
@@ -26,11 +26,11 @@ public class HaveStock {
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public String getStockId() {
-		return stockId;
+	public String getStockCode() {
+		return stockCode;
 	}
-	public void setStockId(String stockId) {
-		this.stockId = stockId;
+	public void setStockCode(String stockCode) {
+		this.stockCode = stockCode;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -49,7 +49,7 @@ public class HaveStock {
 
 	@Override
 	public String toString() {
-		return "HaveStock [memberId=" + memberId + ", stockId=" + stockId + ", quantity=" + quantity + ", sum=" + sum
+		return "HaveStock [memberId=" + memberId + ", stockCode=" + stockCode + ", quantity=" + quantity + ", sum=" + sum
 				+ "]";
 	}
 }
