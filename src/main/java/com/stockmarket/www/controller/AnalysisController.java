@@ -28,8 +28,8 @@ public class AnalysisController {
 	private HttpServletRequest req;
 	
 	@ResponseBody
-	@GetMapping("capture-json") //capture
-	public String captureJson(@RequestParam(defaultValue="005930", name="codeNum") String codeNum) {
+	@GetMapping("capture") //capture
+	public String capture(@RequestParam(defaultValue="005930", name="codeNum") String codeNum) {
 
 		int memberId = (int)req.getSession().getAttribute("id");
 		String result = service.captureDataCrawling(codeNum, memberId);
@@ -38,8 +38,8 @@ public class AnalysisController {
 	}
 	
 	@ResponseBody
-	@GetMapping("analysis-json") //view update
-	public String analaysisJson(@RequestParam("codeNum") String codeNum) {
+	@GetMapping("analysisUpdate") //view update
+	public String analysisUpdate(@RequestParam("codeNum") String codeNum) {
 		
 		HashMap<Object, Object>map = new HashMap<>();
 		Map<String, CurStock> stocks = AppContext.getStockMarket();
@@ -74,7 +74,7 @@ public class AnalysisController {
 	}
 	
 	@GetMapping("analysis") 
-	public String analysis(HttpServletRequest req) {
+	public String analysis() {
 		//default operator
 		return "card/trade/analysis";
 	}

@@ -18,7 +18,7 @@ window.addEventListener("load", function() {
 
 function updatePrice() {
 	var ajax = new XMLHttpRequest();
-	ajax.open("GET", "/card/trade/analysis-json?codeNum=" + codeNum);
+	ajax.open("GET", "/card/trade/analysisUpdate?codeNum=" + codeNum);
 	ajax.onload = function() {
 //		console.log(ajax.responseText); //for debugging
 		var obj = JSON.parse(ajax.responseText);
@@ -35,7 +35,7 @@ function captureAction() {
 	
 	button.onclick = function(e) {
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET", "/card/trade/capture-json?codeNum=" + codeNum);
+		ajax.open("GET", "/card/trade/capture?codeNum=" + codeNum);
 		ajax.onload = function() {
 //			console.log(ajax.responseText); //for debugging
 			//data send to capture Card
