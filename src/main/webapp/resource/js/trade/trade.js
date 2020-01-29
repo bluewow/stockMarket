@@ -153,7 +153,7 @@ function buttonEvent() {
 		}
 		
 		var ajax = new XMLHttpRequest();
-	    ajax.open("GET", "../../card/trade/trade?&qty=" + qty + "&codeNum=" + codeNum + "&price=" + price );
+	    ajax.open("GET", "../../card/trade/buy?&qty=" + qty + "&codeNum=" + codeNum + "&price=" + price );
 	    ajax.onload = function() {
 	    	var obj = JSON.parse(ajax.responseText);
 	    	data[0].value = obj.vMoney;
@@ -191,7 +191,7 @@ function buttonEvent() {
 		}
 		
 		var ajax = new XMLHttpRequest();
-	    ajax.open("GET", "../../card/trade/trade?&qty=" + -qty + "&codeNum=" + codeNum + "&price=" + price );
+	    ajax.open("GET", "../../card/trade/sell?&qty=" + -qty + "&codeNum=" + codeNum + "&price=" + price );
 	    ajax.onload = function() {
 	    	var obj = JSON.parse(ajax.responseText);
 	    	data[0].value = obj.vMoney;
@@ -222,7 +222,7 @@ function update() {
 	priceObj = new Price();
 	
 	var ajax = new XMLHttpRequest();
-    ajax.open("GET", "../../card/trade/trade?&codeNum=" + codeNum );
+    ajax.open("GET", "../../card/trade/tradeUpdate?&codeNum=" + codeNum );
     ajax.onload = function() {
     	var obj = JSON.parse(ajax.responseText);
     	var sellPrice = new Array("x");

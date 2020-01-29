@@ -8,17 +8,17 @@
 
 <meta charset="utf-8">
 <!-- CSS Reset -->
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+<link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
 <!-- download fontawesome.com -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<link rel="stylesheet" href="../../css/billboard.css">
-<script src = "../../js/billboard.js"></script> 
+<link rel="stylesheet" href="../../../../resource/css/billboard.css">
+<script src = "../../../../resource/js/billboard.js"></script> 
 
 <!-- ref analysis.css -->
-<link rel="stylesheet" href="../../css/trade/trading.css">
-<script type="text/javascript" src="../../js/trade/trade.js"></script>
+<link rel="stylesheet" href="../../../../resource/css/trade/trading.css">
+<script type="text/javascript" src="../../../../resource/js/trade/trade.js"></script>
 	 
 	 
 </head>
