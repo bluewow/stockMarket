@@ -3,13 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.UpjongDao">
+
 	<select id="getUpjong" parameterType="String">
 		select upjong from Upjong where stockName=#{stockName}
 	</select>
 	
 	<select id="getStockNames" resultType="String">
-		select stockName form Upjong where upjong=#{upjong}
+		select stockName from Upjong where upjong=#{upjong}
 	</select>
 	
-	<insert id=""></insert>
+	<insert id="insert" parameterType="com.stockmarket.www.entity.Upjong">
+		insert into Upjong (upjong, stockName) VALUES (#{upjong}, #{stockName})
+	</insert>
+	
+	<delete id="delete">
+		delete from Upjong
+	</delete>
 </mapper>
