@@ -12,7 +12,7 @@
 	</select>
 	
 	<select id="searchCompany" resultType="com.stockmarket.www.entity.KoreaStocks">
-		SELECT * FROM KoreaStocks WHERE companyName =#{compnayName}
+		SELECT * FROM KoreaStocks WHERE companyName =#{companyName}
 	</select>
 	
 	<insert id="insert" parameterType="com.stockmarket.www.entity.KoreaStocks">
@@ -28,9 +28,6 @@
 	<delete id="delete">
 		DELETE FROM KoreaStocks
 	</delete>
-	
-	<select id="searchCompany" resultType="com.stockmarket.www.entity.KoreaStocks">
-		SELECT * FROM KoreaStocks WHERE companyName=#{compnayName}
-	</select>
+
 	<!-- TODO getList, insert, delete, searchCompany, update -->
 </mapper>
