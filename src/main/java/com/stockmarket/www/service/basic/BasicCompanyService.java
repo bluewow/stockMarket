@@ -14,6 +14,7 @@ import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.stockmarket.www.dao.InterestStocksDao;
 import com.stockmarket.www.dao.KoreaStocksDao;
@@ -22,6 +23,7 @@ import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.service.CompanyService;
 
+@Service
 public class BasicCompanyService implements CompanyService {
 
 	@Autowired
