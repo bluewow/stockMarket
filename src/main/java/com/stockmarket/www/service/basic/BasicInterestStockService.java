@@ -16,10 +16,10 @@ import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.InterestStockView;
 import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.InterestView;
-import com.stockmarket.www.service.InterestStocksService;
+import com.stockmarket.www.service.InterestStockService;
 
 @Service
-public class BasicInterestStocksService implements InterestStocksService{
+public class BasicInterestStockService implements InterestStockService{
 	
 	@Autowired
 	InterestViewDao interestViewDao;

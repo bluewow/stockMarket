@@ -17,12 +17,12 @@ class CaptureMemo {
 			let content = $(".content");
 			
 			content.html("");
-		
+			console.log(list[0]);
 			for(let i = 0; i < list.length; i++) {
 				let cloneTr = document.importNode(trTemplate.content, true);
 				let tds = $(cloneTr).children();
 				
-				tds.children().eq(0).text(list[i].codeNumName);
+				tds.children().eq(0).text(list[i].companyName);
 				tds.children().eq(1).text(list[i].title);
 				tds.children().eq(2).children().first().before(list[i].regdate);
 				tds.attr("dataset.id", list[i].id);

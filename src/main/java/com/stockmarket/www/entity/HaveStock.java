@@ -8,11 +8,10 @@ public class HaveStock {
 	private int sum;
 	
 	public HaveStock() {
-		// TODO Auto-generated constructor stub
 	}
 	
+	/* insert용 생성자 */
 	public HaveStock(int memberId, String stockCode, int quantity, int sum) {
-		super();
 		this.memberId = memberId;
 		this.stockCode = stockCode;
 		this.quantity = quantity;

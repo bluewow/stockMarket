@@ -20,6 +20,7 @@ window.addEventListener("load", function() {
 		
 	// codeNum 전달이벤트
 	
+	// 튤팁 코드
 	/*---------------------------------------------------------*/
 	(function(){
 		var links = document.querySelectorAll("#stockItemName");
@@ -93,7 +94,7 @@ window.addEventListener("load", function() {
 				tradeWindow.contentWindow.postMessage(codenum,
 						"http://localhost:8080/card/trade/trading.jsp");
 				interestWindow.contentWindow.postMessage(codenum,
-				"http://localhost:8080/card/managestocks/interestlist.jsp");
+						"http://localhost:8080/card/managestocks/interestlist.jsp");
 				
 			}
 		}

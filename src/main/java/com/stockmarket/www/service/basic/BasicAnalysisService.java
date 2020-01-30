@@ -22,8 +22,6 @@ public class BasicAnalysisService implements AnalysisService{
 	@Override
 	public String getStockName(String codeNum) {
 		return stocksDao.get(codeNum).getCompanyName();
-//		KoreaStocks koreaStocks = koreaStocksDao.get(codeNum);
-//		return koreaStocks.getCompanyName();  
 	}
 
 	@Override
