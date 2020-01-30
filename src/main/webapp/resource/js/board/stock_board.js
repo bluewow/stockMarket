@@ -296,13 +296,13 @@ window.addEventListener("message", function (e) {
 		// 2. 값을 서버에 보낸다.
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/replyinsert", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
 		// 3. 요청이 완료되었는지 결과를 확인한다.
 		request.onload = function () {
-			var lastReplyNum = request.responseText;
+			var lastReplyNum = JSON.parse(request.responseText);
 			alert("등록되었습니다.");
 
 			// 텍스트박스 지우기

@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
 		if(sortBoard=="")
 			request.open("GET", "../../card/board/community_board_list?p=" + page);
 		else if(sortBoard=="my")
-			request.open("GET", "../../card/board/community_board_list?f=writer_id&q=my&p=" + page);
+			request.open("GET", "../../card/board/community_board_list?f=writerId&q=my&p=" + page);
 		else if(sortBoard=="interest")
 			request.open("GET", "../../card/board/community_board_list?f=interest&p=" + page);
 	
@@ -120,7 +120,7 @@ window.addEventListener("load", function () {
 
 				tds[0].innerText = listData.list[i].id;
 				var aTagDetail = tds[1].firstElementChild;
-				aTagDetail.innerHTML = String.raw`<span class="stock-name">[${listData.list[i].stockName}]</span>
+				aTagDetail.innerHTML = String.raw`<span class="stock-name">[${listData.list[i].companyName}]</span>
 				<span class="title">${listData.list[i].title} </span>
 				(<span class="reply-cnt">${listData.list[i].replyCnt}</span>)`;
 				aTagDetail.dataset.id = listData.list[i].id;
@@ -176,7 +176,7 @@ window.addEventListener("load", function () {
 		var id = e.target.parentNode.dataset.id;
 		// 로딩을 표시
 		var ajaxIcon = document.createElement("img");
-		ajaxIcon.src = "../../images/delay-icon.gif";
+		ajaxIcon.src = "../../../../resource/images/delay-icon.gif";
 		e.target.parentNode.parentNode.append(ajaxIcon);
 
 		// 데이터를 요청
@@ -207,13 +207,13 @@ window.addEventListener("load", function () {
 						+ '</span><input type="text" class="reply-modi-content hidden" name="title" maxlength="200" placeholder="주제와 무관한 댓글, 악플은 징계 대상이 됩니다." value="'
 						+ detail.replys[i].reContent
 						+ '"></input><span class="modi-box"><a href="" class="re-modi" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">수정</a>  <a href="" class="re-del" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">삭제</a><a href="" class="re-commit hidden" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">확인</a>  <a href="" class="re-cancel hidden" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">취소</a></span></div>';
 				} else {
 					contentSum += '<div><span class="re-writer">'
@@ -278,7 +278,7 @@ window.addEventListener("load", function () {
 		// 2. 값을 서버에 보낸다.
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/reply_insert", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -366,8 +366,7 @@ window.addEventListener("load", function () {
 		}
 
 		var data = [["replyId", replyId],
-		["reContent", reContentEncode],
-		["status", "modi"],]
+		["reContent", reContentEncode]]
 		var sendData = [];
 
 		for (var i = 0; i < data.length; i++) {
@@ -378,7 +377,7 @@ window.addEventListener("load", function () {
 		// 2. 값을 서버에 보낸다.
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/reply_update", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -451,7 +450,7 @@ window.addEventListener("load", function () {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/reply_delete", true);
 		request.setRequestHeader('Content-Type',
 			'application/x-www-form-urlencoded');
 		request.send(sendData);
@@ -481,7 +480,7 @@ window.addEventListener("load", function () {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/stock_reg_board", true);
+		request.open("POST", "../../card/board/stock_delete_board", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -507,7 +506,7 @@ window.addEventListener("load", function () {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/interest", true);
+		request.open("POST", "../../card/board/interest_insert", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -535,7 +534,7 @@ window.addEventListener("load", function () {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/interest", true);
+		request.open("POST", "../../card/board/interest_delete", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 

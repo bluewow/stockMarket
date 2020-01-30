@@ -1,7 +1,6 @@
 package com.stockmarket.www.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,6 +70,7 @@ public class CommunityBoardController {
 	}
 	
 	//커뮤니티보드 (페이지,필드,My) 요청 리스트
+	@ResponseBody
 	@GetMapping("/card/board/community_board_list")
 	public String communityBoardList(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -104,7 +105,7 @@ public class CommunityBoardController {
 
 		if(query.equals("my"))
 			query = loginUser;
-
+		System.out.println(query);
 		String stockName_ = request.getParameter("s");
 		if (stockName_ != null && !stockName_.equals(""))
 			stockName = stockName_;
@@ -115,10 +116,6 @@ public class CommunityBoardController {
 		hm.put("list", list);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(hm);
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.write(json);
 		return json;
 	}
 }

@@ -37,12 +37,13 @@ function captureAction() {
 		var ajax = new XMLHttpRequest();
 		ajax.open("GET", "/card/trade/capture?codeNum=" + codeNum);
 		ajax.onload = function() {
-//			console.log(ajax.responseText); //for debugging
+			console.log(ajax.responseText); //for debugging
 			//data send to capture Card
 			var frame = parent.document.querySelector("#capture-window");
 			frame.contentWindow.postMessage(
 					{capture: ajax.responseText }, 
-					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
+					"http://localhost:8080/card/capturememo/captureMemo");
+//					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
 			
 			//캡쳐버튼시 카드이동
 			parent.document.querySelector("#capture-tab").click(); 
