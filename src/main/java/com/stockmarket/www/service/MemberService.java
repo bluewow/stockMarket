@@ -9,6 +9,7 @@ public interface MemberService {
 	List<Member> getMemberList();
 	
 	Member getMember(int id);
+	Member getMemberByNickName(String loginNickname);
 
 	int updateMember(int id, int profileImg, String imgChange);
 

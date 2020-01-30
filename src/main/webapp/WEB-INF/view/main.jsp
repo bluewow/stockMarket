@@ -361,7 +361,7 @@
 
 				<span class="pop-up-top-image">
 					<a href="#">
-			    		<img src="/images/profile/1.png" 
+			    		<img src="/resource/images/profile/1.png" 
 			    			alt="profile photo" data-id="1" class="circle float-left profile-photo-modi">
 	                </a>
                 </span>

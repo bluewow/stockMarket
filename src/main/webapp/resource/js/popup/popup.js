@@ -218,6 +218,7 @@ window.addEventListener("load", function(){
 		if(loginStatus.value!="로그인") {
 			var userId = loginStatus.value;
 			var sendData = "loginNickname="+userId;
+			console.log(userId);
 	
 			var request = new XMLHttpRequest(); 
 			request.open("POST", "../../member-profile", true);
@@ -229,13 +230,13 @@ window.addEventListener("load", function(){
 			    var profilePhoto = document.querySelector(".profile-photo");
 				
 			    profilePhoto.parentNode.innerHTML =
-			    	`<img src="/images/profile/${photoImg}.png" 
+			    	`<img src="/resource/images/profile/${photoImg}.png" 
 			    	alt="profile photo" class="circle float-left profile-photo"
 			    	 width="60" height="auto">
 			    	<input class="small animation-2" type="button" value="${userId}">
 			    	 <input class="animation-2" type="button" value="로그아웃">`;
 		        changePhoto.parentNode.innerHTML = 
-		        	`<img src="/images/profile/${photoImg}.png" 
+		        	`<img src="/resource/images/profile/${photoImg}.png" 
 		        	alt="profile photo" class="circle float-left profile-photo-modi"
 		        	data-id="${photoImg}">`;
 			}
@@ -270,11 +271,11 @@ window.addEventListener("load", function(){
 	        var list = "";
 	        	for(var i=1; i<=36; i++) {
 	        		if(i==nowImg) 
-		        		var photos =  `<img src="/images/profile/${i}.png" 
+		        		var photos =  `<img src="/resource/images/profile/${i}.png" 
 			        	alt="profile photo" class="images image-selected"
 			        	 data-id="${i}">`
 	        		else if(i!=nowImg) 
-		        		var photos =  `<img src="/images/profile/${i}.png" 
+		        		var photos =  `<img src="/resource/images/profile/${i}.png" 
 			        	alt="profile photo" class="images"
 			        	 data-id="${i}">`
 	        	        list = list + photos;
@@ -357,7 +358,7 @@ window.addEventListener("load", function(){
 	        var selectPhoto = currentSelect.dataset.id;
 	        var changePhoto = profileImage.getElementsByClassName("profile-photo-modi")[0];
 	        changePhoto.parentNode.innerHTML = 
-	        	`<img src="/images/profile/${selectPhoto}.png" 
+	        	`<img src="/resource/images/profile/${selectPhoto}.png" 
 	        	alt="profile photo" class="circle float-left profile-photo-modi"
 	        	data-id="${selectPhoto}">`;
 	        //데이터 준비
@@ -387,7 +388,7 @@ window.addEventListener("load", function(){
 			    
 			    //변경된 이미지를 프로필 팝업과 메인페이지 변경하는 코드
 			    profilePhoto.parentNode.innerHTML =
-			    	`<img src="/images/profile/${selectPhoto}.png" 
+			    	`<img src="/resource/images/profile/${selectPhoto}.png" 
 			    	alt="profile photo" class="circle float-left profile-photo"
 			    	 width="50" height="auto">
 			    	<input class="small animation-2" type="button" value="${userId}">

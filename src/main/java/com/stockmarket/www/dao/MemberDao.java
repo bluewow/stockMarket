@@ -13,7 +13,8 @@ public interface MemberDao {
 	List<Member> getRankerList();
 	
 	Member getMember(int id);
-	Member getMemberByEmail(String query);	
+	Member getMemberByEmail(String query);
+	Member getMemberByNickName(String loginNickname);
 	int getMemberRank(int id);
 	int updateMember(Member member);
 //	int updateMember(@Param("id") int id, @Param("cardPos") String cardPos);
