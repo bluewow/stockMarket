@@ -12,7 +12,7 @@ public class TradeController {
 	@ResponseBody
 	@GetMapping("tradeUpdate")
 	public String tradeUpdate() {
-		System.out.println("tradeUpdate");
+//		System.out.println("tradeUpdate");
 		return null;
 	}
 	
