@@ -35,9 +35,6 @@ public class ManageStockController {
 //	@Autowired
 //	HoldingStocksService holdingStockService;
 
-//	@Autowired
-//	InterestViewDao stockDao;
-	
 	@Autowired
 	InterestStocksService interesrStocksService;
 	
@@ -67,6 +64,8 @@ public class ManageStockController {
 	    
 	}
 	
+	
+	
 	private void updateInterestCurrentPrice(HttpServletRequest request,HttpServletResponse response , int userId)throws IOException {
 		
 		if(interesrStocksService.getInterestViewList(userId).isEmpty()) {
@@ -93,7 +92,7 @@ public class ManageStockController {
         
 		int userId = (int)session.getAttribute("id");
 		String delStockName = request.getParameter("delStockName");
-
+		
 		int result = interesrStocksService.deleteStock(userId,delStockName);	
         PrintWriter out = response.getWriter();
 		out.write(result);
@@ -129,16 +128,16 @@ public class ManageStockController {
 //	}
 	
 	
-//	@ResponseBody
-//	@GetMapping("/manageTest")
-//	public String manageTest() {
-//		
-//		List<InterestStockView> list = stockDao.getInterestStockList(3);
-//		for(InterestStockView m : list)
-//			System.out.println(m.toString());
-//		
-//		return "";
-//	}
+	@ResponseBody
+	@GetMapping("/manageTest")
+	public String manageTest() {
+		
+		List<InterestView> list = interesrStocksService.getInterestViewList(3);
+		for(InterestView m : list)
+			System.out.println(m.toString());
+		
+		return "";
+	}
 	
 	
 	

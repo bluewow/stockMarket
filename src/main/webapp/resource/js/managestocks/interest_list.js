@@ -8,7 +8,7 @@ function interestLoadProto(){
    function interestLoad() {
 
       var interestAjax = new XMLHttpRequest();
-      interestAjax.open("GET", "../../card/managestocks/interestlist-json", true);
+      interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
       // 서블릿의 실행이 완료되었을때 실행   
 
       interestAjax.onload = function () {
@@ -78,7 +78,7 @@ function interestLoadProto(){
          sendData = sendData.join('&');
 
          var delRequest = new XMLHttpRequest();
-         delRequest.open("POST", "../../card/managestocks/interestlist-json", true)
+         delRequest.open("POST", "../../card/managestocks/interest_list_json", true)
          delRequest.setRequestHeader('Content-Type',
             'application/x-www-form-urlencoded');
          delRequest.onload = function () {

@@ -15,7 +15,7 @@ function holdingListProto(){
       
       var holdingRequest = new XMLHttpRequest();
       holdingRequest.open("GET",
-            "../../card/managestocks/holdinglist-json",
+            "../../card/managestocks/holding_list_json",
             true);
 
       // 서블릿의 실행이 완료되었을때 실행
