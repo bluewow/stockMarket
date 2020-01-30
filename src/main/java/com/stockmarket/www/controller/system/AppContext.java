@@ -7,7 +7,8 @@ import com.stockmarket.www.entity.CurStock;
 
 //TODO static singleTone 방식이 아닌 boot 기능을 이용하자
 public class AppContext {
-	static Map<String, CurStock> stockMarket = new HashMap<>();
+	//Map<코드넘버, CurStock 객체> 
+	static Map<String, CurStock> stockMarket = new HashMap<>(); 
 	
     private AppContext() { }
     private static class SingleTonHolder {

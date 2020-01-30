@@ -26,7 +26,7 @@ import com.stockmarket.www.entity.InterestStockView;
 import com.stockmarket.www.entity.InterestView;
 import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.service.HoldingStocksService;
-import com.stockmarket.www.service.InterestStocksService;
+import com.stockmarket.www.service.InterestStockService;
 
 @Controller
 @RequestMapping("/card/managestocks")
@@ -39,7 +39,7 @@ public class ManageStockController {
 //	InterestViewDao stockDao;
 	
 	@Autowired
-	InterestStocksService interesrStocksService;
+	InterestStockService interesrStocksService;
 	
 	@GetMapping("/holding_list")
 	public String holdingStock()

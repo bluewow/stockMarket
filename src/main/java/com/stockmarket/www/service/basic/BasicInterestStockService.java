@@ -16,10 +16,10 @@ import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.InterestStockView;
 import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.InterestView;
-import com.stockmarket.www.service.InterestStocksService;
+import com.stockmarket.www.service.InterestStockService;
 
 @Service
-public class BasicInterestStocksService implements InterestStocksService{
+public class BasicInterestStockService implements InterestStockService{
 	
 	@Autowired
 	InterestViewDao interestViewDao;
@@ -35,7 +35,7 @@ public class BasicInterestStocksService implements InterestStocksService{
 		//view list
 		List<InterestView> interestlist = new ArrayList<>();
 		//db 데이터 list
-		List<InterestStockView> interestStockView = interestViewDao.getInterestStockList(3);
+		List<InterestStockView> interestStockView = interestViewDao.getInterestStockList(id);
 		
 		if (AppContext.getStockMarket() != null)
 			map.putAll(AppContext.getStockMarket());
