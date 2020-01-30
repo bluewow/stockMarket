@@ -76,11 +76,12 @@ function interestLoadProto(){
          sendData[0] = data[0].join('=');
 
          sendData = sendData.join('&');
+         JSON.stringify(sendData);
 
          var delRequest = new XMLHttpRequest();
          delRequest.open("POST", "../../card/managestocks/interest_list_json", true)
          delRequest.setRequestHeader('Content-Type',
-            'application/x-www-form-urlencoded');
+            'application/json');
          delRequest.onload = function () {
             alert("삭제되었습니다.");
             delTarget.parentNode.removeChild(delTarget);
