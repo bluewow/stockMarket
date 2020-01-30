@@ -35,7 +35,7 @@ public class BasicInterestStocksService implements InterestStocksService{
 		//view list
 		List<InterestView> interestlist = new ArrayList<>();
 		//db 데이터 list
-		List<InterestStockView> interestStockView = interestViewDao.getInterestStockList(3);
+		List<InterestStockView> interestStockView = interestViewDao.getInterestStockList(id);
 		
 		if (AppContext.getStockMarket() != null)
 			map.putAll(AppContext.getStockMarket());
@@ -51,8 +51,6 @@ public class BasicInterestStocksService implements InterestStocksService{
 //		map.put(new CurStock("217500", "3,500", "하강", "3,000", "-", "14.2"));
 //		map.put(new CurStock("215600", "7,000", "하강", "3,000", "-", "10"));
 
-//		
-//
 			for (InterestStockView rs : interestStockView ) {
 				String stockName = rs.getStockName();
 				String stockId = rs.getStockCode();
@@ -71,8 +69,6 @@ public class BasicInterestStocksService implements InterestStocksService{
 			}
 		return interestlist;
 	}
-
-
 
 	@Override
 	public List<InterestStocks> getInterestStockList() {

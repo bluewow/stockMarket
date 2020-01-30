@@ -39,7 +39,7 @@
 	<template class="template">
 		<tr>
 	    <td style="text-align: center">
-         <span>stockName</span>
+         <span>stockName</span>\
         </td>
 		
 		<td class="up"><span></span> <span class="fa fa-caret-up"></span><br>
