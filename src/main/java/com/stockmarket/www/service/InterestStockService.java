@@ -5,7 +5,7 @@ import java.util.List;
 import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.InterestView;
 
-public interface InterestStocksService {
+public interface InterestStockService {
 	
 	List<InterestStocks> getInterestStockList(); 
 	List<InterestView> getInterestViewList(int id); 
