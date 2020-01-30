@@ -7,10 +7,7 @@ import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.KoreaStocks;
 
 public interface CompanyService {
-	/*
-	 * 게시판 즐겨찾기 추가 삭제
-	 * 
-	 */
+	
 	List<InterestStocks> getInterestStocks(int memberId);
 	int insertInterest(int memberId, String StockCode);
 	int deleteInterest(int memberId, String StockCode);

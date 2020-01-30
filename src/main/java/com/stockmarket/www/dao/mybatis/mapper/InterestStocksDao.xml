@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stockmarket.www.dao.InterestStocksDao">
+	
+	<select id="getInterestStocks" resultType="com.stockmarket.www.entity.InterestStocks">
+		SELECT * FROM InterestStock WHERE memberId=#{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO InterestStock (memberId, stockId) VALUES (#{id}, #{stockName})
+	</insert>
+	
+	<delete id="delete">
+		delete InterestStock where memberId=#{id} and stockId=#{delStockName}
+	</delete>
+</mapper>
