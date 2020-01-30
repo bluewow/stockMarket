@@ -29,11 +29,13 @@ import com.stockmarket.www.dao.StockDetailDao;
 import com.stockmarket.www.dao.UpjongDao;
 import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.HaveStockView;
+import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.entity.StockDetail;
 import com.stockmarket.www.entity.Upjong;
+import com.stockmarket.www.service.HaveStockService;
 import com.stockmarket.www.service.SystemService;
 import org.jsoup.Connection;
 
@@ -62,6 +64,9 @@ public class BasicSystemService implements SystemService{
 	
 	@Autowired
 	private KoreaStocksDao koreaStocksDao;
+	
+	@Autowired
+	private HaveStockService haveStockService;
 
 	public BasicSystemService() {
 
@@ -227,9 +232,9 @@ public class BasicSystemService implements SystemService{
 		memberList.addAll(memberDao.getMemberList());
 		for (Member memberData : memberList) {
 			int memberId = memberData.getId();
-			List<HaveStockView> list = new ArrayList<>();
-			list.addAll(haveStockDao.getList(memberId));
-			for (HaveStockView data : list) {
+			List<HaveView> list = new ArrayList<>();
+			list.addAll(haveStockService.getHaveStockViewList(memberId));
+			for (HaveView data : list) {
 				// (보유종목당 현재가 및 보유수량 확인용)
 				// System.out.println(data.getPrice()+","+data.getQuantity());
 				value += Integer.parseInt(data.getPrice().replaceAll(",", "")) * data.getQuantity();
