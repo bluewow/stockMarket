@@ -2,10 +2,13 @@ package com.stockmarket.www.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.entity.Stock;
 import com.stockmarket.www.entity.StockDetail;
 
+@Mapper
 public interface StockDetailDao {
 	List<StockDetail> get(String codeNum);
 	
