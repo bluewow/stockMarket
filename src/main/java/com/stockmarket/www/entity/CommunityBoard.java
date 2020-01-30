@@ -10,7 +10,7 @@ public class CommunityBoard {
 	private Date regdate;
 	private int hit;
 	private String content;
-	private String stockName;
+	private String companyName;
 	private String stockCode;
 	private int replyCnt;
 	private int replyId;
@@ -22,14 +22,14 @@ public class CommunityBoard {
 	public CommunityBoard() {
 	}
 
-	public CommunityBoard(int id, String title, String writerId, Date regdate, int hit, String stockName,
+	public CommunityBoard(int id, String title, String writerId, Date regdate, int hit, String companyName,
 			int replyCnt, int interest) {
 		this.id = id;
 		this.title = title;
 		this.writerId = writerId;
 		this.regdate = regdate;
 		this.hit = hit;
-		this.stockName = stockName;
+		this.companyName = companyName;
 		this.replyCnt = replyCnt;
 		this.interest = interest;
 	}
@@ -37,7 +37,7 @@ public class CommunityBoard {
 // insert, update
 
 	public CommunityBoard(int id, String title, String writerId, Date regdate, int hit, String content,
-			String stockName) {
+			String companyName) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -45,7 +45,7 @@ public class CommunityBoard {
 		this.regdate = regdate;
 		this.hit = hit;
 		this.content = content;
-		this.stockName = stockName;
+		this.companyName = companyName;
 	}
 
 	public CommunityBoard(int replyId, String reContent, String writerId, Date regdate, int boardId) {
@@ -95,7 +95,7 @@ public class CommunityBoard {
 		this.content = content;
 	}
 
-	public CommunityBoard(int boardId, int loginId, String status) {
+	public CommunityBoard(int boardId, int loginId) {
 		this.id = boardId;
 		this.setLoginId(loginId);
 	}
@@ -153,12 +153,12 @@ public class CommunityBoard {
 		this.content = content;
 	}
 
-	public String getStockName() {
-		return stockName;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setStockName(String stockName) {
-		this.stockName = stockName;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public int getReplyCnt() {
@@ -212,7 +212,7 @@ public class CommunityBoard {
 	@Override
 	public String toString() {
 		return "CommunityBoard [id=" + id + ", loginId=" + loginId + ", title=" + title + ", writerId=" + writerId
-				+ ", regdate=" + regdate + ", hit=" + hit + ", content=" + content + ", stockName=" + stockName
+				+ ", regdate=" + regdate + ", hit=" + hit + ", content=" + content + ", companyName=" + companyName
 				+ ", stockCode=" + stockCode + ", replyCnt=" + replyCnt + ", replyId=" + replyId + ", reContent="
 				+ reContent + ", interest=" + interest + "]";
 	}

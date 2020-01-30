@@ -13,12 +13,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
 	
 	<!-- Template Styles -->
-	<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../resource/css/font-awesome.min.css">
 	
 	<!-- CSS Reset -->
-	<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
-	<link href="../../css/board/stock_board.css" type="text/css" rel="stylesheet">
-	<script src="../../js/board/stock_board.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
+	<link href="../../../../resource/css/board/stock_board.css" type="text/css" rel="stylesheet">
+	<script src="../../../../resource/js/board/stock_board.js"></script>
 	
 	<!-- Reg Board popup -->
 	<!-- <link href="../../css/board/reg_board.css" type="text/css" rel="stylesheet"> -->

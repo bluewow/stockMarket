@@ -1,20 +1,17 @@
 package com.stockmarket.www.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,6 +21,7 @@ import com.stockmarket.www.entity.CommunityBoard;
 import com.stockmarket.www.service.CommunityBoardService;
 
 @Controller
+@RequestMapping("/card/board/")
 public class StockBoardController {
 	
 	@Autowired
@@ -36,89 +34,27 @@ public class StockBoardController {
 	private StockDao stockDao;
 	
 	//스톡보드 기본 요청 리스트
-	@GetMapping("/card/board/stock_board")
-	public String stockBoard(Model model, HttpServletRequest request) {
-
-		// 세션을 이용하여 현재 사용자의 아이디를 가져온다.
-		HttpSession session = request.getSession();
-		Object tempId = session.getAttribute("id");
-		int id = -1;
-
-		if (tempId != null)
-			id = (Integer) tempId;
-
-
-		int page = 1;
-		String field = "title";
-		String query = "";
-		String stockCode = "";
-
-		String page_ = request.getParameter("p");
-		if (page_ != null && !page_.equals(""))
-			page = Integer.parseInt(page_);
-
-		String field_ = request.getParameter("f");
-		if (field_ != null && !field_.equals(""))
-			field = field_;
-
-		String query_ = request.getParameter("q");
-		if (query_ != null && !query_.equals(""))
-			query = query_;
-
-		String stockCode_ = request.getParameter("s");
-		if (stockCode_ != null && !stockCode_.equals(""))
-			stockCode = stockCode_;
+	@GetMapping("stock_board")
+	public String StockBoard(@SessionAttribute("id") int id, @RequestParam(value="p", defaultValue = "1") int page, 
+			@RequestParam(value="f", defaultValue = "title") String field, @RequestParam(value="q", defaultValue = "") String query, 
+			@RequestParam(value="s", defaultValue = "") String stockCode, Model model) {
 
 		model.addAttribute("CommunityBoard", service.getCommunityBoardList(page, field, query, stockCode, id)); // 컨트롤러가 할 일은 데이터를 준비하는 일
 		model.addAttribute("loginId", id);
 
-		
-		return "stockBoard";
+		return "card/board/stock_board";
 	}
 	
 	//종목 게시글(페이지,필드,My) 요청 리스트
-	@GetMapping("/card/board/stock_board_list")
-	public String stockBoardList(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		// 로그인 세션을 불러온다.
-		Object tempId = session.getAttribute("id");
-		int loginId = -1;
-
-		if (tempId != null)
-			loginId = (Integer) tempId;
-		
-		String loginUser = memberDao.getMember(loginId).getNickName();
-		// 게시글목록을 불러온다.
-		int page = 1;
-		String field = "TITLE";
-		String query = "";
-		String stockCode = "";
-
-		String page_ = request.getParameter("p");
-		if (page_ != null && !page_.equals(""))
-			page = Integer.parseInt(page_);
-
-		String field_ = request.getParameter("f");
-		if (field_ != null && !field_.equals(""))
-			field = field_;
-
-		String query_ = request.getParameter("q");
-		if (query_ != null && !query_.equals("")) 
-			query = query_;
-		
-		if(query.equals("my"))
+	@GetMapping("stock_board_list")
+	public String StockBoardList(@SessionAttribute("id") int id, @RequestParam(value="p", defaultValue = "1") int page, 
+			@RequestParam(value="f", defaultValue = "title") String field, @RequestParam(value="q", defaultValue = "") String query, 
+			@RequestParam(value="s", defaultValue = "") String stockCode, Model model) {
+		String loginUser = memberDao.getMember(id).getNickName(); //로그인아이디를 이용해서 닉네임을 가져온다.
+		String stockName = stockDao.getStockName(stockCode); //종목코드를 이용해서 종목명을 가져온다.
+		if(query.equals("my")) //쿼리가 my면 닉네임으로 정렬
 			query = loginUser;
-
-		String stockCode_ = request.getParameter("s");
-		if (stockCode_ != null && !stockCode_.equals(""))
-			stockCode = stockCode_;
-		
-
-		
-		String stockName = stockDao.getStockName(stockCode);
-
-		List<CommunityBoard> list = service.getCommunityBoardList(page, field, query, stockCode, loginId);
+		List<CommunityBoard> list = service.getCommunityBoardList(page, field, query, stockCode, id);
 
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("loginUser", loginUser);
@@ -126,199 +62,116 @@ public class StockBoardController {
 		hm.put("stockName", stockName);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(hm);
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.write(json);
-		return "stockBoardList";
+		return json;
 	}
 	
 	//게시글 내용과 댓글 확인
-	@GetMapping("/card/board/detail")
-	public String detail(Model model, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		Object tempId = session.getAttribute("id");
-		int loginId = -1;
-
-		if (tempId != null)
-			loginId = (Integer) tempId;
+	@ResponseBody
+	@GetMapping("detail")
+	public String Detail(@SessionAttribute("id") int loginId, 
+			@RequestParam(value="id") int boardId, Model model) {
 		String loginUser = memberDao.getMember(loginId).getNickName();
-		int boardId = Integer.parseInt(request.getParameter("id"));
-
-		//CommunityBoard list = communityBoardService.getBoard(boardId);
-		model.addAttribute("detail", service.getBoard(boardId));
-		model.addAttribute("loginUser", loginUser);
-				
-		return "detail";
+		CommunityBoard communityBoard = service.getBoard(boardId);
+		List<CommunityBoard> replyList = service.getCommunityBoardReplyList(boardId);
+		communityBoard.setHit(communityBoard.getHit()+1);
 		
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("loginUser", loginUser);
+		hm.put("board", communityBoard);
+		hm.put("replys", replyList);
+		service.updateCommunityBoard(communityBoard);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		String Json = gson.toJson(hm);
+		
+		return Json;
 	}
 	
 	//게시글 등록
-	@PostMapping("/card/board/stock_reg_board")
-	public String RegBoard(Model model, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String status = request.getParameter("status");
-		String boardIds = request.getParameter("boardId");
-		String stockCode = request.getParameter("stockCode");
+	@ResponseBody
+	@PostMapping("stock_reg_board")
+	public int RegBoard(@SessionAttribute("id") int id, @RequestParam String title, 
+			@RequestParam String content, @RequestParam String boardIds, 
+			@RequestParam String stockCode, Model model) {
 
-		// 상태값이 reg면 등록
-		if (status.equals("reg")) {
-			Object tempId = session.getAttribute("id");
-			int writerId = -1;
-
-			if (tempId != null)
-				writerId = (Integer) tempId;
-			String writerNickname = memberDao.getMember(writerId).getNickName();
-
+			String writerNickname = memberDao.getMember(id).getNickName();
 			CommunityBoard insertBoard = new CommunityBoard(title, content, writerNickname, stockCode);
-
 			int result = service.insertCommunityBoard(insertBoard);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-			out.print(result);
-
-			// 상태값이del이면 삭제
-		} else if (status.equals("del")) {
-			int boardId = -1;
-			boardId = Integer.parseInt(boardIds);
-			int resultInterest = service.deleteinterestBoards(boardId);
-			int result = service.deleteCommunityBoard(boardId);
-			int resultReply = service.deleteReplys(boardId);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-
-			out.print(result);
-
-			// 상태값이 modi면 수정
-		} else if (status.equals("modi")) {
-			int boardId = -1;
-			boardId = Integer.parseInt(boardIds);
-
-			CommunityBoard updateCommunityBoard = new CommunityBoard(boardId, title, content, "modi");
-			int result = service.updateCommunityBoard(updateCommunityBoard);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-			out.print(result);
-		}
-		return "regBoard";
+			return result;
 	}
 	
-	//댓글 삽입, 수정, 삭제
-	@PostMapping("/card/board/Reply")
-	public String Reply(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		// 보내준 값으로 삽입, 수정,삭제여부 확인
-		HttpSession session = request.getSession();
-		String reContent = request.getParameter("reContent");
-		String boardId_ = request.getParameter("boardId");
-		String replyIds = request.getParameter("replyId");
-		String status = request.getParameter("status");
-
-		// 상태값이 없으면 삽입
-		if (status == null) {
-			Object tempId = session.getAttribute("id");
-			int writerId = -1;
-
-			if (tempId != null)
-				writerId = (Integer) tempId;
-			String writerNickname = memberDao.getMember(writerId).getNickName();
-
-			int boardId = Integer.parseInt(boardId_);
-			CommunityBoard insertReply = new CommunityBoard(reContent, writerNickname, boardId);
-
-			int result = service.insertReply(insertReply);
-			int lastReplyNum = service.lastReplyNum(boardId);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-			out.print(lastReplyNum);
-
-			// 상태값에 del이면 삭제
-		} else if (status.equals("del")) {
-			int replyId = -1;
-			replyId = Integer.parseInt(replyIds);
-
-			// CommunityBoard deleteReply = new CommunityBoard(replyId, "del");
-			int result = service.deleteReply(replyId);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-
-			out.print(result);
-
-			// 상태값에 modi면 수정
-		} else if (status.equals("modi")) {
-			int replyId = -1;
-			replyId = Integer.parseInt(replyIds);
-
-			CommunityBoard updateReply = new CommunityBoard(replyId, reContent, "del");
-			int result = service.updateReply(updateReply);
-
-			response.setCharacterEncoding("UTF-8"); // UTP-8로 보내는 코드
-			response.setContentType("text/html;charset=UTF-8"); // UTP-8로 보내는 코드
-			PrintWriter out = response.getWriter();
-
-			out.print(result);
-
-		}
-		return "reply";
-	}
-	
-	//즐겨찾기 추가,삭제
-	@PostMapping("/card/board/interest")
-	public String interestBoard(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
-		String status = request.getParameter("status");
-		Object tempId = session.getAttribute("id");
-		int loginId = -1;
-		if (tempId != null)
-			loginId = (Integer) tempId;
+	//게시글 수정
+	@ResponseBody
+	@PostMapping("stock_update_board")
+	public int UpdateBoard(@SessionAttribute("id") int id, @RequestParam String title, 
+			@RequestParam String content, @RequestParam int boardId, 
+			@RequestParam String stockCode, Model model) {
 		
-		if (status.equals("check")) {
-			CommunityBoard selectInterestBoard = new CommunityBoard(boardId, loginId, status);
-			int result = service.selectInterestBoard(selectInterestBoard);
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.write(result);
-		} else if (status.equals("insert")) {
-			CommunityBoard insertInterestBoard = new CommunityBoard(boardId, loginId, status);
-			int result = service.insertInterestBoard(insertInterestBoard);
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.write(result);
-
-		} else if (status.equals("delete")) {
-			CommunityBoard deleteInterestBoard = new CommunityBoard(boardId, loginId, status);
-			int result = service.deleteInterestBoard(deleteInterestBoard);
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.write(result);
-
-		}
-		return "interestBoard";
+		CommunityBoard updateCommunityBoard = new CommunityBoard(boardId, title, content, "modi");
+		int result = service.updateCommunityBoard(updateCommunityBoard);
+			return result;
+	}
 	
+	//게시글 삭제
+	@ResponseBody
+	@PostMapping("stock_delete_board")
+	public int DeleteBoard(@RequestParam int boardId) {
+		service.deleteReplys(boardId);
+		service.deleteInterestBoards(boardId);
+		int result = service.deleteCommunityBoard(boardId);
+		
+		return result;
+	}
+	
+	//댓글 삽입
+	@ResponseBody
+	@PostMapping("reply_insert")
+	public int ReplyInsert(@SessionAttribute("id") int id, @RequestParam String reContent, 
+			@RequestParam int boardId) {
+		String writerId = memberDao.getMember(id).getNickName();
+		CommunityBoard insertReply = new CommunityBoard(reContent, writerId, boardId);
+		service.insertReply(insertReply);
+		int lastReplyNum = service.lastReplyNum();
+		
+		return lastReplyNum;
+	}
+	
+	//댓글 수정
+	@ResponseBody
+	@PostMapping("reply_update")
+	public int ReplyUpdate(@SessionAttribute("id") int id, @RequestParam(required = false) String reContent,
+			@RequestParam(defaultValue = "0") int replyId) {
+		CommunityBoard updateReply = new CommunityBoard(replyId, reContent, "reply");
+		int result = service.updateReply(updateReply);
+
+		return result;
+	}
+	
+	//댓글 삭제
+	@ResponseBody
+	@PostMapping("reply_delete")
+	public int ReplyDelete(@RequestParam int replyId) {
+		int result = service.deleteReply(replyId);
+
+		return result;
+	}
+
+	//즐겨찾기 insert
+	@ResponseBody
+	@PostMapping("interest_insert")
+	public int InterestBoardInsert(@SessionAttribute("id") int id, @RequestParam int boardId) {
+			CommunityBoard insertInterestBoard = new CommunityBoard(boardId, id);
+			int result = service.insertInterestBoard(insertInterestBoard);
+	
+			return result;
+	}
+	
+	//즐겨찾기 delete
+	@ResponseBody
+	@PostMapping("interest_delete")
+	public int InterestBoardDelete(@SessionAttribute("id") int id, @RequestParam int boardId) {
+			CommunityBoard deleteInterestBoard = new CommunityBoard(boardId, id);
+			int result = service.deleteInterestBoard(deleteInterestBoard);
+	
+			return result;
 	}
 }

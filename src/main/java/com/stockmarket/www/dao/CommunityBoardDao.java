@@ -13,7 +13,7 @@ public interface CommunityBoardDao {
 	CommunityBoard getCommunityBoardDetail(int id);
 
 	int getReplyCnt(String field, String query, String stockName);
-	int lastReplyNum(int boardId);
+	int lastReplyNum();
 	
 	int insertCommunityBoard(CommunityBoard communityBoard);
 	int updateCommunityBoard(CommunityBoard communityBoard);
