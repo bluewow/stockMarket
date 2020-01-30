@@ -96,7 +96,7 @@ public class ManageStockController {
 	@ResponseBody
 	public String updateHoldingCurrentPrice( int userId) throws IOException {
 		
-		if(haveStockService.getHaveStockViewList(userId).isEmpty()) {
+		if(haveStockService.getHaveStockList(userId).isEmpty()) {
 			   
 	        Gson gson = new Gson();
 			String json = gson.toJson(-1);
@@ -104,7 +104,7 @@ public class ManageStockController {
 			}
 			else{
 				List<HaveView> list = new ArrayList<HaveView>();
-				list = haveStockService.getHaveStockViewList(userId);
+				list = haveStockService.getHaveStockList(userId);
 		        Gson gson = new Gson();
 				String json = gson.toJson(list);
 				return json;

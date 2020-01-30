@@ -10,6 +10,6 @@ public interface AssetTrendService {
 	long getAssetPresent(int memberId);
 	
 	// 자산추이 그래프
-	List<RecordAsset> getRecordAsset(int memberId);
+	List<RecordAsset> getRecordAssetList(int memberId);
 
 }

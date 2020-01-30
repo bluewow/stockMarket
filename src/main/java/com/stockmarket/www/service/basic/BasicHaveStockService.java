@@ -13,6 +13,7 @@ import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.HaveStockDao;
 import com.stockmarket.www.dao.InterestStocksDao;
 import com.stockmarket.www.entity.CurStock;
+import com.stockmarket.www.entity.HaveStock;
 import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.InterestStockView;
@@ -26,7 +27,7 @@ public class BasicHaveStockService implements HaveStockService {
 	HaveStockDao haveStockDao;
 
 	@Override
-	public List<HaveView> getHaveStockViewList(int memberId) {
+	public List<HaveView> getHaveStockList(int memberId) {
 		// 크롤링 데이터 map
 		Map<String, CurStock> map = new HashMap<String, CurStock>();
 		// view list
@@ -91,5 +92,23 @@ public class BasicHaveStockService implements HaveStockService {
 			}
 		}
 		return haveView;
+	}
+
+	@Override
+	public int updateHaveStock(HaveStock haveStock) {
+		
+		return haveStockDao.update(haveStock);
+	}
+
+	@Override
+	public int insertHaveStock(HaveStock haveStock) {
+		
+		return haveStockDao.insert(haveStock);
+	}
+
+	@Override
+	public int deleteHaveStock(int memberId, String stockCode) {
+		
+		return haveStockDao.delete(memberId, stockCode);
 	}
 }

@@ -18,5 +18,4 @@ public interface HaveStockDao {
 	int update(HaveStock haveStock);
 	int insert(HaveStock haveStock);
 	int delete(int memberId, String stockCode);
-
 }
