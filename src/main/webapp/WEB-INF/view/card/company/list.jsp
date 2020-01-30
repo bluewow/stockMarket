@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
-<link rel="stylesheet" type="text/css" href="../../css/company/list.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/company/list.css">
+
 <script src="../../js/company/list.js"></script>
 <!-- <script src="../../js/company/InterestCheck.js"></script> -->
 </head>
