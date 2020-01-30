@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper namespace의 값은 mapping 시키려는 Dao Interface의 namespace와 정확하게 일치해야 한다. -->
+<mapper namespace="com.stockmarket.www.dao.RecordAssetDao">
+	
+	<select id="getList" resultType="com.stockmarket.www.entity.RecordAsset">
+		SELECT * FROM stock_market.RecordAsset WHERE memberId=#{memberId} ORDER BY regdate ASC
+	</select>
+	
+	<insert id="insert" parameterType="com.stockmarket.www.entity.RecordAsset">
+		insert into stock_market.RecordAsset(memberId, regdate, value) values(#{memberId},#{regdate},#{value})
+	</insert>
+	
+	<delete id="delete" parameterType="com.stockmarket.www.entity.RecordAsset">
+		delete from stock_market.RecordAsset where memberId=#{memberId}
+	</delete>
+	
+</mapper>
+
+
+
