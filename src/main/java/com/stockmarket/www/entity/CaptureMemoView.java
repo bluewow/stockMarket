@@ -3,28 +3,32 @@ package com.stockmarket.www.entity;
 import java.util.Date;
 
 public class CaptureMemoView extends CaptureMemo {
-	private String codeNumName;
+	private String companyName;
 
+	public CaptureMemoView() {
+		
+	}
+	
 	public CaptureMemoView(String name, String title, Date regdate) {
 		super(title, regdate);
-		this.codeNumName = name;
+		this.companyName = name;
 	}
 	
 	public CaptureMemoView(int id, String name, String title, Date regdate) {
 		super(id, title, regdate);
-		this.codeNumName = name;
+		this.companyName = name;
 	}
 	
 	public String getCodeNumName() {
-		return codeNumName;
+		return companyName;
 	}
 
 	public void setCodeNumName(String codeNumName) {
-		this.codeNumName = codeNumName;
+		this.companyName = codeNumName;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + "["+ codeNumName + "]";
+		return super.toString() + "["+ companyName + "]";
 	}
 }
