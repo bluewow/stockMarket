@@ -40,4 +40,12 @@ public class BasicMemberService implements MemberService {
 	public int updateMember(Member member) {
 		return memberDao.updateMember(member);
 	}
+
+	@Override
+	public int isDuplicatedNickname(String nickname) {
+		System.out.println("nickname : "+nickname);
+		if(memberDao.getMemberByNickName(nickname)==null)
+			return 2;
+		else return 1;
+	}
 }

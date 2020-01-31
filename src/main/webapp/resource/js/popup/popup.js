@@ -151,28 +151,35 @@ window.addEventListener("load", function(){
 		var idChecked = false;
 		
 	    nickname.oninput = function(e){
-			var request = new XMLHttpRequest();
-			request.open("GET", "../../member-profile?nickname="+nickname.value);
-			request.onload = function(){
-				if(request.responseText == "false"){
-					idChecked = true;
-					duplicatedStateSpan.innerText = "사용가능한 닉네임입니다.";
-				}
-				else{
-					idChecked = false;
-					duplicatedStateSpan.innerText = "이미 사용중인 닉네임입니다.";
-				}
-			};
-			
+	    	// 데이터 준비
+	    	var data = [
+				["nickname="+nickname.value]
+				]
+	    	
 			if(tid != null){
 				clearTimeout(tid);
 				tid = null;
 			}
-			
+	    	
 			tid = setTimeout(function() {							
-    			request.send();
-    			tid = null;
+				var request = new XMLHttpRequest();
+				request.open("POST", "../../member_nickname_validate", true);
+				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				request.send(data);
+				request.onload = function(){
+					if(request.responseText == "2"){
+						idChecked = true;
+						duplicatedStateSpan.innerText = "사용가능한 닉네임입니다.";
+					}
+					else{
+						idChecked = false;
+						duplicatedStateSpan.innerText = "이미 사용중인 닉네임입니다.";
+					}
+				};
+				clearTimeout(tid);
+				tid = null;
 			}, 500);
+			
 		};
 
 	    
@@ -194,13 +201,16 @@ window.addEventListener("load", function(){
 	        } else if(e.target.nodeName == "checkPwd") {
 	        
 	        } else if(e.target.value == "회원가입") {
-			    
-			    checkEmail(email.value);
-			    checkPassword(email.value, pwd.value);
-
-
-	        	document.querySelector("#signup").submit();
-
+	        	console.log(checkEmail(email.value));
+	        	console.log(checkPassword(email.value, pwd.value));
+	        	console.log(pwd.value+pwdConfirm.value)
+			    if(pwd.value==pwdConfirm.value){
+			    	if(checkEmail(email.value) && checkPassword(email.value, pwd.value)){
+	        		document.querySelector("#signup").submit();}
+			    } else {
+			    	alert("비밀번호와 비밀번호확인이 같지 않습니다.")
+			    }
+	        	
 	        }
 	    }
 	}

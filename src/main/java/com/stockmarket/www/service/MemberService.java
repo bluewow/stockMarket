@@ -16,4 +16,5 @@ public interface MemberService {
 	
 
 	Boolean isDuplicatedId(String nickname);
+	int isDuplicatedNickname(String nickname);
 }
