@@ -2,7 +2,6 @@ package com.stockmarket.www.service;
 
 import java.util.List;
 
-import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.entity.StockDetail;
 
 public interface SystemService {

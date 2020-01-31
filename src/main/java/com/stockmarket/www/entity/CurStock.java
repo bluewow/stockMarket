@@ -1,6 +1,5 @@
 package com.stockmarket.www.entity;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /*

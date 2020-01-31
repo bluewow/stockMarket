@@ -206,7 +206,6 @@ window.addEventListener("load", function(){
 							["email="+email.value]
 							]
 						var request = new XMLHttpRequest();
-			        	console.log(data);
 						request.open("POST", "../../member_email_validate", true);
 						request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 						request.send(data);
@@ -239,7 +238,6 @@ window.addEventListener("load", function(){
 		if(loginStatus.value!="로그인") {
 			var userId = loginStatus.value;
 			var sendData = "loginNickname="+userId;
-			console.log(userId);
 	
 			var request = new XMLHttpRequest(); 
 			request.open("POST", "../../member_profile", true);
@@ -340,7 +338,6 @@ window.addEventListener("load", function(){
 		// 결과를 응답받고 출력
 		request.onload = function () {
 			var returnData = request.responseText;
-			console.log(returnData);
 			if(returnData=="1"){
 				alert("비밀번호가 변경되었습니다.")
 				currentPwd.value=null;

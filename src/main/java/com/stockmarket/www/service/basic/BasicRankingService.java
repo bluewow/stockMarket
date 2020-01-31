@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stockmarket.www.dao.MemberDao;
-import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.entity.MemberView;
 import com.stockmarket.www.service.RankingService;
 

@@ -1,7 +1,5 @@
 package com.stockmarket.www.service;
 
-import com.stockmarket.www.entity.CaptureMemo;
-
 public interface AnalysisService {
     //get stockName by koreaStocks DB
     String getStockName(String codeNum);
