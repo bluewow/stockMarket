@@ -12,18 +12,20 @@ import org.springframework.stereotype.Service;
 import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.InterestStocksDao;
 import com.stockmarket.www.dao.InterestViewDao;
+import com.stockmarket.www.dao.KoreaStocksDao;
 import com.stockmarket.www.dao.StockDao;
 import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.InterestStockView;
 import com.stockmarket.www.entity.InterestStocks;
 import com.stockmarket.www.entity.InterestView;
+import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.service.InterestStockService;
 
 @Service
 public class BasicInterestStockService implements InterestStockService {
 
 	@Autowired
-	StockDao stockDao;
+	KoreaStocksDao koreaStocksDao;
 
 	@Autowired
 	InterestViewDao interestViewDao;
@@ -54,6 +56,8 @@ public class BasicInterestStockService implements InterestStockService {
 		map.put("217500", new CurStock("217500", "3,500", "하강", "3,000", "-", "14.2"));
 		map.put("215600", new CurStock("215600", "7,000", "하강", "3,000", "-", "10"));
 
+		
+		
 		if (!interestStockView.isEmpty()) {
 			for (InterestStockView rs : interestStockView) {
 				String stockName = rs.getStockName();
@@ -84,8 +88,8 @@ public class BasicInterestStockService implements InterestStockService {
 
 	@Override
 	public int deleteStock(int userid, String delStockName) {
-		String delStockId = stockDao.getStockCodeNum(delStockName);
-		return interestStockDao.delete(userid, delStockId);
+		KoreaStocks koreaStocks = koreaStocksDao.searchCompany(delStockName);
+		return interestStockDao.delete(userid, koreaStocks.getStockCode());
 	}
 
 }
