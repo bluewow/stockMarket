@@ -58,8 +58,11 @@ public class InterestView {
 	public void setStockname(String stockname) {
 		this.stockname = stockname;
 	}
+
 	@Override
 	public String toString() {
-		return "InterestView [stockname=" + stockname+ "]";
+		return "InterestView [stockname=" + stockname + ", price=" + price + ", percent=" + percent + ", gain=" + gain
+				+ "]";
 	}
+
 }

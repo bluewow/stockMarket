@@ -12,6 +12,9 @@
 	<select id="getMemberByEmail" resultType="com.stockmarket.www.entity.Member">
 		select * from Member where email=#{email}
 	</select>
+	<select id="getMemberByNickName" resultType="com.stockmarket.www.entity.Member">
+		select * from Member where nickName=#{nickName}
+	</select>
 	<update id="updateMember" parameterType="com.stockmarket.www.entity.Member">
 		update Member set 
 		email=#{email}, 

@@ -8,11 +8,12 @@ import com.stockmarket.www.entity.RecordAsset;
 
 @Mapper
 public interface RecordAssetDao {
-	
-	// 자산추이 그래프
+
+	/* 자산 추이 그래프에서 쓰일 자산 기록 목록 */
 	List<RecordAsset> getList(int memberId);
 	
+	/* 하루에 한번씩 자산 기록 등록 */
 	int insert(RecordAsset recordAsset);
-	int delete(int memberId);
-
+	/* 탈퇴했을 경우 자산 기록 삭제 */
+	int delete(int memberId); 
 }

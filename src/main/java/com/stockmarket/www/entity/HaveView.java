@@ -13,45 +13,14 @@ public class HaveView extends HaveStockView {
 	/* 기본 생성자 */
 	public HaveView() {
 	}
-	
-	/* haveStockDao용 생성자 */
-	public HaveView(String price, String gain, String percent) {
-		this.price = price;
-		this.gain = gain;
-		this.percent = percent;
-	}
-	
-	/* distrService용 생성자 */
-	public HaveView(String price, String gain, String percent, float ratio, long assetValue) {
-		this.price = price;
-		this.gain = gain;
-		this.percent = percent;
-		this.ratio = ratio;
-		this.assetValue = assetValue;
-	}
 
+	/* select용 생성자 */
 	public HaveView(int memberId, String stockCode, int quantity, int sum
 			, String stockName, String price, String gain, String percent) {
 		super(memberId, stockCode, quantity, sum, stockName);
 		this.price = price;
 		this.gain = gain;
 		this.percent = percent;
-	}
-	
-	public HaveView(int memberId, String stockCode, int quantity, int sum
-			, String stockName, String price, String gain, String percent
-			, float ratio, long assetValue) {
-		super(memberId, stockCode, quantity, sum, stockName);
-		this.price = price;
-		this.gain = gain;
-		this.percent = percent;
-		this.ratio = ratio;
-		this.assetValue = assetValue;
-	}
-
-
-	public HaveView(int income) {
-		this.income = income;
 	}
 
 	public int getIncome() {

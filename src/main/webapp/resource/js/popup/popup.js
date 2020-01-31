@@ -151,28 +151,35 @@ window.addEventListener("load", function(){
 		var idChecked = false;
 		
 	    nickname.oninput = function(e){
-			var request = new XMLHttpRequest();
-			request.open("GET", "../../member-profile?nickname="+nickname.value);
-			request.onload = function(){
-				if(request.responseText == "false"){
-					idChecked = true;
-					duplicatedStateSpan.innerText = "사용가능한 닉네임입니다.";
-				}
-				else{
-					idChecked = false;
-					duplicatedStateSpan.innerText = "이미 사용중인 닉네임입니다.";
-				}
-			};
-			
+	    	// 데이터 준비
+	    	var data = [
+				["nickname="+nickname.value]
+				]
+	    	
 			if(tid != null){
 				clearTimeout(tid);
 				tid = null;
 			}
-			
+	    	
 			tid = setTimeout(function() {							
-    			request.send();
-    			tid = null;
+				var request = new XMLHttpRequest();
+				request.open("POST", "../../member_nickname_validate", true);
+				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				request.send(data);
+				request.onload = function(){
+					if(request.responseText == "2"){
+						idChecked = true;
+						duplicatedStateSpan.innerText = "사용가능한 닉네임입니다.";
+					}
+					else{
+						idChecked = false;
+						duplicatedStateSpan.innerText = "이미 사용중인 닉네임입니다.";
+					}
+				};
+				clearTimeout(tid);
+				tid = null;
 			}, 500);
+			
 		};
 
 	    
@@ -194,13 +201,16 @@ window.addEventListener("load", function(){
 	        } else if(e.target.nodeName == "checkPwd") {
 	        
 	        } else if(e.target.value == "회원가입") {
-			    
-			    checkEmail(email.value);
-			    checkPassword(email.value, pwd.value);
-
-
-	        	document.querySelector("#signup").submit();
-
+	        	console.log(checkEmail(email.value));
+	        	console.log(checkPassword(email.value, pwd.value));
+	        	console.log(pwd.value+pwdConfirm.value)
+			    if(pwd.value==pwdConfirm.value){
+			    	if(checkEmail(email.value) && checkPassword(email.value, pwd.value)){
+	        		document.querySelector("#signup").submit();}
+			    } else {
+			    	alert("비밀번호와 비밀번호확인이 같지 않습니다.")
+			    }
+	        	
 	        }
 	    }
 	}
@@ -218,9 +228,10 @@ window.addEventListener("load", function(){
 		if(loginStatus.value!="로그인") {
 			var userId = loginStatus.value;
 			var sendData = "loginNickname="+userId;
+			console.log(userId);
 	
 			var request = new XMLHttpRequest(); 
-			request.open("POST", "../../member-profile", true);
+			request.open("POST", "../../member_profile", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			request.send(sendData);
 			
@@ -229,13 +240,13 @@ window.addEventListener("load", function(){
 			    var profilePhoto = document.querySelector(".profile-photo");
 				
 			    profilePhoto.parentNode.innerHTML =
-			    	`<img src="/images/profile/${photoImg}.png" 
+			    	`<img src="/resource/images/profile/${photoImg}.png" 
 			    	alt="profile photo" class="circle float-left profile-photo"
 			    	 width="60" height="auto">
 			    	<input class="small animation-2" type="button" value="${userId}">
 			    	 <input class="animation-2" type="button" value="로그아웃">`;
 		        changePhoto.parentNode.innerHTML = 
-		        	`<img src="/images/profile/${photoImg}.png" 
+		        	`<img src="/resource/images/profile/${photoImg}.png" 
 		        	alt="profile photo" class="circle float-left profile-photo-modi"
 		        	data-id="${photoImg}">`;
 			}
@@ -270,11 +281,11 @@ window.addEventListener("load", function(){
 	        var list = "";
 	        	for(var i=1; i<=36; i++) {
 	        		if(i==nowImg) 
-		        		var photos =  `<img src="/images/profile/${i}.png" 
+		        		var photos =  `<img src="/resource/images/profile/${i}.png" 
 			        	alt="profile photo" class="images image-selected"
 			        	 data-id="${i}">`
 	        		else if(i!=nowImg) 
-		        		var photos =  `<img src="/images/profile/${i}.png" 
+		        		var photos =  `<img src="/resource/images/profile/${i}.png" 
 			        	alt="profile photo" class="images"
 			        	 data-id="${i}">`
 	        	        list = list + photos;
@@ -307,13 +318,14 @@ window.addEventListener("load", function(){
 
 		//데이터 전송
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../member-profile", true);
+		request.open("POST", "../../member_profile_update_pwd", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);	
 		
 		//결과를 응답받고 출력
 		request.onload = function () {
 			var returnData = request.responseText;
+			console.log(returnData);
 			if(returnData=="1"){
 				alert("비밀번호가 변경되었습니다.")
 				currentPwd.value=null;
@@ -322,13 +334,13 @@ window.addEventListener("load", function(){
 	            wrapper.style.visibility = "hidden";
 	            profilePopup.style.visibility = "hidden";
 	            
-			} else if(returnData=="wrong") {
+			} else if(returnData=="2") {
 				alert("현재 비밀번호가 맞지 않습니다.")
 				currentPwd.value=null;
 				newPwd.value=null;
 				checkPwd.value=null;
 				
-			} else if(returnData=="same"){
+			} else if(returnData=="3"){
 				alert("현재 비밀번호가 변경하려는 비밀번호와 동일합니다.")
 				currentPwd.value=null;
 				newPwd.value=null;
@@ -357,7 +369,7 @@ window.addEventListener("load", function(){
 	        var selectPhoto = currentSelect.dataset.id;
 	        var changePhoto = profileImage.getElementsByClassName("profile-photo-modi")[0];
 	        changePhoto.parentNode.innerHTML = 
-	        	`<img src="/images/profile/${selectPhoto}.png" 
+	        	`<img src="/resource/images/profile/${selectPhoto}.png" 
 	        	alt="profile photo" class="circle float-left profile-photo-modi"
 	        	data-id="${selectPhoto}">`;
 	        //데이터 준비
@@ -374,7 +386,7 @@ window.addEventListener("load", function(){
 
 			//데이터 전송
 			var request = new XMLHttpRequest();
-			request.open("POST", "../../member-profile", true);
+			request.open("POST", "../../member_profile_update_ing", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			request.send(sendData);	
 			
@@ -387,7 +399,7 @@ window.addEventListener("load", function(){
 			    
 			    //변경된 이미지를 프로필 팝업과 메인페이지 변경하는 코드
 			    profilePhoto.parentNode.innerHTML =
-			    	`<img src="/images/profile/${selectPhoto}.png" 
+			    	`<img src="/resource/images/profile/${selectPhoto}.png" 
 			    	alt="profile photo" class="circle float-left profile-photo"
 			    	 width="50" height="auto">
 			    	<input class="small animation-2" type="button" value="${userId}">

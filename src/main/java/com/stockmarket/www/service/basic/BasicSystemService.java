@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jsoup.Connection;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,14 +22,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.stockmarket.www.controller.system.AppContext;
-import com.stockmarket.www.dao.HaveStockDao;
 import com.stockmarket.www.dao.KoreaStocksDao;
 import com.stockmarket.www.dao.MemberDao;
 import com.stockmarket.www.dao.RecordAssetDao;
 import com.stockmarket.www.dao.StockDetailDao;
 import com.stockmarket.www.dao.UpjongDao;
 import com.stockmarket.www.entity.CurStock;
-import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.entity.Member;
@@ -37,7 +36,6 @@ import com.stockmarket.www.entity.StockDetail;
 import com.stockmarket.www.entity.Upjong;
 import com.stockmarket.www.service.HaveStockService;
 import com.stockmarket.www.service.SystemService;
-import org.jsoup.Connection;
 
 @Service
 public class BasicSystemService implements SystemService{
@@ -49,9 +47,6 @@ public class BasicSystemService implements SystemService{
 	
 	@Autowired
 	private MemberDao memberDao;
-	
-	@Autowired
-	private HaveStockDao haveStockDao;
 	
 	@Autowired
 	private RecordAssetDao recordAssetDao;
@@ -181,13 +176,13 @@ public class BasicSystemService implements SystemService{
 
 		return true;
 	}
-
 	private void write(Elements contents, String tag) {
 		int cnt = 0;
 		List<KoreaStocks> koreaList = new ArrayList<>();
 		for (Element element : contents.select(tag)) {
 			dataBuffer[cnt] = element.text();
 			cnt++;
+			
 			if (cnt % COMPANY_INFO_COLUMN == 0) {
 				cnt = 0;
 				String[] data = new String[COMPANY_INFO_COLUMN];
@@ -207,9 +202,9 @@ public class BasicSystemService implements SystemService{
                 koreaStocks.setRepresentativeName(data[6]);
                 koreaStocks.setWebsite(data[7]);
                 koreaStocks.setLocation(data[8]);
-                
+
+                //System.out.println(koreaStocks.toString());
                 koreaList.add(koreaStocks);
-				
 				
 			}
 		}
@@ -233,7 +228,7 @@ public class BasicSystemService implements SystemService{
 		for (Member memberData : memberList) {
 			int memberId = memberData.getId();
 			List<HaveView> list = new ArrayList<>();
-			list.addAll(haveStockService.getHaveStockViewList(memberId));
+			list.addAll(haveStockService.getHaveStockList(memberId));
 			for (HaveView data : list) {
 				// (보유종목당 현재가 및 보유수량 확인용)
 				// System.out.println(data.getPrice()+","+data.getQuantity());
@@ -246,6 +241,7 @@ public class BasicSystemService implements SystemService{
 		return result;
 	}
 
+	@Override
 	public void setStockDataAll(String codeNum) {
 		Gson gson = new Gson();
 

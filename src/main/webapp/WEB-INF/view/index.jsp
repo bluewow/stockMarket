@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
     <title>stock market</title>
 
-    <link rel="stylesheet" href="./css/index-search.css" type="text/css">
-    <link rel="stylesheet" href="./css/index.css" type="text/css">
-    <link rel="stylesheet" href="./css/main.css" type="text/css">
-    <link rel="stylesheet" href="./css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/normalize.css" type="text/css">
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="/resource/css/index-search.css" type="text/css">
+    <link rel="stylesheet" href="/resource/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/resource/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/resource/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/resource/css/normalize.css" type="text/css">
+    <script src="/resource/js/index.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
             <div class="main-contents">
             	<div class="title-img">
 	            	<div>
-	               		 <a href="./main"><img src="../images/index_title.png"/></a>
+	               		 <a href="/main"><img src="/resource/images/index_title.png"/></a>
                		</div>
 				</div>
                 <div class="search">
@@ -39,7 +39,7 @@
 					검색 아이콘을 클릭 후, 원하는 회사, 관심있는 분야, 종목을 검색해보세요.
 				</div>
 				<div class="link">
-					<a href="./main">메인화면 바로가기</a>
+					<a href="/main">메인화면 바로가기</a>
 				</div>
             </div>
         </div>

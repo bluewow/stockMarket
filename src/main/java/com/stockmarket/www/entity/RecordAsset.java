@@ -5,8 +5,10 @@ public class RecordAsset {
 	private int memberId;
 	private String regdate;
 	private int value;
-
-	// 생성용
+	
+	public RecordAsset() {}
+	
+	/* 생성/조회용 */
 	public RecordAsset(int memberId, String regdate, int value) {
 		this.memberId = memberId;
 		this.regdate = regdate;

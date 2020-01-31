@@ -12,7 +12,8 @@ import com.stockmarket.www.entity.MemberView;
 public interface MemberDao {
 	List<Member> getMemberList();
 	Member getMember(int id);
-	Member getMemberByEmail(String query);	
+	Member getMemberByEmail(String query);
+	Member getMemberByNickName(String loginNickname);
 	int updateMember(Member member);
 	int insertMember(Member member);
 	
