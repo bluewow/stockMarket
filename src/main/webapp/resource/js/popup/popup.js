@@ -314,7 +314,8 @@ window.addEventListener("load", function(){
         //prevent Event Bubble
         e.preventDefault();
         
-        //데이터 준비
+        if(checkPwd.value==newPwd.value) {
+        // 데이터 준비
     	var data = [
 			["currentPwd", currentPwd.value],
 			["newPwd", newPwd.value]
@@ -327,13 +328,13 @@ window.addEventListener("load", function(){
 		
 		sendData = sendData.join("&");
 
-		//데이터 전송
+		// 데이터 전송
 		var request = new XMLHttpRequest();
 		request.open("POST", "../../member_profile_update_pwd", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);	
 		
-		//결과를 응답받고 출력
+		// 결과를 응답받고 출력
 		request.onload = function () {
 			var returnData = request.responseText;
 			console.log(returnData);
@@ -357,8 +358,8 @@ window.addEventListener("load", function(){
 				newPwd.value=null;
 				checkPwd.value=null;
 		}
-		
 		}
+		} else alert("비밀번호와 비밀번호 확인이 같지 않습니다.")
 	    }
 
 	    //프로필 이미지 리스트중 하나를 클릭했을 시
