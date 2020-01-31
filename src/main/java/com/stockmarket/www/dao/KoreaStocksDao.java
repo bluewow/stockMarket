@@ -15,5 +15,5 @@ public interface KoreaStocksDao {
 	int update(String src, String target);
 	int delete();
 	
-	KoreaStocks searchCompany(String compnayName);
+	KoreaStocks searchCompany(String companyName);
 }

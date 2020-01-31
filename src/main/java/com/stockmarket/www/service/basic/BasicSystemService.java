@@ -176,13 +176,13 @@ public class BasicSystemService implements SystemService{
 
 		return true;
 	}
-
 	private void write(Elements contents, String tag) {
 		int cnt = 0;
 		List<KoreaStocks> koreaList = new ArrayList<>();
 		for (Element element : contents.select(tag)) {
 			dataBuffer[cnt] = element.text();
 			cnt++;
+			
 			if (cnt % COMPANY_INFO_COLUMN == 0) {
 				cnt = 0;
 				String[] data = new String[COMPANY_INFO_COLUMN];
@@ -202,9 +202,9 @@ public class BasicSystemService implements SystemService{
                 koreaStocks.setRepresentativeName(data[6]);
                 koreaStocks.setWebsite(data[7]);
                 koreaStocks.setLocation(data[8]);
-                
+
+                //System.out.println(koreaStocks.toString());
                 koreaList.add(koreaStocks);
-				
 				
 			}
 		}
@@ -241,6 +241,7 @@ public class BasicSystemService implements SystemService{
 		return result;
 	}
 
+	@Override
 	public void setStockDataAll(String codeNum) {
 		Gson gson = new Gson();
 
