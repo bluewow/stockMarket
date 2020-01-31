@@ -81,7 +81,9 @@ public class ManageStockController {
 	@ResponseBody
 	@PostMapping("/interest_list_json")
 	public int InterestStockPostJSON(@SessionAttribute("id") int id, @RequestBody String param) throws IOException {
-		int result = interesrStocksService.deleteStock(id,param);	
+		String parsing= param.substring(param.lastIndexOf("=")+1);
+		System.out.println(parsing);
+		int result = interesrStocksService.deleteStock(id,parsing);	
 		return result;
 	}
 	
