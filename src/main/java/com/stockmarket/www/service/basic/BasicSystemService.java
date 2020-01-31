@@ -153,25 +153,28 @@ public class BasicSystemService implements SystemService{
 
 		if (market.equals("KOSDAQ"))
 			type = "kosdaqMkt";
+					
 
 		String url = "http://kind.krx.co.kr/corpgeneral/corpList.do" + "?method=download" + "&searchType=13"
 				+ "&orderMode=3" + "&orderStat=D" + "&marketType=" + type; // stockMkt 코스피 kosdaqMkt 코스닥
 
-		try {
-			doc = Jsoup.connect(url).ignoreContentType(true).timeout(5000).post();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		while(doc == null) {	//workaround 처리  가끔 null 반환의 이유를 알수없음 
+			try {
+				doc = Jsoup.connect(url).ignoreContentType(true).timeout(3000).get();
+			} catch (IOException e) {
+				e.printStackTrace(); 
+			}
 		}
 
-		// tr Tag 이하를 선택
-		Elements contents = doc.select("tr");
+//		System.out.println(doc);
+		// tr Tag 이하를 선택 
+		Elements contents = doc.select("tr"); 
 		if (contents == null) {
 			return false;
 		}
 
 		// 반복되는 th, td tag 로 sorting 한다
-		//write(contents, "th");
+		//write(contents, "th"); 
 		write(contents, "td");
 
 		return true;
@@ -208,10 +211,14 @@ public class BasicSystemService implements SystemService{
 				
 			}
 		}
+ 
+		//모든 종목을 추가하고 duplicate 시 update 하는 함수 호출
+		koreaStocksDao.insertDuplicate(koreaList);
 		
-		koreaStocksDao.delete();
-		koreaStocksDao.insert(koreaList);
+		//예외처리
 		koreaStocksDao.update("KT","케이티");
+
+		//상장폐지된 종목 삭제 TODO
 	}
 	/*-------------------------- insert Asset Record ----------------------------*/
 
