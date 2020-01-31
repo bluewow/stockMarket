@@ -17,6 +17,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 >
 
+<link rel="stylesheet" type="text/css" href="/resource/css/mobile.css">
 <!-- Template Styles -->
 <link rel="stylesheet" type="text/css" href="/resource/css/font-awesome.min.css">
 

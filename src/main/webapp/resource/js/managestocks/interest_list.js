@@ -62,7 +62,7 @@ function interestLoadProto(){
 
    setInterval(function () {
       interestLoad();
-   }, 5000);
+   }, 1000 * 60 * 5);
 
    tbody.onclick = function (e) {
       e.preventDefault();

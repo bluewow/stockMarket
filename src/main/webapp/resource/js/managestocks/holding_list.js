@@ -10,6 +10,10 @@ function holdingListProto(){
       var regexp = /\B(?=(\d{3})+(?!\d))/g;
       return num.toString().replace(regexp, ',');
    }
+   
+   function replaceAll(str, searchStr, replaceStr) {
+	   return str.split(searchStr).join(replaceStr);
+   }
 
    function holdingLoad() {
       
@@ -36,20 +40,21 @@ function holdingListProto(){
          tbody.innerHTML = "";
 
          for (var i = 0; i < list.length; i++) {
-
+            var intPrice = replaceAll(list[i].price,",","")*1;
             var template = section
                   .querySelector(".template");
             var cloneTr = document.importNode(
                   template.content, true);
             var tds = cloneTr.querySelectorAll("td");
-
-            var incomePercent = ((list[i].income / list[i].sum) * 100)
+            var income = (list[i].quantity * intPrice) - list[i].sum
+            var incomePercent = ((income / list[i].sum) * 100)
                   .toFixed(2);
-            allIncome += list[i].income;
+            
+            allIncome += income;
             allSum += list[i].sum;
             allIncomePercent += incomePercent;
 
-            list[i].income = addComma(list[i].income);
+            income = addComma(income);
             list[i].sum = addComma(list[i].sum);
 
             tds[0].firstElementChild.innerText = list[i].stockName;
@@ -57,17 +62,17 @@ function holdingListProto(){
             if (list[i].gain == "상승") {
                tds[1].firstElementChild.innerText = list[i].price;
                tds[1].lastElementChild.innerText = list[i].percent;
-               tds[5].firstElementChild.innerText = list[i].income;
+               tds[5].firstElementChild.innerText = income;
                tds[5].lastElementChild.innerText = incomePercent;
             } else if (list[i].gain == "하락") {
                tds[2].firstElementChild.innerText = list[i].price;
                tds[2].lastElementChild.innerText = list[i].percent;
-               tds[6].firstElementChild.innerText = list[i].income;
+               tds[6].firstElementChild.innerText = income;
                tds[6].lastElementChild.innerText = incomePercent;
             } else {
                tds[3].firstElementChild.innerText = list[i].price;
                tds[3].lastElementChild.innerText = list[i].percent;
-               tds[7].firstElementChild.innerText = list[i].income;
+               tds[7].firstElementChild.innerText = income;
                tds[7].lastElementChild.innerText = incomePercent;
             }
 
@@ -85,11 +90,9 @@ function holdingListProto(){
          allIncomePercent = (allIncome / allSum) * 100;
          allIncomePercent = allIncomePercent.toFixed(2);
 
-         if (allIncome >= 0) {
-            var Valuation = allIncome - allSum;
-         } else {
-            var Valuation = allSum + allIncome;
-         }
+
+         var Valuation = allIncome + allSum;
+
 
          if (allIncomePercent > 0) {
             preArea.firstElementChild.firstElementChild.nextElementSibling.className = "up";
@@ -133,7 +136,7 @@ function holdingListProto(){
 
    setInterval(function() {
       holdingLoad();
-   }, 5000);
+   },  1000 * 60 * 5);
 }
 
 

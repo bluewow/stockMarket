@@ -13,6 +13,6 @@
 	</insert>
 	
 	<delete id="delete">
-		delete InterestStock where memberId=#{id} and stockName=#{delStockName}
+		delete from InterestStock where memberId=#{id} and stockId=#{delStockId}
 	</delete>
 </mapper>

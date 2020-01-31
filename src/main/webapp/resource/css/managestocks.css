@@ -57,7 +57,6 @@ td {
 	font-weight: bold;
 	font-size: 1em;
 	color: #585B5E;
-	text-align: right;
 	border-bottom: 1px solid #efefef;
 	--margin-top: 10px;
 	padding: 10px;
@@ -71,13 +70,11 @@ td {
 tbody tr> :nth-child(1) {
 	font-size:1em;
 	font-weight: bold;
-	text-align: left !important;
 	padding: 0px 10px 15px 10px !important;
 }
 
 tbody tr> :nth-child(2),tbody tr> :nth-child(3),tbody tr> :nth-child(4) {
 	font-family: 제주;
-    text-align: right;
     font-weight: lighter;
     line-height: 1.7em;
     font-size: 0.8em;
@@ -94,14 +91,12 @@ tbody tr> :nth-child(4)> :first-child{
 
 tbody tr> :nth-child(5) {
 	font-family: 제주;
-	text-align: right;
 	font-weight:lighter;
 	    font-size: 0.8em;
 }
 
 tbody tr> :nth-child(6),tbody tr> :nth-child(7),tbody tr> :nth-child(8) {
 	font-family: 제주;
-    text-align: right;
     font-weight: lighter;
     font-size: 0.8em;
     line-height: 1.7em;

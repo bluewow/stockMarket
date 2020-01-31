@@ -13,6 +13,6 @@ public interface InterestStocksDao {
 	
 	
 	int insert(int id, String stockName);
-	int delete(int id, String delStockName);
+	int delete(int id, String delStockId);
 	
 }

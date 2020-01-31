@@ -38,8 +38,8 @@ public class BasicHaveStockService implements HaveStockService {
 		if (AppContext.getStockMarket() != null)
 			map.putAll(AppContext.getStockMarket());
 
-		map.put("005930", new CurStock("005930", "3,000", "상승", "3,000", "+", "2.5"));
-		map.put("123456", new CurStock("123456", "5,000", "하강", "3,000", "-", "3.4"));
+		map.put("005930", new CurStock("005930", "3,000", "하락", "3,000", "-", "2.5"));
+		map.put("123456", new CurStock("123456", "5,000", "하락", "3,000", "-", "3.4"));
 
 		for (HaveStockView list : haveStockView) {
 			String stockCode = list.getStockCode();
