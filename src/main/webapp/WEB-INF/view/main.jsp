@@ -338,13 +338,13 @@
 		   				<input class="box signup-email" type="text" name="userEmail" placeholder="이메일을 입력하세요" form="signup" required>
 		   				
 		   				<div class="text">닉네임</div>
-		   				<input class="box signup-nickname" type="text" name="nickName" placeholder="4 ~ 14자 이내로 입력하세요 " form="signup" required>
+		   				<input class="box signup-nickname" type="text" name="nickName" placeholder="8자이하로 입력하세요 " maxlength='8' form="signup" required>
 		   				<br><span id="duplicated-state"></span>
 		   				<div class="text">비밀번호</div>
-		   				<input class="box signup-pwd" type="password" name="pwd" placeholder="1 ~ 16자 이내로 입력 하세요" form="signup" required>
+		   				<input class="box signup-pwd" type="password" name="pwd" placeholder="8 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup" required>
 	   					
 	   					<div class="text">비밀번호 확인</div>
-		   				<input class="box signup-pwd-confirm" type="password" name="checkPwd" form="signup">
+		   				<input class="box signup-pwd-confirm" type="password" name="checkPwd" placeholder="8 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
 		   				
 	   					<form class="login-box" action="login" method="post" id="signup">
 	   						<input type="hidden" name="form" value="회원가입" form="signup">
@@ -372,13 +372,13 @@
 	   		<div class="pop-up-border">
 	   			<div class="pop-up-context">
 						<div class="text">현재 비밀번호</div>
-		   				<input class="box currentPwd" type="password" name="currentPwd" placeholder="1 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
+		   				<input class="box currentPwd" type="password" name="currentPwd" placeholder="8 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
 	   					
 	   					<div class="text">새로운 비밀번호</div>
-		   				<input class="box newPwd" type="password" name="newPwd" placeholder="1 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
+		   				<input class="box newPwd" type="password" name="newPwd" placeholder="8 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
 		   				
 		   				<div class="text">비밀번호 확인</div>
-		   				<input class="box checkPwd" type="password" name="checkPwd" placeholder="1 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
+		   				<input class="box checkPwd" type="password" name="checkPwd" placeholder="8 ~ 16자 이내로 입력 하세요" maxlength='16' form="signup">
 		   				
 		   				<form class="login-box" action="login" method="post" id="user">
 		   					<input class="top-bottom-margin" type="button" value="확인">
