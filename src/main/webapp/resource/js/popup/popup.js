@@ -221,7 +221,7 @@ window.addEventListener("load", function(){
 			console.log(userId);
 	
 			var request = new XMLHttpRequest(); 
-			request.open("POST", "../../member-profile", true);
+			request.open("POST", "../../member_profile", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			request.send(sendData);
 			
@@ -308,7 +308,7 @@ window.addEventListener("load", function(){
 
 		//데이터 전송
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../member-profile", true);
+		request.open("POST", "../../member_profile_update", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);	
 		
@@ -375,7 +375,7 @@ window.addEventListener("load", function(){
 
 			//데이터 전송
 			var request = new XMLHttpRequest();
-			request.open("POST", "../../member-profile", true);
+			request.open("POST", "../../member_profile_update", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			request.send(sendData);	
 			

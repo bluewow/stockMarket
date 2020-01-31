@@ -21,7 +21,7 @@ public interface MemberDao {
 	int insertMember(Member member);
 	
 	//프로필 이미지 교체 (imgChange는 더미)
-//	int updateMember(int writerId, int profileImg, String imgChange);
+//	int updateMemberImg(int writerId, int profileImg);
 //	int updateMember(int id, String newPwd, String pwdChange);
 	
 	//닉네임 중복확인
