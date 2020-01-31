@@ -17,10 +17,10 @@
 	href="../../css/font-awesome.min.css">
 
 <!-- CSS Reset -->
-<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
 
-<link href="../../css/rank.css" type="text/css" rel="stylesheet">
-	<script src="../../js/ranking/ranking.js"></script>
+<link href="/resource/css/rank.css" type="text/css" rel="stylesheet">
+	<script src="/resource/js/ranking/ranking.js"></script>
 </head>
 <!-- ======================================================================= -->
 <body class="scrollbar custom-scrollbar-style">
@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="ranker" items="${rankers}" varStatus="status">
+					<c:forEach var="ranker" items="${rankList}" varStatus="status">
 						<tr>
 							<c:if test="${status.count == 1}">
 								<td class="rank"
@@ -54,12 +54,13 @@
 							<c:if test="${status.count > 3}">
 								<td class="rank">${status.count}</td>
 							</c:if>
-							<td class="profileImg"><img src="/images/profile/${ranker.profileImg}.png" alt="profile photo" class="circle float-left profile-photo"></td>
+							<td class="profileImg"><img src="/resource/images/profile/${ranker.profileImg}.png" 
+									alt="profile photo" class="circle float-left profile-photo"></td>
 							<td class="name">${ranker.nickName}</td>
 							<td class="assets"><fmt:formatNumber
 									value="${ranker.totalAsset}" type="number" /></td>
 							<td class="assetsGrowth"><fmt:formatNumber
-									value="${(ranker.totalAsset - 1000000) / 1000000}" type="number"
+									value="${ranker.assetsGrowth}" type="number"
 									pattern="0.00%" /></td>
 						</tr>
 					</c:forEach>
@@ -70,13 +71,14 @@
 			<table>
 				<tbody id="myRank">
 					<tr>
-						<td class="rank">${myRank}</td>
-						<td class="profileImg"><img src="/images/profile/${myInfo.profileImg}.png" alt="profile photo" class="circle float-left profile-photo"></td>
-						<td class="name">${myInfo.nickName}</td>
+						<td class="rank">${myRank.rank}</td>
+						<td class="profileImg"><img src="/resource/images/profile/${myRank.profileImg}.png" 
+								alt="profile photo" class="circle float-left profile-photo"></td>
+						<td class="name">${myRank.nickName}</td>
 						<td class="assets"><fmt:formatNumber type="number"
-								value="${myInfo.totalAsset}" /></td>
+								value="${myRank.totalAsset}" /></td>
 						<td class="assetsGrowth"><fmt:formatNumber
-								value="${(myInfo.totalAsset - 1000000) / 1000000}" type="number"
+								value="${myRank.assetsGrowth}" type="number"
 								pattern="0.00%" /></td>
 					</tr>
 				</tbody>

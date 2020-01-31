@@ -6,9 +6,6 @@
 	<select id="getMemberList" resultType="com.stockmarket.www.entity.Member">
 		select * from Member
 	</select>
-	<select id="getRankerList" resultType="com.stockmarket.www.entity.Member">
-		select * from Member order by vmoney desc limit 50
-	</select>
 	<select id="getMember" resultType="com.stockmarket.www.entity.Member">
 		select * from Member where id=#{id}
 	</select>
@@ -18,9 +15,6 @@
 	<select id="getMemberByNickName" resultType="com.stockmarket.www.entity.Member">
 		select * from Member where nickName=#{nickName}
 	</select>
-	<!-- <select id="getMemberRank" resultType="com.stockMarket.entity.Member">
-		select * from Member where email=#{email}
-	</select> -->
 	<update id="updateMember" parameterType="com.stockmarket.www.entity.Member">
 		update Member set 
 		email=#{email}, 
@@ -35,6 +29,18 @@
 		insert into Member (email, nickName, password)
 		values(#{email}, #{nickName}, #{password})
 	</insert>
+	<select id="getRankerList" resultType="com.stockmarket.www.entity.MemberView">
+		select * from Member order by totalAsset desc limit 50
+	</select>
+	<select id="getMemberRank" resultType="com.stockmarket.www.entity.MemberView">
+		<![CDATA[
+		select t.* from (
+			select m.*, @rank:=@rank+1 rank 
+			from stock_market.Member m, (select @rank:=0) r 
+			order by totalAsset desc) t 
+		where id=#{id}
+		]]>
+	</select>
 	<select id="isDuplicatedId" resultType="boolean">
 		select count(nickName) count from Member where nickName=#{nickName}
 	</select>

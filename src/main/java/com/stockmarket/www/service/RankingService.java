@@ -6,8 +6,6 @@ import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.entity.MemberView;
 
 public interface RankingService {
-	List<MemberView> getMemberList();
-	
-	MemberView getMember(int id);
-	int getMemberRank(int id);
+	List<MemberView> getRankingList();
+	MemberView getMemberRank(int id);
 }
