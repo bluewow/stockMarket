@@ -17,7 +17,7 @@ class CaptureMemo {
 			let content = $(".content");
 			
 			content.html("");
-			console.log(list[0]);
+			
 			for(let i = 0; i < list.length; i++) {
 				let cloneTr = document.importNode(trTemplate.content, true);
 				let tds = $(cloneTr).children();
