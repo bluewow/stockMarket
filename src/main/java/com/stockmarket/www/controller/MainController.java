@@ -1,6 +1,11 @@
 package com.stockmarket.www.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +25,13 @@ public class MainController {
 	MainService service;
 	
 	@GetMapping("/main")
-	public String main() {
+	public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//검색했을 때 키워드 값 넘겨받기
+		request.setCharacterEncoding("UTF-8");
+		String keyword = request.getParameter("k");
+		Cookie cookie = new Cookie("keyword", keyword);
+		cookie.setPath("/");
+		response.addCookie(cookie);
 		return "main";
 	}
 

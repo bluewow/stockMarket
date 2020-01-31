@@ -110,7 +110,6 @@ window.addEventListener("load", function () {
 			}
 			
 			var listData = JSON.parse(request.responseText);
-			console.log(listData);
 			var trTemplate = section.querySelector(".tr-template");
 			var loginUser = listData.loginUser;
 			tbody.innerHTML = "";
