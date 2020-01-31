@@ -26,12 +26,31 @@ public class ProfileController {
 	}
 	
 	@ResponseBody
-	@PostMapping("member_profile_update")
+	@PostMapping("member_profile_update_ing")
 	public int ProfileImgUpdate(@SessionAttribute("id") int id, @RequestParam int profileImg) {
 		Member member = service.getMember(id);
 		member.setProfileImg(profileImg);
 		int result = service.updateMember(member);
 		System.out.println(result);
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("member_profile_update_pwd")
+	public int ProfilePwdUpdate(@SessionAttribute("id") int id, 
+			@RequestParam String currentPwd, @RequestParam String newPwd) {
+		Member member = service.getMember(id);
+		int result = 0;
+		
+		if(!member.getPassword().equals(currentPwd)) {
+			result = 2;
+		} else if(member.getPassword().equals(newPwd)) {
+			result = 3;
+		} else if (member.getPassword().equals(currentPwd)) {
+			member.setPassword(newPwd);
+			result = service.updateMember(member);
+			
+		}  
 		return result;
 	}
 	

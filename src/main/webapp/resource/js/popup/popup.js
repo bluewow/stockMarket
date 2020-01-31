@@ -308,13 +308,14 @@ window.addEventListener("load", function(){
 
 		//데이터 전송
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../member_profile_update", true);
+		request.open("POST", "../../member_profile_update_pwd", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);	
 		
 		//결과를 응답받고 출력
 		request.onload = function () {
 			var returnData = request.responseText;
+			console.log(returnData);
 			if(returnData=="1"){
 				alert("비밀번호가 변경되었습니다.")
 				currentPwd.value=null;
@@ -323,13 +324,13 @@ window.addEventListener("load", function(){
 	            wrapper.style.visibility = "hidden";
 	            profilePopup.style.visibility = "hidden";
 	            
-			} else if(returnData=="wrong") {
+			} else if(returnData=="2") {
 				alert("현재 비밀번호가 맞지 않습니다.")
 				currentPwd.value=null;
 				newPwd.value=null;
 				checkPwd.value=null;
 				
-			} else if(returnData=="same"){
+			} else if(returnData=="3"){
 				alert("현재 비밀번호가 변경하려는 비밀번호와 동일합니다.")
 				currentPwd.value=null;
 				newPwd.value=null;
@@ -375,7 +376,7 @@ window.addEventListener("load", function(){
 
 			//데이터 전송
 			var request = new XMLHttpRequest();
-			request.open("POST", "../../member_profile_update", true);
+			request.open("POST", "../../member_profile_update_ing", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			request.send(sendData);	
 			
