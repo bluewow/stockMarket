@@ -61,5 +61,11 @@ public class ProfileController {
 		return service.isDuplicatedNickname(nickname);
 	}
 	
+	@ResponseBody
+	@PostMapping("member_email_validate")
+	public int EmailValidate(@RequestParam String email) {
+		return service.isDuplicatedEmail(email);
+	}
+	
 	
 }

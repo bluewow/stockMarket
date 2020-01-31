@@ -181,15 +181,12 @@ window.addEventListener("load", function(){
 			}, 500);
 			
 		};
-
-	    
-	    
-	    
+		
 	    signupPopup.onclick = function(e) {
 	        if(e.target.nodeName != "INPUT")
 	            return;
 
-	        //prevent Event Bubble
+	        // prevent Event Bubble
 	        e.preventDefault();
 
 	        if(e.target.nodeName == "userEmail") {
@@ -201,16 +198,30 @@ window.addEventListener("load", function(){
 	        } else if(e.target.nodeName == "checkPwd") {
 	        
 	        } else if(e.target.value == "회원가입") {
-	        	console.log(checkEmail(email.value));
-	        	console.log(checkPassword(email.value, pwd.value));
-	        	console.log(pwd.value+pwdConfirm.value)
 			    if(pwd.value==pwdConfirm.value){
 			    	if(checkEmail(email.value) && checkPassword(email.value, pwd.value)){
-	        		document.querySelector("#signup").submit();}
+
+			        	// 이메일 중복확인
+			        	var data = [
+							["email="+email.value]
+							]
+						var request = new XMLHttpRequest();
+			        	console.log(data);
+						request.open("POST", "../../member_email_validate", true);
+						request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						request.send(data);
+						request.onload = function(){
+							if(request.responseText == "1"){
+								alert("사용중인 이메일 주소입니다. 다시 확인해주세요.")
+							}
+							else{
+								document.querySelector("#signup").submit();
+							}
+						};
+	        		}
 			    } else {
 			    	alert("비밀번호와 비밀번호확인이 같지 않습니다.")
 			    }
-	        	
 	        }
 	    }
 	}
