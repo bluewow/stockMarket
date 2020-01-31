@@ -310,9 +310,12 @@ window.addEventListener("load", function(){
 	    submitButton.onclick = function(e) {
         if(e.target.nodeName != "INPUT")
             return;
-
         //prevent Event Bubble
         e.preventDefault();
+
+        if(checkPassword("12345678", checkPwd.value)){
+        	
+        
         
         if(checkPwd.value==newPwd.value) {
         // 데이터 준비
@@ -360,7 +363,7 @@ window.addEventListener("load", function(){
 		}
 		}
 		} else alert("비밀번호와 비밀번호 확인이 같지 않습니다.")
-	    }
+	    }}
 
 	    //프로필 이미지 리스트중 하나를 클릭했을 시
 	    profileImageList.onclick = function(e) {
