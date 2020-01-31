@@ -43,8 +43,14 @@ public class BasicMemberService implements MemberService {
 
 	@Override
 	public int isDuplicatedNickname(String nickname) {
-		System.out.println("nickname : "+nickname);
 		if(memberDao.getMemberByNickName(nickname)==null)
+			return 2;
+		else return 1;
+	}
+
+	@Override
+	public int isDuplicatedEmail(String email) {
+		if(memberDao.getMemberByEmail(email)==null)
 			return 2;
 		else return 1;
 	}
