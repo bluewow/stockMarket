@@ -3,6 +3,7 @@ package com.stockmarket.www.service.basic;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -252,8 +253,8 @@ public class BasicSystemService implements SystemService{
 	public void setStockDataAll(String codeNum) {
 		Gson gson = new Gson();
 
-		// 일별시세 게시판
-		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=1000";
+		// 일별시세 게시판 
+		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=100";
 		Document doc = naverCrawling(url);
 
 		JsonParser jsonParser = new JsonParser();
@@ -262,13 +263,11 @@ public class BasicSystemService implements SystemService{
 
 		// 크롤링 데이터를 객체에 저장
 		StockDetail[] stockDetail = gson.fromJson(values, StockDetail[].class);
-		for (StockDetail obj : stockDetail) {
-			System.out.println(obj);
-		}
-		stockDetailDao.insert(stockDetail);
-		stockDetailDao.deletePreDate();
-//		System.out.println("END");
+		List<StockDetail> list = new ArrayList<>(Arrays.asList(stockDetail));
 
+		stockDetailDao.insert(list);
+		stockDetailDao.deletePreDate();
+ 
 	}
 
 	public List<StockDetail> getStockDetail(String codeNum) {

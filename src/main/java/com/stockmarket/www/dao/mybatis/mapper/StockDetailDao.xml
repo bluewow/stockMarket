@@ -8,19 +8,43 @@
 	</select>
 			
 	<insert id="insert" parameterType="com.stockmarket.www.entity.StockDetail">
-		INSERT INTO StockDetail (codeNum, recordDate, closePrice, tradeVolume, foreign, institution, indivisual) 
-			+ VALUES (#{itemcode},#{bizdate},#{close_val},#{acc_quant},#{frgn_pure_buy_quant},#{organ_pure_buy_quant},#{indi_pure_buy_quant})
-	</insert>
-	
-	<insert id="insertDaily" parameterType="com.stockmarket.www.entity.StockDetail">
-		<!-- TODO -->
+		INSERT INTO StockDetail 
+		(
+			codeNum, 
+			recordDate, 
+			closePrice, 
+			tradeVolume, 
+			foreignPeople,
+			institutionPeople, 
+			indivisualPeople
+		) 
+		VALUES
+		<foreach collection="list" item="obj" separator="," index="index">
+		(
+			#{obj.itemcode},
+			#{obj.bizdate},
+			#{obj.close_val},
+			#{obj.acc_quant},
+			#{obj.frgn_pure_buy_quant},
+			#{obj.organ_pure_buy_quant},
+			#{obj.indi_pure_buy_quant}
+		)
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+			codeNum = VALUES(codeNum), 
+			recordDate = VALUES(recordDate),
+			closePrice = VALUES(closePrice),
+			tradeVolume = VALUES(tradeVolume),
+			foreignPeople = VALUES(foreignPeople),
+			institutionPeople = VALUES(institutionPeople),
+			indivisualPeople = VALUES(indivisualPeople);
 	</insert>
 	
 	<delete id="deletePreDate">
-		DELETE StockDetail WHERE recordDate &lt;= 20151231
+		DELETE FROM StockDetail WHERE recordDate &lt;= 20151231
 	</delete>
 	
 	<delete id="delete">
-		<!-- TODO -->
+		DELETE FROM StockDetail
 	</delete>
 </mapper>
