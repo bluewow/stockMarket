@@ -257,9 +257,12 @@ public class BasicSystemService implements SystemService{
 		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=100";
 		Document doc = naverCrawling(url);
 
+		
 		JsonParser jsonParser = new JsonParser();
 		JsonElement jsonElement = jsonParser.parse(doc.text());
 		String values = jsonElement.getAsJsonObject().get("result").toString();
+		if(values.equals("[]")) //크롤링 데이터가 비어있을시 예외처리 
+			return;
 
 		// 크롤링 데이터를 객체에 저장
 		StockDetail[] stockDetail = gson.fromJson(values, StockDetail[].class);
@@ -269,7 +272,12 @@ public class BasicSystemService implements SystemService{
 		stockDetailDao.deletePreDate();
  
 	}
-
+	
+	@Override
+	public List<KoreaStocks> getStockAll() {
+		return koreaStocksDao.getList();
+	}
+	
 	public List<StockDetail> getStockDetail(String codeNum) {
 		return stockDetailDao.get(codeNum);
 	}
@@ -365,5 +373,6 @@ public class BasicSystemService implements SystemService{
 		}
 		return doc;
 	}
+
 		
 }
