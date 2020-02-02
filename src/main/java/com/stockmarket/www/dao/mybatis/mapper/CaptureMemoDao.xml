@@ -12,7 +12,8 @@
 		where memberId=#{memberId} order by regdate desc
 	</select>
 	<insert id="insert">
-		
+		insert into CaptureMemo(PER, PBR, ROE, debtRatio, marketCap, foreignInvestors, codeNum, memberId)
+		values(#{PER}, #{PBR}, #{ROE}, #{debtRatio}, #{marketCap}, #{foreignInvestors}, #{codeNum}, #{memberId})
 	</insert>
 	<update id="update" parameterType="com.stockmarket.www.entity.CaptureMemo">
 		update CaptureMemo set title=#{title}, content=#{content} where id=#{id}
