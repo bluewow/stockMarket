@@ -24,7 +24,7 @@ public class LoginController {
 	
 	@GetMapping("login-json")
 	public String loginJson(@RequestParam("status") String status) {
-		System.out.println("로그아웃");
+//		System.out.println("로그아웃");
 		if(status.equals("logout")) {
 			if(req.isRequestedSessionIdValid()) //session 이 유효한 경우 invalidate 처리
 				req.getSession().invalidate();	
@@ -33,7 +33,7 @@ public class LoginController {
 		return "redirect:/main";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/login") //<form> tag
 	public String login(@RequestParam Map<String, String> data) {
 		if(data.get("form").equals("회원가입")) {
 			String userEmail = data.get("userEmail");
@@ -64,7 +64,7 @@ public class LoginController {
 		if(email == null || email.equals("")) 
 			return false;
 
-		System.out.println("member " + loginService.isValidMember(email, pwd));
+//		System.out.println("member " + loginService.isValidMember(email, pwd));
 		if(loginService.isValidMember(email, pwd)) 
 			return true;
 		else 
