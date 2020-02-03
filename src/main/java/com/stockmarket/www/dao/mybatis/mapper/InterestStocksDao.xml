@@ -9,10 +9,10 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO InterestStock (memberId, stockId) VALUES (#{id}, #{stockName})
+		INSERT INTO InterestStock (memberId, stockCode) VALUES (#{id}, #{stockName})
 	</insert>
 	
 	<delete id="delete">
-		delete from InterestStock where memberId=#{id} and stockId=#{delStockId}
+		delete from InterestStock where memberId=#{id} and stockCode=#{delStockId}
 	</delete>
 </mapper>
