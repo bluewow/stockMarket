@@ -3,7 +3,7 @@ package com.stockmarket.www.entity;
 public class InterestStocks {
 	
 	private int memberId;
-	private String StockCode;
+	private String stockCode;
 	
 	public InterestStocks() {
 		
@@ -12,7 +12,7 @@ public class InterestStocks {
 	public InterestStocks(int memberId, String stockCode) {
 		
 		this.memberId = memberId;
-		this.StockCode = stockCode;
+		this.stockCode = stockCode;
 	}
 
 
@@ -25,16 +25,16 @@ public class InterestStocks {
 	}
 
 	public String getStockCode() {
-		return StockCode;
+		return stockCode;
 	}
 
 	public void setStockCode(String stockCode) {
-		StockCode = stockCode;
+		this.stockCode = stockCode;
 	}
 
 	@Override
 	public String toString() {
-		return "InterestStocks [memberId=" + memberId + ", StockCode=" + StockCode + "]";
+		return "InterestStocks [memberId=" + memberId + ", stockCode=" + stockCode + "]";
 	}
 
 	
