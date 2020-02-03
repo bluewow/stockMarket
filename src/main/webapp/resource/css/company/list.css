@@ -107,7 +107,7 @@ table {
 }
 
 .company-address-image {
-	background: url(../images/link.png) no-repeat;
+	background: url(/resource/css/company/link.png) no-repeat;
 	border: none;
 	width: 2px;
 	height: 2px;
@@ -205,12 +205,12 @@ td {
 }
 
 .interest_no {
-	background: url("/css/company/interest_no.png") no-repeat;
+	background: url("/resource/css/company/interest_no.png") no-repeat;
 	background-position: center;
 }
 
 .interest_yes {
-	background: url("/css/company/interest_yes.png") no-repeat;
+	background: url("/resource/css/company/interest_yes.png") no-repeat;
 	background-position: center;
 }
 

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.UpjongDao">
 
-	<select id="getUpjong" parameterType="String">
+	<select id="getUpjong" resultType="String" >
 		select upjong from Upjong where stockName=#{stockName}
 	</select>
 	
