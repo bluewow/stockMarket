@@ -4,16 +4,19 @@ function interestLoadProto(){
    var section = this.document.querySelector(".interestList");
    var tbody = section.querySelector("table tbody");
    var delButton = section.querySelector("#deleteButton");
-
+   
+   
    function interestLoad() {
+	   
 
       var interestAjax = new XMLHttpRequest();
       interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
       // 서블릿의 실행이 완료되었을때 실행   
 
       interestAjax.onload = function () {
-
          if (interestAjax.responseText == -1) {
+        	 console.log("실행");
+        	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'
             return;
          }
          else {
@@ -82,12 +85,28 @@ function interestLoadProto(){
          delRequest.open("POST", "../../card/managestocks/interest_list_json", true)
          delRequest.setRequestHeader('Content-Type',
             'application/json');
+         
          delRequest.onload = function () {
-            alert("삭제되었습니다.");
-            delTarget.parentNode.removeChild(delTarget);
-         }
-         delRequest.send(sendData);
+             alert("삭제되었습니다.");
+             delTarget.parentNode.removeChild(delTarget);
+             if(tbody.firstElementChild == null)
+             {
+            	 tbody.innerHTML = '<tr> <td colspan="5">관심종목이 없습니다</td> </tr>'
+             }
+          }
+          delRequest.send(sendData);
+         
+//         
+//         if (delRequest.responseText == -1) {
+//        	 console.log("실행");
+//        	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'
+//            return;
+//         }
+//         else{
+//        	 return;
+//         }
       }
+
    };
 }
 

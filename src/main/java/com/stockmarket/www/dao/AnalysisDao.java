@@ -11,6 +11,7 @@ public interface AnalysisDao {
 	public List<Analysis> getlist();
 	public Analysis get(String codeNum);
 	
-	public int insert(List<Analysis> entityList);
+	public int insert(Analysis entityList);
+	public int insertAll(List<Analysis> entityList);
 	public int delete(String codeNum);
 }

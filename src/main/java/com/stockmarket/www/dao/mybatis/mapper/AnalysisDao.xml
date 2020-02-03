@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.AnalysisDao">
 	<select id="get" resultType="com.stockmarket.www.entity.Analysis">
-		SELECT * FROM AnalysisData order by recordDate desc
+		SELECT * FROM AnalysisData WHERE stockCode=#{codeNum} order by recordDate desc
 	</select>
 			
 	<select id="getlist" resultType="com.stockmarket.www.entity.Analysis">
@@ -12,8 +12,69 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.stockmarket.www.entity.Analysis">
-		INSERT INTO AnalysisData (STOCKCODE, SUPPLY, INFLUENCE, TREND, CONTENTS, SCALE, RESULT, RECORD_DATE) 
-			+ VALUES(#{codeNum}, #{supply}, #{influence}, #{trend}, #{contents}, #{scale}, #{result}, #{record_date})
+		INSERT INTO AnalysisData 
+		(
+			stockCode, 
+			supply, 
+			influence, 
+			trend, 
+			contents, 
+			scale, 
+			result, 
+			recordDate
+		)
+		VALUES
+		(	
+			#{codeNum}, 
+			#{supply}, 
+			#{influence}, 
+			#{trend}, 
+			#{contents}, 
+			#{scale}, 
+			#{result}, 
+			#{record_date}
+		)
+		ON DUPLICATE KEY UPDATE 
+			supply = VALUES(supply),
+			influence = VALUES(influence),
+			trend = VALUES(trend),
+			contents = VALUES(contents),
+			scale = VALUES(scale),
+			result = VALUES(result);
+	</insert>
+	
+	<insert id="insertAll" parameterType="com.stockmarket.www.entity.Analysis">
+		INSERT INTO AnalysisData 
+		(
+			stockCode, 
+			supply, 
+			influence, 
+			trend, 
+			contents, 
+			scale, 
+			result, 
+			recordDate
+		)
+		VALUES
+		<foreach collection="list" item="obj" separator="," index="index">
+		(	
+			#{obj.codeNum}, 
+			#{obj.supply}, 
+			#{obj.influence}, 
+			#{obj.trend}, 
+			#{obj.contents}, 
+			#{obj.scale}, 
+			#{obj.result}, 
+			#{obj.record_date}
+		)
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+			supply = VALUES(supply),
+			influence = VALUES(influence),
+			trend = VALUES(trend),
+			contents = VALUES(contents),
+			scale = VALUES(scale),
+			result = VALUES(result);
 	</insert>
 	
 	<delete id="delete">

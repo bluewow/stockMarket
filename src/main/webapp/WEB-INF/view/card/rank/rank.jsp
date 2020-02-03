@@ -41,15 +41,15 @@
 						<tr>
 							<c:if test="${status.count == 1}">
 								<td class="rank"
-									style="background: url('../../images/medal_geom.png') no-repeat 50% 15px;">${status.count}</td>
+									style="background: url('/resource/images/medal_geom.png') no-repeat 50% 15px;">${status.count}</td>
 							</c:if>
 							<c:if test="${status.count == 2}">
 								<td class="rank"
-									style="background: url('../../images/medal_eon.png') no-repeat 50% 15px;">${status.count}</td>
+									style="background: url('/resource/images/medal_eon.png') no-repeat 50% 15px;">${status.count}</td>
 							</c:if>
 							<c:if test="${status.count == 3}">
 								<td class="rank"
-									style="background: url('../../images/medal_dong.png') no-repeat 50% 15px;">${status.count}</td>
+									style="background: url('/resource/images/medal_dong.png') no-repeat 50% 15px;">${status.count}</td>
 							</c:if>
 							<c:if test="${status.count > 3}">
 								<td class="rank">${status.count}</td>
