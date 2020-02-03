@@ -25,6 +25,7 @@ import com.stockmarket.www.dao.KoreaStocksDao;
 import com.stockmarket.www.dao.StockDetailDao;
 import com.stockmarket.www.entity.Analysis;
 import com.stockmarket.www.entity.KoreaStocks;
+import com.stockmarket.www.entity.StockDetail;
 
 @Service
 public class BasicSystemAnalysis {
@@ -58,15 +59,15 @@ public class BasicSystemAnalysis {
 			Analysis analysis = new Analysis();
 			
 //			String code = stock.getStockCode();
-			String code = "095660"; //temp
+			String code = "005930"; //temp
 			
 //			analysis.setCodeNum(code);
 //			analysis.setRecord_date(date.format(System.currentTimeMillis()));
-			analysis.setTrend((int)(trend("네오위즈") * 0.2));
-//			analysis.setSupply((int)(supply(code) * 0.25));
-//			analysis.setScale((int)(scale(code) * 0.20));
-			analysis.setContents((int)(contents("네오위즈") * 0.25));
-//			analysis.setInfluence((int)(influence * 0.1));
+//			analysis.setTrend((int)(trend("네오위즈") * 0.2));
+//			analysis.setSupply((int)(supply(code) * 0.20));
+//			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
+//			analysis.setContents((int)(contents("네오위즈") * 0.30));
+			analysis.setInfluence((int)(influence * 0.15));
 //			analysis.calculateResultValue();
 			
 			//Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
@@ -78,12 +79,92 @@ public class BasicSystemAnalysis {
 	}
 	
 	private int supply(String code) {
+		List<StockDetail> stocks = stockDeatailDao.get(code);
+		int day10 = 0;
+		int day100 = 0;
+		
+		int cnt = 0;
+		//개인의 동향을 파악한다 10일 / 100일
+		for(StockDetail stock : stocks) {
+			int data = stock.getIndi_pure_buy_quant();
+			if(data <= 0)
+				data = -data;
+				
+			if(cnt <= 10) 
+				day10 += data;
+			
+			day100 += data;
+			cnt++;
+		}
 
-		return 0;
+		double result = (double)day10 / day100;
+		result = result * 100;
+//		System.out.println("day10 : " + day10 + " day100 : " + day100 + " result : " + result);
+		//100기준 10일 분량의 개인 동향 분석 
+				//  0점   	0  ~   10%
+				// 20점	  	11% ~  20%
+				// 40점		21% ~  30%
+				// 60점	    31% ~  45%
+				// 80점	    46% ~  70%
+				//100점	    71% ~ 100%
+		
+		if(result <= 10)
+			return 0;
+		else if(result <= 20)
+			return 20;
+		else if(result <= 30)
+			return 40;
+		else if(result <= 45)
+			return 60;
+		else if(result <= 75)
+			return 80;
+		else 
+			return 100;
+		
 	}
-	
-	private int scale(String code) {
-		return 0;
+	 
+	private int volume(String code) {
+		List<StockDetail> stocks = stockDeatailDao.get(code);
+		long avgTradeVolume = 0;
+		int lastTradeVolume = 0;
+		
+		int cnt = 0;
+		//평균 거래치 증가율을 판단한다
+		for(StockDetail stock : stocks) {
+			if(cnt == 0 )
+				lastTradeVolume = stock.getAcc_quant();
+			
+			if(cnt > 15)
+				break;
+			
+			avgTradeVolume += stock.getAcc_quant();
+			cnt++;
+		}
+
+//		System.out.println("avg : " + avgTradeVolume/15 + "tradeVolume : " + lastTradeVolume);
+		double result = lastTradeVolume / ((double)avgTradeVolume/15) * 100;
+		result = result - 100;
+		System.out.println("result : " + result);
+		//15일기준  전날 거래량 분석 
+				// 0점   		< 0%
+				// 20점	  	1% ~  15%
+				// 40점		16% ~  30%
+				// 60점	    31% ~  45%
+				// 80점	    46% ~  70%
+				//100점	    71% ~ 100%
+		
+		if(result <= 0)
+			return 0;
+		else if(result <= 15)
+			return 20;
+		else if(result <= 30)
+			return 40;
+		else if(result <= 45)
+			return 60;
+		else if(result <= 75)
+			return 80;
+		else 
+			return 100;
 	}
 	
 	private int influence() {

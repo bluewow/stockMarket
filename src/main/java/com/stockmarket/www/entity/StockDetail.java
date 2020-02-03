@@ -12,8 +12,11 @@ public class StockDetail {
 	String sosok;				//??
 	double frgn_hold_ratio;		//외국인 보유율 
 	int	organ_pure_buy_quant;	//기관 -
-	int indi_pure_buy_quant;	//개인 -
+	int indi_pure_buy_quant;	//개인 - 
 
+	public StockDetail() {
+	}
+	
 	public StockDetail(int acc_quant, String bizdate, String itemcode, int frgn_pure_buy_quant, int close_val,
 			int organ_pure_buy_quant, int indi_pure_buy_quant) {
 		super();
