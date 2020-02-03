@@ -4,7 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.StockDetailDao">
 	<select id="get" resultType="com.stockmarket.www.entity.StockDetail">
-		SELECT * FROM StockDetail WHERE codeNum=#{codeNum} order by recordDate desc
+		SELECT 
+			foreignPeople as frgn_pure_buy_quant,
+			institutionPeople as organ_pure_buy_quant,
+			indivisualPeople as indi_pure_buy_quant,
+			tradeVolume as acc_quant
+		FROM StockDetail 
+		WHERE codeNum=#{codeNum} order by recordDate desc
 	</select>
 			
 	<insert id="insert" parameterType="com.stockmarket.www.entity.StockDetail">
