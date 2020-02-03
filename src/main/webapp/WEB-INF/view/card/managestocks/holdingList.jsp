@@ -30,7 +30,9 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
    </tr>
    </thead>
    <tbody >
-      <tr><td class="firstTd" colspan="5">보유한종목이 없습니다</td></tr>
+      <tr>
+      <td colspan="5">보유한종목이 없습니다</td>
+      </tr>
    </tbody>
    </table>
 

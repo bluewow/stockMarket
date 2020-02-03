@@ -69,13 +69,11 @@ public class ManageStockController {
 	
 	}
 	
-	@ResponseBody
 	@PostMapping("/interest_list_json")
-	public int InterestStockPostJSON(@SessionAttribute("id") int id, @RequestBody String param) throws IOException {
+	public void InterestStockPostJSON(@SessionAttribute("id") int id, @RequestBody String param) throws IOException {
 		String parsing= param.substring(param.lastIndexOf("=")+1);
-		System.out.println(parsing);
-		int result = interesrStocksService.deleteStock(id,parsing);	
-		return result;
+		int result = interesrStocksService.deleteStock(id,parsing);
+		updateInterestCurrentPrice(id);
 	}
 	
 	@ResponseBody
@@ -88,23 +86,22 @@ public class ManageStockController {
 	
 	@ResponseBody
 	public String updateHoldingCurrentPrice( int userId) throws IOException {
-		
+		Gson gson = new Gson();
 		if(haveStockService.getHaveStockList(userId).isEmpty()) {
-			   
-	        Gson gson = new Gson();
+			
 			String json = gson.toJson(-1);
-			return json;
+			System.out.println(json);
+	        return json;
+
 			}
 			else{
 				List<HaveView> list = new ArrayList<HaveView>();
 				list = haveStockService.getHaveStockList(userId);
-		        Gson gson = new Gson();
 				String json = gson.toJson(list);
 				return json;
 			}
 		
 	}
-	
 	
 	@ResponseBody
 	@GetMapping("/manageTest")

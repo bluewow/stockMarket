@@ -14,8 +14,10 @@ function holdingListProto(){
    function replaceAll(str, searchStr, replaceStr) {
 	   return str.split(searchStr).join(replaceStr);
    }
+  
+   
 
-   function holdingLoad() {
+   function getHoldingLoad() {
       
       var holdingRequest = new XMLHttpRequest();
       holdingRequest.open("GET",
@@ -29,6 +31,7 @@ function holdingListProto(){
          // var cardFooter =
          // section.querySelector(".card-footer");
          if(holdingRequest.responseText == -1){
+        	 tbody.firstElementChild.innerHTML = '<td colspan="5">보유한종목이 없습니다</td>'
             return;
          }
          else{
@@ -132,7 +135,7 @@ function holdingListProto(){
       }
 
    
-   holdingLoad();
+   getHoldingLoad();
 
    setInterval(function() {
       holdingLoad();
