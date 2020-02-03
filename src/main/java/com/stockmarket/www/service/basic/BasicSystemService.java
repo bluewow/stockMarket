@@ -282,6 +282,7 @@ public class BasicSystemService implements SystemService{
 		return stockDetailDao.get(codeNum);
 	}
 
+	@Override
 	public void upjongCrawling() {
 
 		String upjongUrl = "https://finance.naver.com/sise/sise_group.nhn?type=upjong";
@@ -348,8 +349,9 @@ public class BasicSystemService implements SystemService{
 			}
 //			System.out.println(k); //for debugging
 		}
+		upjongDao.delete();
 		upjongDao.insert(upjongList);
-		System.out.println("end" + totalCnt);
+		System.out.println("upgong crawling end");
 	}
 	
 	//네이버 크롤링 GET 방식 LIB 
