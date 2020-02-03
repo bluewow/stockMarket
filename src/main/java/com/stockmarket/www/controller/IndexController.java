@@ -19,8 +19,7 @@ public class IndexController {
 	
 	@GetMapping("/index")
 	public String index() {
-		System.out.println(" 1-3");
-//		return "index";
+
 		return "redirect:system";
 	}
 
