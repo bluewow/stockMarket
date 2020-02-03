@@ -57,6 +57,7 @@ body {
 	/* -moz-box-shadow: 5px 6px 4px #000000;
 	-webkit-box-shadow: 5px 6px 4px #000000; */
 	box-shadow: 3px 3px 4px #c9c9c9;
+	outline: none;
 }
 
 #recommendKeyword {
