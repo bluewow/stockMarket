@@ -34,11 +34,12 @@ public class SystemController {
 	}
 
 	@GetMapping("/system")
-	public void systemInit() {
+	public void systemInit() throws IOException {
 		if(oneShotFlag == true) 
 			return;
 		
 		oneShotFlag = true;
+
 		Thread thread = new Thread(()->{
 			try {
 				while(!Thread.currentThread().isInterrupted())
@@ -57,7 +58,7 @@ public class SystemController {
 	}
 	
 	/* =========== schedule ============ 
-	 * 5:00 		 코스피, 코스닥 목록인 KoreaStocks DB 갱신
+	 * 5:00 		 코스피, 코스닥 목록인 KoreaStocks DB 및 업종 갱신
 	 * 8:00			 전날 데이터 기반으로 분석데이터 갱신
 	 * 9:00  ~ 20:00 각 주식종목 가격 크롤링 소요시간 - 약 7분 
 	 * 19:00 		 RecordAsset ??
@@ -73,10 +74,11 @@ public class SystemController {
 		System.out.println(date1.format(System.currentTimeMillis()));
 		//10분주기 - refreshStockPrice 함수실행시 약 7분소요로 10분주기로 변경
 		
-		//오전 5시 하루에 한번 KOSPI, KOSDAQ DB 갱신 - TEST 완료
+		//오전 5시 하루에 한번 KOSPI, KOSDAQ DB 업종- TEST 완료
 		if(curHour.equals("5") && preHour.equals("4")) {
 			service.updateMarket("KOSPI");
 			service.updateMarket("KOSDAQ");
+			service.upjongCrawling();
 		}
 
 		//매일 오전 8시 분석데이터 갱신
