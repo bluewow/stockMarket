@@ -5,16 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.service.SystemService;
 import com.stockmarket.www.service.basic.BasicSystemAnalysis;
 
-@RestController
+@Controller
 public class SystemController {
 	static boolean oneShotFlag;
 	static String preHour; 
@@ -28,16 +31,17 @@ public class SystemController {
 	@Autowired 
 	private HttpServletRequest req;
 	
+	
 	public SystemController() {
 		oneShotFlag = false;
 
 	}
 
 	@GetMapping("/system")
-	public void systemInit() throws IOException {
-		if(oneShotFlag == true) 
-			return;
-		
+	public String systemInit() throws IOException {
+		if(oneShotFlag == true) {
+			return "index";
+		}
 		oneShotFlag = true;
 
 		Thread thread = new Thread(()->{
@@ -55,6 +59,9 @@ public class SystemController {
 		});
 		thread.setDaemon(true);
 		thread.start();
+		
+		return "index";
+		
 	}
 	
 	/* =========== schedule ============ 
