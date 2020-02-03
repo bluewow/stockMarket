@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.stockmarket.www.entity.CaptureMemo;
 import com.stockmarket.www.entity.CaptureMemoView;
-import com.stockmarket.www.entity.CommunityBoard;
 
 public interface CaptureMemoService {
 //	캡쳐메모 목록

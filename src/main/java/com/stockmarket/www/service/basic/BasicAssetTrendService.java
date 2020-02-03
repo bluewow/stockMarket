@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.stockmarket.www.dao.MemberDao;
 import com.stockmarket.www.dao.RecordAssetDao;
-import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.service.AssetTrendService;

@@ -21,7 +21,8 @@ public class AuthenticationFilter implements Filter{
 	private static final String[] noAuthUrls = {
 			//TODO
 			"/card/company/list",
-			"/card/trade/analysis", 
+			"/card/trade/analysis",
+			"/card/trade/analysisUpdate", 
 			"/card/board/news_board",
 			};
 	
@@ -48,8 +49,10 @@ public class AuthenticationFilter implements Filter{
 			
 			if(filterPass == true) 
 				chain.doFilter(request, response);
-			else 
-				httpRequest.getRequestDispatcher("/error/403.jsp").forward(httpRequest, httpResponse);
+			else  {
+//				System.out.println(urlPath);
+				httpRequest.getRequestDispatcher("/card/error").forward(httpRequest, httpResponse);
+			}
 		} else {
 			//로그인 이후 No filter for auth 
 			chain.doFilter(request, response);

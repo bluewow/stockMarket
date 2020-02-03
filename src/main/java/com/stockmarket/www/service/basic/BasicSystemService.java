@@ -3,6 +3,7 @@ package com.stockmarket.www.service.basic;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -153,25 +154,28 @@ public class BasicSystemService implements SystemService{
 
 		if (market.equals("KOSDAQ"))
 			type = "kosdaqMkt";
+					
 
 		String url = "http://kind.krx.co.kr/corpgeneral/corpList.do" + "?method=download" + "&searchType=13"
 				+ "&orderMode=3" + "&orderStat=D" + "&marketType=" + type; // stockMkt 코스피 kosdaqMkt 코스닥
 
-		try {
-			doc = Jsoup.connect(url).ignoreContentType(true).timeout(5000).post();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		while(doc == null) {	//workaround 처리  가끔 null 반환의 이유를 알수없음 
+			try {
+				doc = Jsoup.connect(url).ignoreContentType(true).timeout(3000).get();
+			} catch (IOException e) {
+				e.printStackTrace(); 
+			}
 		}
 
-		// tr Tag 이하를 선택
-		Elements contents = doc.select("tr");
+//		System.out.println(doc);
+		// tr Tag 이하를 선택 
+		Elements contents = doc.select("tr"); 
 		if (contents == null) {
 			return false;
 		}
 
 		// 반복되는 th, td tag 로 sorting 한다
-		//write(contents, "th");
+		//write(contents, "th"); 
 		write(contents, "td");
 
 		return true;
@@ -208,10 +212,14 @@ public class BasicSystemService implements SystemService{
 				
 			}
 		}
+ 
+		//모든 종목을 추가하고 duplicate 시 update 하는 함수 호출
+		koreaStocksDao.insertDuplicate(koreaList);
 		
-		koreaStocksDao.delete();
-		koreaStocksDao.insert(koreaList);
+		//예외처리
 		koreaStocksDao.update("KT","케이티");
+
+		//상장폐지된 종목 삭제 TODO
 	}
 	/*-------------------------- insert Asset Record ----------------------------*/
 
@@ -245,25 +253,31 @@ public class BasicSystemService implements SystemService{
 	public void setStockDataAll(String codeNum) {
 		Gson gson = new Gson();
 
-		// 일별시세 게시판
-		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=1000";
+		// 일별시세 게시판 
+		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=100";
 		Document doc = naverCrawling(url);
 
+		
 		JsonParser jsonParser = new JsonParser();
 		JsonElement jsonElement = jsonParser.parse(doc.text());
 		String values = jsonElement.getAsJsonObject().get("result").toString();
+		if(values.equals("[]")) //크롤링 데이터가 비어있을시 예외처리 
+			return;
 
 		// 크롤링 데이터를 객체에 저장
 		StockDetail[] stockDetail = gson.fromJson(values, StockDetail[].class);
-		for (StockDetail obj : stockDetail) {
-			System.out.println(obj);
-		}
-		stockDetailDao.insert(stockDetail);
+		List<StockDetail> list = new ArrayList<>(Arrays.asList(stockDetail));
+
+		stockDetailDao.insert(list);
 		stockDetailDao.deletePreDate();
-//		System.out.println("END");
-
+ 
 	}
-
+	
+	@Override
+	public List<KoreaStocks> getStockAll() {
+		return koreaStocksDao.getList();
+	}
+	
 	public List<StockDetail> getStockDetail(String codeNum) {
 		return stockDetailDao.get(codeNum);
 	}
@@ -359,5 +373,6 @@ public class BasicSystemService implements SystemService{
 		}
 		return doc;
 	}
+
 		
 }

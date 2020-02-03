@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.CaptureMemoDao;
 import com.stockmarket.www.entity.CaptureMemo;
 import com.stockmarket.www.entity.CaptureMemoView;

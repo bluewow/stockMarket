@@ -3,15 +3,11 @@ package com.stockmarket.www.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stockmarket.www.dao.CaptureMemoDao;
 import com.stockmarket.www.dao.MemberDao;
-import com.stockmarket.www.entity.CaptureMemo;
 import com.stockmarket.www.entity.Member;
 
 @RestController

@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.HaveStockDao;
-import com.stockmarket.www.dao.InterestStocksDao;
 import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.HaveStock;
 import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
-import com.stockmarket.www.entity.InterestStockView;
-import com.stockmarket.www.entity.InterestView;
 import com.stockmarket.www.service.HaveStockService;
 
 @Service

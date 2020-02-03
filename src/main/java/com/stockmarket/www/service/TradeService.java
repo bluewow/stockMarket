@@ -39,9 +39,6 @@ public interface TradeService {
 	
 	/* 매수/매도 실행 */
 	void trade(int id, String codeNum, int qty, int curStockPrice);
-	
-	/* 일봉 데이터를 가져온다 */
-	List<StockDetail> getDailyPrice(String codeNum);
 
 	/* 회사 이름을 가져온다 */
 	String getCompanyName(String codeNum);
