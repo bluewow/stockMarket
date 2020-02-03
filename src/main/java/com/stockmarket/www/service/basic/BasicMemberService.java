@@ -1,7 +1,5 @@
 package com.stockmarket.www.service.basic;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +12,6 @@ public class BasicMemberService implements MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
-
-	
-	@Override
-	public List<Member> getMemberList() {
-		return memberDao.getRankerList();
-	}
 
 	@Override
 	public Member getMember(int id) {
