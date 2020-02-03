@@ -67,13 +67,13 @@ public class ListController extends HttpServlet {
 		// 로그인이 되었으면 id를 파라미터 getInterestStocks 값을 가져온다.
 		if (id != -1) {
 			interestStocksList.addAll(companyService.getInterestStocks(id));
-//			System.out.println(companyService.getInterestStocks(id));
+			System.out.println(companyService.getInterestStocks(id));
 		}
 		
 		// getInterestStocks이 null이 아니면 request로 interestStocks을 보낸다
 		if (interestStocksList != null) {
 			model.addAttribute("interestStocks", interestStocksList);
-//			System.out.println(interestStocksList);
+			System.out.println(interestStocksList);
 		}
 		
 		model.addAttribute("search", searchCompanyList);

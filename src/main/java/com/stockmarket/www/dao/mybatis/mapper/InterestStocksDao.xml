@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.InterestStocksDao">
 	
-	<select id="getInterestStocks" resultType="com.stockmarket.www.entity.InterestStocks">
+	<select id="getInterestStocks" parameterType="int" resultType="com.stockmarket.www.entity.InterestStocks">
 		SELECT * FROM InterestStock WHERE memberId=#{id}
 	</select>
 	
