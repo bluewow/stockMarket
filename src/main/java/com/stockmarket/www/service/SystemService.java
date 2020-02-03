@@ -42,6 +42,9 @@ public interface SystemService {
 
 	//get 코스피,코스닥 종목
 	List<KoreaStocks> getStockAll();
+	
+	//네이버 업종
+	public void upjongCrawling();
 
 	//TODO
 	//상장종목 폐지목록
