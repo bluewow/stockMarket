@@ -22,7 +22,8 @@
 		nickName=#{nickName},
 		vMoney=#{vMoney},
 		profileImg=#{profileImg},
-		cardPos=#{cardPos}
+		cardPos=#{cardPos},
+		totalAsset=#{totalAsset}
 		where id=#{id}
 	</update>
 	<insert id="insertMember" parameterType="com.stockmarket.www.entity.Member">

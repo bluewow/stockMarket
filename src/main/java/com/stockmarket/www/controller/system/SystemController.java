@@ -110,6 +110,10 @@ public class SystemController {
 			service.insertRecordAsset();
 		}
 		
+		// 맴버의 총자산 업데이트
+		if(curHour.equals("19") && preHour.equals("18"))
+			service.updateMemberTotalAsset();
+		
 		//현재 시간을 preHour flag 에 저장
 		preHour = curHour;
 		

@@ -45,6 +45,9 @@ public interface SystemService {
 	
 	//네이버 업종
 	public void upjongCrawling();
+	
+	// 모든 멤버의 총자산을 업데이트
+	long updateMemberTotalAsset();
 
 	//TODO
 	//상장종목 폐지목록

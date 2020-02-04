@@ -29,12 +29,14 @@ import com.stockmarket.www.dao.RecordAssetDao;
 import com.stockmarket.www.dao.StockDetailDao;
 import com.stockmarket.www.dao.UpjongDao;
 import com.stockmarket.www.entity.CurStock;
+import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.entity.Member;
 import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.entity.StockDetail;
 import com.stockmarket.www.entity.Upjong;
+import com.stockmarket.www.service.AssetTrendService;
 import com.stockmarket.www.service.HaveStockService;
 import com.stockmarket.www.service.SystemService;
 
@@ -63,6 +65,9 @@ public class BasicSystemService implements SystemService{
 	
 	@Autowired
 	private HaveStockService haveStockService;
+	
+	@Autowired
+	private AssetTrendService assetTrendService;
 
 	public BasicSystemService() {
 
@@ -374,6 +379,22 @@ public class BasicSystemService implements SystemService{
 			e.printStackTrace();
 		}
 		return doc;
+	}
+	
+	@Override
+	public long updateMemberTotalAsset() {
+		List<Member> members = memberDao.getMemberList();
+		
+		long cnt = 0;
+		for(Member m : members) {
+			long totalAsset = assetTrendService.getAssetPresent(m.getId());
+			m.setTotalAsset(totalAsset);
+			int result = memberDao.updateMember(m);
+			
+			if (result == 1)
+				cnt++;
+		}
+		return cnt;
 	}
 
 		
