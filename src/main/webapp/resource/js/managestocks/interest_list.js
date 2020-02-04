@@ -15,7 +15,6 @@ function interestLoadProto(){
 
       interestAjax.onload = function () {
          if (interestAjax.responseText == -1) {
-        	 console.log("실행");
         	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'
             return;
          }
@@ -95,8 +94,6 @@ function interestLoadProto(){
              }
           }
           delRequest.send(sendData);
-         
-//         
 //         if (delRequest.responseText == -1) {
 //        	 console.log("실행");
 //        	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'

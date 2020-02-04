@@ -79,7 +79,7 @@ public class ManageStockController {
 	@ResponseBody
 	@GetMapping("/holding_list_json")
 	public String HoldingStockGetJSON(@SessionAttribute("id") int id) throws IOException {
-
+		
 		return updateHoldingCurrentPrice(id);
 		
 	}
@@ -90,7 +90,6 @@ public class ManageStockController {
 		if(haveStockService.getHaveStockList(userId).isEmpty()) {
 			
 			String json = gson.toJson(-1);
-			System.out.println(json);
 	        return json;
 
 			}

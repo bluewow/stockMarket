@@ -132,13 +132,13 @@ function holdingListProto(){
           };
       }
       holdingRequest.send();
-      }
+    }
 
    
    getHoldingLoad();
 
    setInterval(function() {
-      holdingLoad();
+	   getHoldingLoad();
    },  1000 * 60 * 5);
 }
 
