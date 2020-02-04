@@ -285,9 +285,17 @@ td.border-bottom {
 	text-align: center;
 }
 
-.replyTable tbody td .re-writer, .replyTable tbody td .re-content{
+.replyTable tbody td .re-writer, .replyTable tbody td{
 	font-size: 0.8em;
 }
+
+.re-writer{
+	float: left;
+}
+ .re-content{
+ 	display: inline-block;
+ 	width: 70%;
+ }
 .reply-content {
 	font-family:"서울한강체";
 	color: #58585E;
