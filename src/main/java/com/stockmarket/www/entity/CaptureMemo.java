@@ -173,7 +173,7 @@ public class CaptureMemo {
 		return foreignInvestors;
 	}
 
-	public void setForeignInvestors(float foreignInvestors) {
+	public void setForeignInvestors(double foreignInvestors) {
 		this.foreignInvestors = foreignInvestors;
 	}
 

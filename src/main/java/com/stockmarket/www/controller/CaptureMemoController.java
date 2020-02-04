@@ -36,6 +36,7 @@ public class CaptureMemoController {
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(captureMemoViews);
+		
 		return json;
 	}
 
@@ -43,24 +44,20 @@ public class CaptureMemoController {
 	@GetMapping("captureMemo-json-detail")
 	public String captureMemoDetail(@RequestParam int memoId) {
 		CaptureMemo captureMemo = service.get(memoId);
-
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(captureMemo);
+		
 		return json;
 	}
 
 	@ResponseBody
 	@PostMapping("captureMemo-json-insert")
 	public int captureMemoInsert(@RequestBody String param) {
-		System.out.println(param);
-		// json 형태의 data 파싱
-//		Gson gson = new Gson();
-//		CaptureMemoView memoView = gson.fromJson(jb.toString(), CaptureMemoView.class);
-//
-//		int result = service.insert(memoView);
+		Gson gson = new Gson();
+		CaptureMemoView memoView = gson.fromJson(param, CaptureMemoView.class);
+		int result = service.insert(memoView);
 
-//		return result;
-		return 1;
+		return result;
 	}
 
 	@ResponseBody
@@ -68,8 +65,8 @@ public class CaptureMemoController {
 	public int captureMemoUpdate(@RequestBody String param) {
 		Gson gson = new Gson();
 		CaptureMemo memo = gson.fromJson(param, CaptureMemo.class);
-		
 		int result = service.update(memo);
+		
 		return result;
 	}
 	
@@ -77,6 +74,7 @@ public class CaptureMemoController {
 	@GetMapping("captureMemo-json-delete")
 	public int captureMemoDelete(@RequestParam int memoId) {
 		int result = service.delete(memoId);
+		
 		return result;
 	}
 
@@ -87,6 +85,7 @@ public class CaptureMemoController {
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(service.captureDataCrawling(captureMemo.getCodeNum(), captureMemo.getMemberId()));
+		
 		return json;
 	}
 

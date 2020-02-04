@@ -15,14 +15,43 @@
 		SELECT * FROM KoreaStocks WHERE companyName =#{companyName}
 	</select>
 						
-	<insert id="insert" parameterType="com.stockmarket.www.entity.KoreaStocks">
-		INSERT INTO KoreaStocks (companyName, stockCode, sectors, mainProduct, stockedDay, settlementMonth, representativeName, website, location)
+	<insert id="insertDuplicate" parameterType="com.stockmarket.www.entity.KoreaStocks">
+		INSERT INTO KoreaStocks 
+		(
+			companyName, 
+			stockCode, 
+			sectors, 
+			mainProduct, 
+			stockedDay, 
+			settlementMonth, 
+			representativeName, 
+			website, 
+			location
+		)
 		VALUES 
-		<foreach collection="list" item="obj" open="" close="" separator="," index="index"> 
-		(#{obj.companyName}, #{obj.stockCode}, #{obj.sectors}, #{obj.mainProduct}, #{obj.stockedDay}, #{obj.settlementMonth}, #{obj.representativeName}, #{obj.website}, #{obj.location})
+		<foreach collection="list" item="obj" separator="," index="index"> 
+		(
+			#{obj.companyName}, 
+			#{obj.stockCode}, 
+			#{obj.sectors}, 
+			#{obj.mainProduct}, 
+			#{obj.stockedDay}, 
+			#{obj.settlementMonth}, 
+			#{obj.representativeName}, 
+			#{obj.website}, 
+			#{obj.location}
+		) 
     	</foreach>
+		ON DUPLICATE KEY UPDATE 
+			companyName = VALUES(companyName), 
+			sectors = VALUES(sectors),
+			mainProduct = VALUES(mainProduct),
+			stockedDay = VALUES(stockedDay),
+			settlementMonth = VALUES(settlementMonth),
+			representativeName = VALUES(representativeName),
+			website = VALUES(website),
+			location = VALUES(location);
 	</insert>
-	
 	
 	<update id="update">
 		UPDATE KoreaStocks SET companyName=#{src} WHERE companyName=#{target}

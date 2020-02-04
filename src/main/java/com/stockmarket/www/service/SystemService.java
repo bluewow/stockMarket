@@ -2,7 +2,7 @@ package com.stockmarket.www.service;
 
 import java.util.List;
 
-import com.stockmarket.www.entity.RecordAsset;
+import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.entity.StockDetail;
 
 public interface SystemService {
@@ -39,7 +39,13 @@ public interface SystemService {
 	 *  해당종목(codeNum) 의 모든 정보를 불러온다
 	*/
 	List<StockDetail> getStockDetail(String codeNum);
+
+	//get 코스피,코스닥 종목
+	List<KoreaStocks> getStockAll();
 	
+	//네이버 업종
+	public void upjongCrawling();
+
 	//TODO
 	//상장종목 폐지목록
 	//하루에한번 stock 정보 추가

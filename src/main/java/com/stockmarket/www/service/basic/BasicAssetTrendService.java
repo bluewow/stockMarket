@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.service.AssetTrendService;

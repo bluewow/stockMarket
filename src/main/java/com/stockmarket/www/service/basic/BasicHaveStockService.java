@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.HaveStockDao;
-import com.stockmarket.www.dao.InterestStocksDao;
 import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.entity.HaveStock;
 import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
-import com.stockmarket.www.entity.InterestStockView;
-import com.stockmarket.www.entity.InterestView;
 import com.stockmarket.www.service.HaveStockService;
 
 @Service
@@ -37,10 +34,6 @@ public class BasicHaveStockService implements HaveStockService {
 
 		if (AppContext.getStockMarket() != null)
 			map.putAll(AppContext.getStockMarket());
-
-		map.put("005930", new CurStock("005930", "3,000", "하락", "3,000", "-", "2.5"));
-		map.put("008560", new CurStock("008560", "5,000", "하락", "5,000", "-", "3.4"));
-		map.put("010100", new CurStock("010100", "2,000", "상승", "2,000", "+", "3.2"));
 
 		for (HaveStockView list : haveStockView) {
 			String stockCode = list.getStockCode();
@@ -74,10 +67,6 @@ public class BasicHaveStockService implements HaveStockService {
 
 		if (AppContext.getStockMarket() != null)
 			map.putAll(AppContext.getStockMarket());
-
-		map.put("005930", new CurStock("005930", "3,000", "하락", "3,000", "-", "2.5"));
-		map.put("008560", new CurStock("008560", "5,000", "하락", "5,000", "-", "3.4"));
-		map.put("010100", new CurStock("010100", "2,000", "상승", "2,000", "+", "3.2"));
 
 		String stockName = haveStockView.getStockName();
 		int quantity = haveStockView.getQuantity();

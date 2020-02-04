@@ -1,26 +1,17 @@
 package com.stockmarket.www.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.tags.Param;
 
 import com.google.gson.Gson;
 import com.stockmarket.www.entity.HaveView;
@@ -78,13 +69,11 @@ public class ManageStockController {
 	
 	}
 	
-	@ResponseBody
 	@PostMapping("/interest_list_json")
-	public int InterestStockPostJSON(@SessionAttribute("id") int id, @RequestBody String param) throws IOException {
+	public void InterestStockPostJSON(@SessionAttribute("id") int id, @RequestBody String param) throws IOException {
 		String parsing= param.substring(param.lastIndexOf("=")+1);
-		System.out.println(parsing);
-		int result = interesrStocksService.deleteStock(id,parsing);	
-		return result;
+		int result = interesrStocksService.deleteStock(id,parsing);
+		updateInterestCurrentPrice(id);
 	}
 	
 	@ResponseBody
@@ -97,23 +86,22 @@ public class ManageStockController {
 	
 	@ResponseBody
 	public String updateHoldingCurrentPrice( int userId) throws IOException {
-		
+		Gson gson = new Gson();
 		if(haveStockService.getHaveStockList(userId).isEmpty()) {
-			   
-	        Gson gson = new Gson();
+			
 			String json = gson.toJson(-1);
-			return json;
+			System.out.println(json);
+	        return json;
+
 			}
 			else{
 				List<HaveView> list = new ArrayList<HaveView>();
 				list = haveStockService.getHaveStockList(userId);
-		        Gson gson = new Gson();
 				String json = gson.toJson(list);
 				return json;
 			}
 		
 	}
-	
 	
 	@ResponseBody
 	@GetMapping("/manageTest")

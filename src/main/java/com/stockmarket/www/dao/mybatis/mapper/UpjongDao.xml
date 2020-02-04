@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stockmarket.www.dao.UpjongDao">
 
-	<select id="getUpjong" parameterType="String">
+	<select id="getUpjong" resultType="String" >
 		select upjong from Upjong where stockName=#{stockName}
 	</select>
 	
@@ -13,7 +13,11 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.stockmarket.www.entity.Upjong">
-		insert into Upjong (upjong, stockName) VALUES (#{upjong}, #{stockName})
+		insert into Upjong (upjong, stockName)
+		VALUES
+		<foreach collection="list" item="obj" separator="," index="index"> 
+		(#{obj.upjong}, #{obj.stockName})
+		</foreach> 
 	</insert>
 	
 	<delete id="delete">

@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="/resource/css/company/list.css">
 
-<script src="../../js/company/list.js"></script>
+<script src="/resource/js/company/list.js"></script>
 <!-- <script src="../../js/company/InterestCheck.js"></script> -->
 </head>
 <body class="scrollbar custom-scrollbar-style">
@@ -65,7 +65,7 @@
 							<td id="companyNameWebsite">
 								<div data-codenum="${sector.stockCode }" class="companyName">${sector.companyName}
 									<a href="${sector.website}" target="_blank"><img
-										src="/css/company/link.png"></a>
+										src="/resource/css/company/link.png"></a>
 								</div>
 							</td>
 

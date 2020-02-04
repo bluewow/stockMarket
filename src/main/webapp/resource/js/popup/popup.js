@@ -206,7 +206,6 @@ window.addEventListener("load", function(){
 							["email="+email.value]
 							]
 						var request = new XMLHttpRequest();
-			        	console.log(data);
 						request.open("POST", "../../member_email_validate", true);
 						request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 						request.send(data);
@@ -239,7 +238,6 @@ window.addEventListener("load", function(){
 		if(loginStatus.value!="로그인") {
 			var userId = loginStatus.value;
 			var sendData = "loginNickname="+userId;
-			console.log(userId);
 	
 			var request = new XMLHttpRequest(); 
 			request.open("POST", "../../member_profile", true);
@@ -310,11 +308,15 @@ window.addEventListener("load", function(){
 	    submitButton.onclick = function(e) {
         if(e.target.nodeName != "INPUT")
             return;
-
         //prevent Event Bubble
         e.preventDefault();
+
+        if(checkPassword("12345678", checkPwd.value)){
+        	
         
-        //데이터 준비
+        
+        if(checkPwd.value==newPwd.value) {
+        // 데이터 준비
     	var data = [
 			["currentPwd", currentPwd.value],
 			["newPwd", newPwd.value]
@@ -327,16 +329,15 @@ window.addEventListener("load", function(){
 		
 		sendData = sendData.join("&");
 
-		//데이터 전송
+		// 데이터 전송
 		var request = new XMLHttpRequest();
 		request.open("POST", "../../member_profile_update_pwd", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);	
 		
-		//결과를 응답받고 출력
+		// 결과를 응답받고 출력
 		request.onload = function () {
 			var returnData = request.responseText;
-			console.log(returnData);
 			if(returnData=="1"){
 				alert("비밀번호가 변경되었습니다.")
 				currentPwd.value=null;
@@ -357,9 +358,9 @@ window.addEventListener("load", function(){
 				newPwd.value=null;
 				checkPwd.value=null;
 		}
-		
 		}
-	    }
+		} else alert("비밀번호와 비밀번호 확인이 같지 않습니다.")
+	    }}
 
 	    //프로필 이미지 리스트중 하나를 클릭했을 시
 	    profileImageList.onclick = function(e) {
