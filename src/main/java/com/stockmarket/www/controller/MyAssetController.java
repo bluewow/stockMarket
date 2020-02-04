@@ -29,7 +29,7 @@ public class MyAssetController {
 	@GetMapping("/card/asset/myAsset") // View의 요청 경로를 GetMapping을 통해 /demo로 설정한다.
 	public String myAsset(Model model, @SessionAttribute("id") int userId) {
 		
-		userId = 3;
+//		userId = 3;
 		/* 현재의 보유 자산 */
 		long assetPresent = trendService.getAssetPresent(userId);
 		/* 전날까지 또는 당일 오후 5시 이후의 자산 기록이 포함된 리스트 */
@@ -48,7 +48,7 @@ public class MyAssetController {
 	@GetMapping("/card/asset/myAsset-json")
 	public String myAssetJson(Model model, @SessionAttribute("id") int userId){
 		
-		userId = 3;
+//		userId = 3;
 		/* 현재의 보유 자산 */
 		long assetPresent = trendService.getAssetPresent(userId);
 		/* 전날까지 또는 당일 오후 5시 이후의 자산 기록이 포함된 리스트 */
