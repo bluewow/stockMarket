@@ -5,36 +5,35 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.stockmarket.www.dao.MemberDao;
-import com.stockmarket.www.dao.RecordAssetDao;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.RecordAsset;
 import com.stockmarket.www.service.AssetTrendService;
 import com.stockmarket.www.service.HaveStockService;
+import com.stockmarket.www.service.MemberService;
+import com.stockmarket.www.service.RecordAssetService;
 
 @Service
 public class BasicAssetTrendService implements AssetTrendService {
 
 	@Autowired
-	private RecordAssetDao recordAssetDao; 
+	private RecordAssetService recordAssetService; 
 	@Autowired
 	private HaveStockService haveStockService;
 	@Autowired
-	private MemberDao memberDao;
+	private MemberService memberService;
 	
 
 	@Override
 	public List<RecordAsset> getRecordAssetList(int memberId) {
 		
-		return recordAssetDao.getList(memberId);
+		return recordAssetService.getRecordAssetList(memberId);
 	}
 
 	@Override
 	public long getAssetPresent(int memberId) {
 		// 현재 보유 자산
 		long sum = 0;
-		sum = memberDao.getMember(memberId).getvMoney();
+		sum = memberService.getMember(memberId).getvMoney();
 		
 		List<HaveView> list = new ArrayList<>();
 		list.addAll(haveStockService.getHaveStockList(memberId));

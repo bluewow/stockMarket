@@ -14,9 +14,6 @@ function holdingListProto(){
    function replaceAll(str, searchStr, replaceStr) {
 	   return str.split(searchStr).join(replaceStr);
    }
-  
-   
-
    function getHoldingLoad() {
       
       var holdingRequest = new XMLHttpRequest();

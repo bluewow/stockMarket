@@ -34,7 +34,9 @@ public class BasicInterestStockService implements InterestStockService {
 
 	@Override
 	public List<InterestView> getInterestViewList(int id) {
+
 		Map<String, CurStock> map = new HashMap<String, CurStock>();
+
 		// 크롤링 데이터 map
 //		Map<String, CurStock> map = new HashMap<String, CurStock>();
 		// view list

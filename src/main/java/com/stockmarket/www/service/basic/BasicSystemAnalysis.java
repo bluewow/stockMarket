@@ -47,35 +47,46 @@ public class BasicSystemAnalysis {
 		List<KoreaStocks> stocks = new ArrayList<>();
 		List<Analysis> analysisList = new ArrayList<>();
 		List<String> codeNum = new ArrayList<>();
-		int result = 0; 
 		int influence = 0;
 		
-//		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); //날짜정보를 가져온다
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); //날짜정보를 가져온다
 //		System.out.println(date.format(System.currentTimeMillis()));
 		
 		stocks = koreaStockDao.getList();	//종목코드, 이름을 가져온다
 		influence = influence();
-//		for(KoreaStocks stock : stocks) {
+		int cnt = 0;
+		for(KoreaStocks stock : stocks) {
 			Analysis analysis = new Analysis();
+			String code = stock.getStockCode();
+			String company = stock.getCompanyName();
 			
-//			String code = stock.getStockCode();
-			String code = "005930"; //temp
+			analysis.setCodeNum(code);
+			analysis.setRecord_date(date.format(System.currentTimeMillis()));
+			if(analysisDao.get(code) != null && analysisDao.get(code).getTrend() != -1) {//일일 1000회 limit 로 인한 workaround
+				int trend = trend(company);
+				if(trend == -1)
+					analysis.setTrend(-1);
+				else 
+					analysis.setTrend((int)(trend * 0.2));
+			}
+			analysis.setSupply((int)(supply(code) * 0.20));
+			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
+			analysis.setContents((int)(contents(company) * 0.30));
+			analysis.setInfluence(influence);
+//			analysis.setInfluence((int)(influence * 0.15));
+			analysis.calculateResultValue();
 			
-//			analysis.setCodeNum(code);
-//			analysis.setRecord_date(date.format(System.currentTimeMillis()));
-//			analysis.setTrend((int)(trend("네오위즈") * 0.2));
-//			analysis.setSupply((int)(supply(code) * 0.20));
-//			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
-//			analysis.setContents((int)(contents("네오위즈") * 0.30));
-			analysis.setInfluence((int)(influence * 0.15));
-//			analysis.calculateResultValue();
+			//1) Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
+//			analysisList.add(analysis);
 			
-			//Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
-			analysisList.add(analysis);
-//		}
+			//2) 즉시 DB 에 upload 한다
+			analysisDao.insert(analysis);
+			cnt++;
+			System.out.println("분석..." + cnt);
+		}
 			
-		System.out.println(analysisList.toString());
-//		analysisDao.insert(analysisList);
+//		analysisDao.insertAll(analysisList);
+		System.out.println("analysisList upload success");
 	}
 	
 	private int supply(String code) {
@@ -99,6 +110,10 @@ public class BasicSystemAnalysis {
 
 		double result = (double)day10 / day100;
 		result = result * 100;
+		
+		if(Double.isNaN(result))
+			result = 0;
+		
 //		System.out.println("day10 : " + day10 + " day100 : " + day100 + " result : " + result);
 		//100기준 10일 분량의 개인 동향 분석 
 				//  0점   	0  ~   10%
@@ -144,14 +159,16 @@ public class BasicSystemAnalysis {
 //		System.out.println("avg : " + avgTradeVolume/15 + "tradeVolume : " + lastTradeVolume);
 		double result = lastTradeVolume / ((double)avgTradeVolume/15) * 100;
 		result = result - 100;
-		System.out.println("result : " + result);
+		if(Double.isNaN(result))
+			result = 0;
+
 		//15일기준  전날 거래량 분석 
-				// 0점   		< 0%
-				// 20점	  	1% ~  15%
-				// 40점		16% ~  30%
-				// 60점	    31% ~  45%
-				// 80점	    46% ~  70%
-				//100점	    71% ~ 100%
+		// 0점   		< 0%
+		// 20점	  	1% ~  15%
+		// 40점		16% ~  30%
+		// 60점	    31% ~  45%
+		// 80점	    46% ~  70%
+		//100점	    71% ~ 100%
 		
 		if(result <= 0)
 			return 0;
@@ -169,7 +186,7 @@ public class BasicSystemAnalysis {
 	
 	private int influence() {
 		//코스피 코스닥 동향
-		return 0;
+		return 5;
 	}
 	
 	private int trend(String name) throws IOException {
@@ -205,9 +222,11 @@ public class BasicSystemAnalysis {
 		
 		BufferedReader br;
 		if (con.getResponseCode() == 200) { // 정상 호출
+			System.out.println("success");
 			br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 		} else { // 에러 발생
 			br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
+			return -1;	//1000 회 조회를 넘긴 상황
 		}
 
 		String inputLine;
@@ -235,15 +254,14 @@ public class BasicSystemAnalysis {
 	
 	private int contents(String name) {
 		Document doc = null;
-		String url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + name + "&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=2";
 		
+		String url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + name + "&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=2";
 		doc = crawling(url);
-		String month = doc.select(".title_desc.all_my").text().replace("1-10 / ","").replace(",","").replace("건","");
+		String month = doc.select(".title_desc.all_my").text().replaceAll("[\\d]+[-][\\d]+","").replace("/","").replace(",","").replace("건","");
 		
 		url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + name + "&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=4";
 		doc = crawling(url);
-		String oneDay = doc.select(".title_desc.all_my").text().replace("1-10 / ","").replace(",","").replace("건","");
-		
+		String oneDay = doc.select(".title_desc.all_my").text().replaceAll("[\\d]+[-][\\d]+","").replace("/","").replace(",","").replace("건","");
 		//한달기준 1일분량의 기사 검색 (세분화 필요)
 		//  0점   	0  ~   2%
 		// 20점	  	3% ~   6%
@@ -252,9 +270,15 @@ public class BasicSystemAnalysis {
 		// 80점	   24% ~  50%
 		//100점	   60% ~ 100%
 		
+		if(oneDay.equals(""))
+			oneDay = "1";
+		
+		if(month.equals(""))
+			month = "1";
+		
+//		System.out.println("oneDay : " + oneDay + " month : " + month);  
 		double result = Double.parseDouble(oneDay) / Double.parseDouble(month);
 		result = result * 100;
-//		System.out.println(result); //for debugging
 		
 		if(result <= 2)
 			return 0;
@@ -273,10 +297,19 @@ public class BasicSystemAnalysis {
 	private Document crawling(String url) {
 		Document doc = null;
 		try {
-			doc = Jsoup.connect(url).ignoreContentType(true).timeout(60000).get();
+			doc = Jsoup.connect(url).ignoreContentType(true).timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		if(doc == null) {	//null 인경우가 발생중이다. workaround 처리로 1회 더 시도해보자
+			System.out.println("doc is null");
+			try {
+				doc = Jsoup.connect(url).ignoreContentType(true).timeout(10000).get();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+		
 		return doc;
 	}
 }

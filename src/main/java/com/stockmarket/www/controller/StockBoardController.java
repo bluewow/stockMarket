@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.stockmarket.www.dao.KoreaStocksDao;
 import com.stockmarket.www.dao.MemberDao;
 import com.stockmarket.www.entity.CommunityBoard;
 import com.stockmarket.www.service.CommunityBoardService;
@@ -29,15 +30,14 @@ public class StockBoardController {
 	@Autowired
 	private MemberDao memberDao;
 	
-//	@Autowired
-//	private StockDao stockDao;
+	@Autowired
+	private KoreaStocksDao stockDao;
 	
 	//스톡보드 기본 요청 리스트
 	@GetMapping("stock_board")
 	public String StockBoard(@SessionAttribute("id") int id, @RequestParam(value="p", defaultValue = "1") int page, 
 			@RequestParam(value="f", defaultValue = "title") String field, @RequestParam(value="q", defaultValue = "") String query, 
 			@RequestParam(value="s", defaultValue = "") String stockCode, Model model) {
-
 		model.addAttribute("CommunityBoard", service.getCommunityBoardList(page, field, query, stockCode, id)); // 컨트롤러가 할 일은 데이터를 준비하는 일
 		model.addAttribute("loginId", id);
 
@@ -45,20 +45,21 @@ public class StockBoardController {
 	}
 	
 	//종목 게시글(페이지,필드,My) 요청 리스트
+	@ResponseBody
 	@GetMapping("stock_board_list")
 	public String StockBoardList(@SessionAttribute("id") int id, @RequestParam(value="p", defaultValue = "1") int page, 
 			@RequestParam(value="f", defaultValue = "title") String field, @RequestParam(value="q", defaultValue = "") String query, 
 			@RequestParam(value="s", defaultValue = "") String stockCode, Model model) {
 		String loginUser = memberDao.getMember(id).getNickName(); //로그인아이디를 이용해서 닉네임을 가져온다.
-//		String stockName = stockDao.getStockName(stockCode); //종목코드를 이용해서 종목명을 가져온다.
+		String stockName = stockDao.get(stockCode).getCompanyName();
 		if(query.equals("my")) //쿼리가 my면 닉네임으로 정렬
 			query = loginUser;
 		List<CommunityBoard> list = service.getCommunityBoardList(page, field, query, stockCode, id);
-
+		System.out.println(list);
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("loginUser", loginUser);
 		hm.put("list", list);
-//		hm.put("stockName", stockName);
+		hm.put("stockName", stockName);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(hm);
 		return json;
@@ -89,9 +90,7 @@ public class StockBoardController {
 	@ResponseBody
 	@PostMapping("stock_reg_board")
 	public int RegBoard(@SessionAttribute("id") int id, @RequestParam String title, 
-			@RequestParam String content, @RequestParam String boardIds, 
-			@RequestParam String stockCode, Model model) {
-
+			@RequestParam String content, @RequestParam String stockCode, Model model) {
 			String writerNickname = memberDao.getMember(id).getNickName();
 			CommunityBoard insertBoard = new CommunityBoard(title, content, writerNickname, stockCode);
 			int result = service.insertCommunityBoard(insertBoard);
@@ -149,6 +148,7 @@ public class StockBoardController {
 	@ResponseBody
 	@PostMapping("reply_delete")
 	public int ReplyDelete(@RequestParam int replyId) {
+		System.out.println(replyId);
 		int result = service.deleteReply(replyId);
 
 		return result;

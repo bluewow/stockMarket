@@ -14,9 +14,11 @@ window.addEventListener("load", function () {
     request.open("GET", "../../card/asset/myAsset-json", true);
 
     request.onload = function () {
-      alert(request.responseText);
+      console.log(request.responseText);
 
       var list = JSON.parse(request.responseText);
+      console.log(typeof list);
+      console.log(list);
 
       let tDataReg = new Array();
       let tDataValue = new Array();
@@ -31,15 +33,15 @@ window.addEventListener("load", function () {
         return new Date(y, m, d);
       }
 
-      for (var i = 0; i < list[1].trendJson.length + 1; i++) {
+      for (var i = 0; i < list.trendList.length + 1; i++) {
 
-        if (i < (list[1].trendJson.length)) {
-          tDataReg.push(stringToDate(list[1].trendJson[i].regdate));
-          tDataValue.push(list[1].trendJson[i].value);
+        if (i < (list.trendList.length)) {
+          tDataReg.push(stringToDate(list.trendList[i].regdate));
+          tDataValue.push(list.trendList[i].value);
         }
         else {
           tDataReg.push(new Date());
-          tDataValue.push(list[2].trendPrsentJson);
+          tDataValue.push(list.assetPresent);
         }
       }
       //console.log(tDataValue);
@@ -205,14 +207,14 @@ window.addEventListener("load", function () {
       tbody.innerHTML = "";
       
       //
-      for (var i = 0; i < list[0].distJson.length; i++) {
-        var distrImage = '<img src="../../images/distr_list_0' + ((i % 4) + 1) + '.png">';
+      for (var i = 0; i < list.distrList.length; i++) {
+        var distrImage = '<img src="/resource/images/distr_list_0' + ((i % 4) + 1) + '.png">';
         
         var cloneTr = document.importNode(distrListTemplate.content, true);
         var tds = cloneTr.querySelectorAll("td");
         
         tds[0].innerHTML = distrImage;
-        tds[1].innerText = list[0].distJson[i].stockName;
+        tds[1].innerText = list.distrList[i].stockName;
         
         tbody.append(cloneTr);
       }
@@ -222,10 +224,10 @@ window.addEventListener("load", function () {
       let distrColorData = {};
       let distrColorValue =["#F2F2F2","#BF737C","#689ABC","#585B5E"];
       
-      for (var i = 0; i < list[0].distJson.length; i++) {
-        distrColorData[(list[0].distJson[i].stockName)]=distrColorValue[i];
-        dDataValue.push(list[0].distJson[i].stockName);
-        dDataValue.push(list[0].distJson[i].assetValue);
+      for (var i = 0; i < list.distrList.length; i++) {
+        distrColorData[(list.distrList[i].stockName)]=distrColorValue[i];
+        dDataValue.push(list.distrList[i].stockName);
+        dDataValue.push(list.distrList[i].assetValue);
         dData.push(dDataValue);
         dDataValue=[];
       }

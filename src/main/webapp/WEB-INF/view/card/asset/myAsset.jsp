@@ -14,10 +14,10 @@
 
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
-	<link rel="stylesheet" href="../../css/myasset/billboard.css">
-	<script src="../../js/asset/billboard.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../css/myasset/myAsset.css">
-	<script src="../../js/asset/myAsset.js"></script>
+	<link rel="stylesheet" href="/resource/css/myasset/billboard.css">
+	<script src="/resource/js/asset/billboard.js"></script>
+	<link rel="stylesheet" type="text/css" href="/resource/css/myasset/myAsset.css">
+	<script src="/resource/js/asset/myAsset.js"></script>
 </head>
 
 <body class="scrollbar custom-scrollbar-style">

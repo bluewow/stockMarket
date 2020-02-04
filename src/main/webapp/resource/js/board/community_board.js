@@ -186,6 +186,7 @@ window.addEventListener("load", function () {
 		// 요청값을 받아오면 실행
 		request.onload = function () {
 			var detail = JSON.parse(request.responseText);
+			console.log(detail)
 			var template = section.querySelector(".detail-template");
 			var cloneTr = document.importNode(template.content, true);
 			var content =detail.board.content;

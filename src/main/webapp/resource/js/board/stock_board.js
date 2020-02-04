@@ -63,7 +63,7 @@ window.addEventListener("message", function (e) {
 		if(sortBoard=="")
 			request.open("GET", "../../card/board/stock_board_list?p=" + page+"&s="+stockCode);
 		else if(sortBoard=="my")
-			request.open("GET", "../../card/board/stock_board_list?f=writer_id&q=my&p=" + page+"&s="+stockCode);
+			request.open("GET", "../../card/board/stock_board_list?f=writerId&q=my&p=" + page+"&s="+stockCode);
 		else if(sortBoard=="interest")
 			request.open("GET", "../../card/board/stock_board_list?f=interest&p=" + page+"&s="+stockCode);
 
@@ -128,7 +128,7 @@ window.addEventListener("message", function (e) {
 				tds[0].innerText = listData.list[i].id;
 				var aTagDetail = tds[1].firstElementChild;
 				aTagDetail.innerHTML = '<span class="stock-name">'
-					+ "[" + listData.list[i].stockName + "]"
+					+ "[" + listData.list[i].companyName + "]"
 					+ '</span>'
 					+ '<span class="title"> '
 					+ listData.list[i].title
@@ -188,7 +188,7 @@ window.addEventListener("message", function (e) {
 		var id = e.target.parentNode.dataset.id;
 		// 로딩을 표시
 		var ajaxIcon = document.createElement("img");
-		ajaxIcon.src = "../../images/delay-icon.gif";
+		ajaxIcon.src = "../../../../resource/images/delay-icon.gif";
 		e.target.parentNode.parentNode.append(ajaxIcon);
 
 		// 데이터를 요청
@@ -226,13 +226,13 @@ window.addEventListener("message", function (e) {
 						+ '</span><input type="text" class="reply-modi-content hidden" name="title" maxlength="200" placeholder="주제와 무관한 댓글, 악플은 징계 대상이 됩니다." value="'
 						+ detail.replys[i].reContent
 						+ '"></input><span class="modi-box"><a href="" class="re-modi" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">수정</a>  <a href="" class="re-del" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">삭제</a><a href="" class="re-commit hidden" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">확인</a>  <a href="" class="re-cancel hidden" data-id="'
-						+ detail.replys[i].replyId
+						+ detail.replys[i].id
 						+ '">취소</a></span></div>';
 				} else {
 					contentSum += '<div><span class="re-writer">'
@@ -292,11 +292,10 @@ window.addEventListener("message", function (e) {
 			sendData[i] = data[i].join("=");
 		}
 		sendData = sendData.join("&");
-
 		// 2. 값을 서버에 보낸다.
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/replyinsert", true);
+		request.open("POST", "../../card/board/reply_insert", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -395,7 +394,7 @@ window.addEventListener("message", function (e) {
 		// 2. 값을 서버에 보낸다.
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/reply_update", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -468,7 +467,7 @@ window.addEventListener("message", function (e) {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/Reply", true);
+		request.open("POST", "../../card/board/reply_delete", true);
 		request.setRequestHeader('Content-Type',
 			'application/x-www-form-urlencoded');
 		request.send(sendData);
@@ -520,14 +519,14 @@ window.addEventListener("message", function (e) {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/stock_reg_board", true);
+		request.open("POST", "../../card/board/stock_delete_board", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
 		// 3. 요청이 완료되었는지 결과를 확인한다.
 		request.onload = function () {
 			alert("삭제되었습니다.");
-			load(1);
+			load(1,stockCode, sortBoard);
 		}
 	}
 
@@ -546,7 +545,7 @@ window.addEventListener("message", function (e) {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/interest", true);
+		request.open("POST", "../../card/board/interest_insert", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -574,7 +573,7 @@ window.addEventListener("message", function (e) {
 		sendData = sendData.join("&");
 
 		var request = new XMLHttpRequest();
-		request.open("POST", "../../card/board/interest", true);
+		request.open("POST", "../../card/board/interest_delete", true);
 		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		request.send(sendData);
 
@@ -663,16 +662,15 @@ window.addEventListener("message", function (e) {
 		} else {
 			title = encodeURI(title);
 			content = encodeURI(content);
-
+			
+			//게시글 등록
+			if(boardId == "") {
 			var data = [
-				["boardId", boardId],
 				["title", title],
 				["content", content],
-				["status", status],
 				["stockCode", stockCode]
 			]
 			var sendData = [];
-
 			for (var i = 0; i < data.length; i++) {
 				sendData[i] = data[i].join("=");
 			}
@@ -690,7 +688,36 @@ window.addEventListener("message", function (e) {
 			alert("등록되었습니다.");
 
 			load(1, stockCode, sortBoard);
-		}
+			//게시글 수정
+		} else {
+			var data = [
+				["boardId", boardId],
+				["title", title],
+				["content", content],
+				["status", status],
+				["stockCode", stockCode]
+			]
+			var sendData = [];
+			console.log(data);
+			for (var i = 0; i < data.length; i++) {
+				sendData[i] = data[i].join("=");
+			}
+			sendData = sendData.join("&");
+			// 2. 값을 서버에 보낸다.
+
+			var request = new XMLHttpRequest();
+			request.open("POST", "../../card/board/stock_update_board", true);
+			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			request.send(sendData);
+
+			// 3. 요청이 완료되었는지 결과를 확인한다.
+			e.target.parentNode.firstElementChild.value = null;
+			e.target.parentNode.parentNode.firstElementChild.firstElementChild.value = null;
+			alert("수정되었습니다.");
+
+			load(1, stockCode, sortBoard);
+			
+		}}
 	};
 
 
