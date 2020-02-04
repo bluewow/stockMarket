@@ -384,22 +384,14 @@ window.addEventListener("load", function(){
 	        	alt="profile photo" class="circle float-left profile-photo-modi"
 	        	data-id="${selectPhoto}">`;
 	        //데이터 준비
-	    	var data = [
-				["profileImg", selectPhoto]
+        	var data = [
+				["profileImg="+selectPhoto]
 				]
-			var sendData = [];
-
-			for (var i = 0; i < data.length; i++) {
-				sendData[i] = data[i].join("=");
-				}
-			
-			sendData = sendData.join("&");
-
-			//데이터 전송
+        	//데이터 전송
 			var request = new XMLHttpRequest();
 			request.open("POST", "../../member_profile_update_ing", true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			request.send(sendData);	
+			request.send(data);	
 			
 			request.onload = function () {
 				var loginStatus = document.querySelector(".personal").childNodes[1].nextElementSibling;

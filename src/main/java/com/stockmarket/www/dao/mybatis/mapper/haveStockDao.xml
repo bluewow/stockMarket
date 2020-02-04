@@ -17,6 +17,8 @@
 		select * from stock_market.HaveStockView where memberId=#{memberId}
 	</select>
 	
+	
+	
 	<update id="update" parameterType="com.stockmarket.www.entity.HaveStock">
 		update stock_market.HaveStock set quantity=#{quantity}, sum=#{sum} where memberId=#{memberId} and stockCode=#{stockCode}
 	</update>
