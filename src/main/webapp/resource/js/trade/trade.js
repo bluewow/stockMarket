@@ -37,7 +37,7 @@ window.addEventListener("load", function(){
 	    },
 	});
 	
-//	tick(); //페이지 호출시 1초 딜레이 없이 초기값을 적용 
+	tick(); //페이지 호출시 1초 딜레이 없이 초기값을 적용 
 	update();
 	buttonEvent();
 });
@@ -324,6 +324,6 @@ function tick() {
 	
 }
 
-//setInterval(tick, 1000);
+setInterval(tick, 1000);
 
 
