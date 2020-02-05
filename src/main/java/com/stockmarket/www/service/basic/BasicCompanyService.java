@@ -109,7 +109,7 @@ public class BasicCompanyService implements CompanyService {
 				text = text.replaceAll(s, "");
 			}
 			
-			System.out.println(text);	//for debugging
+//			System.out.println(text);	//for debugging
 			// <종목명, count> 저장
 			for(int j = 0; j < stockList.size() ; j++) {
 				String stockName = stockList.get(j).getCompanyName();
