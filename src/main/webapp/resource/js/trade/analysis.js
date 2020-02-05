@@ -11,6 +11,42 @@ window.addEventListener("message", function(e) {
 
 window.addEventListener("load", function() {
 	bb.defaults();
+    
+	chartA = bb.generate({	//종목동향
+		bindto : "#chartA",
+		color : { pattern : [ "#FF7F0E"] },
+	});
+
+	chartB = bb.generate({	//수급
+		bindto : "#chartB",
+		color : { pattern : [ "#1F77B4"] },
+	});
+	
+
+	chartC = bb.generate({	//영향력
+		bindto : "#chartC",
+		color : { pattern : [ "#FF4040"] },
+	});
+
+	chartD = bb.generate({	//컨텐츠
+		bindto : "#chartD",
+		color : { pattern : [ "#2CA02C"] },
+		
+	});
+	
+	chartE = bb.generate({	//규모
+		bindto : "#chartE",
+		color : { pattern : [ "#FED201"] },
+	});
+	
+	chartF = bb.generate({	//결과
+//		data: {
+//			type: "pie"
+//		},
+		bindto : "#chartF",
+		color : { pattern : [ "#FF4040"] },
+	});
+	
 	updatePrice();
 	chartUpdate();
 	captureAction();
@@ -99,63 +135,44 @@ bb.defaults({
 	clipPath: false,
 	tooltip: { show : false },
 	size : { height : 140, width : 140 },
+	
 });
 
 function chartUpdate() {
-	var chartA = bb.generate({
-		bindto : "#chartA",
-		color : { pattern : [ "#FF7F0E"] },
-	});
+	var ajax = new XMLHttpRequest();
+	let trend, contents, supply, scale, influence, result;
 
-	var chartB = bb.generate({
-		bindto : "#chartB",
-		color : { pattern : [ "#1F77B4"] },
-	});
-	
-
-	var chartC = bb.generate({
-		bindto : "#chartC",
-		color : { pattern : [ "#FF4040"] },
-	});
-
-	var chartD = bb.generate({
-		bindto : "#chartD",
-		color : { pattern : [ "#2CA02C"] },
-		
-	});
-	
-	var chartE = bb.generate({
-		bindto : "#chartE",
-		color : { pattern : [ "#FED201"] },
-	});
-	
-	var chartF = bb.generate({
-		data: {
-			type: "pie"
-		},
-		bindto : "#chartF",
-		color : { pattern : [ "#FF4040"] },
-	});
-	
+	ajax.open("GET", "../../card/trade/chartUpdate?codeNum=" + codeNum, false);
+    ajax.onload = function() {
+    	let obj = JSON.parse(ajax.responseText);
+    	trend = obj.trend;
+    	supply = obj.supply;
+    	contents = obj.contents;
+    	scale = obj.scale;
+    	influence = obj.influence;
+    	result = obj.result;
+    }
+	ajax.send();
 	
 	setTimeout(function() {
-		chartA.load({
-			columns : [ [ "", 30 ] ]
+		bb.instance[0].load({
+			columns : [ [ "", trend ] ]
 		});
-		chartB.load({
-			columns : [ [ "", 70 ] ]
+		bb.instance[1].load({
+			columns : [ [ "", supply ] ]
 		});
-		chartC.load({
-			columns : [ [ "", 20 ] ]
+		bb.instance[2].load({
+			columns : [ [ "", influence ] ]
 		});
-		chartD.load({
-			columns : [ [ "", 20 ] ]
+		bb.instance[3].load({
+			columns : [ [ "", contents ] ]
 		});
-		chartE.load({
-			columns : [ [ "", 20 ] ]
+		bb.instance[4].load({
+			columns : [ [ "", scale ] ]
 		});
-		chartF.load({
-			columns : [ [ "", 100 ] ]
+		bb.instance[5].load({
+			title: "Title Text",
+			columns : [ [ "투자위험", 100 ] ]
 		});
 	}, 0);
 }

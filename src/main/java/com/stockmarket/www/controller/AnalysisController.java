@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.stockmarket.www.controller.system.AppContext;
+import com.stockmarket.www.entity.Analysis;
 import com.stockmarket.www.entity.CurStock;
 import com.stockmarket.www.service.AnalysisService;
+import com.stockmarket.www.service.basic.BasicSystemAnalysis;
 
 @Controller
 @RequestMapping("/card/trade/")
@@ -24,6 +26,9 @@ public class AnalysisController {
 	@Autowired
 	private AnalysisService service;
 
+	@Autowired
+	private BasicSystemAnalysis systemAnalysisService;
+	
 	@Autowired 
 	private HttpServletRequest req;
 	
@@ -70,6 +75,22 @@ public class AnalysisController {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
+		return json;
+	}
+	
+	@ResponseBody
+	@GetMapping("chartUpdate") //view update
+	public String chartUpdate(@RequestParam("codeNum") String codeNum) {
+		Analysis analysis = systemAnalysisService.getAnalysisResult(codeNum);
+		
+		//백분율 원복
+		analysis.setTrend(analysis.getTrend() * 5);
+		analysis.setSupply((int)(analysis.getSupply() * 5));
+		analysis.setScale((int)(analysis.getScale() * 6.6));
+		analysis.setContents((int)(analysis.getContents() * 3.3));
+		analysis.setInfluence(analysis.getInfluence());
+		Gson gson = new Gson();
+		String json = gson.toJson(analysis);
 		return json;
 	}
 	
