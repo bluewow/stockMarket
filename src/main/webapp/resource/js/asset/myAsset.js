@@ -280,4 +280,8 @@ window.addEventListener("load", function () {
   };
   load();
 
+  setInterval(function () {
+	  load();
+   }, 1000 * 60 * 5);
+  
 });

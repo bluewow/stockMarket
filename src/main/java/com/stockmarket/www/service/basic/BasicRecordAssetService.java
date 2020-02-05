@@ -20,4 +20,14 @@ public class BasicRecordAssetService implements RecordAssetService {
 		return recordAssetDao.getList(memberId);
 	}
 
+	@Override
+	public int insertRecordAsset(RecordAsset recordAsset) {
+		return recordAssetDao.insert(recordAsset);
+	}
+
+	@Override
+	public int deleteRecordAsset(int memberId) {
+		return recordAssetDao.delete(memberId);
+	}
+
 }

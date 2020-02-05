@@ -25,11 +25,9 @@ import com.google.gson.JsonParser;
 import com.stockmarket.www.controller.system.AppContext;
 import com.stockmarket.www.dao.KoreaStocksDao;
 import com.stockmarket.www.dao.MemberDao;
-import com.stockmarket.www.dao.RecordAssetDao;
 import com.stockmarket.www.dao.StockDetailDao;
 import com.stockmarket.www.dao.UpjongDao;
 import com.stockmarket.www.entity.CurStock;
-import com.stockmarket.www.entity.HaveStockView;
 import com.stockmarket.www.entity.HaveView;
 import com.stockmarket.www.entity.KoreaStocks;
 import com.stockmarket.www.entity.Member;
@@ -38,34 +36,32 @@ import com.stockmarket.www.entity.StockDetail;
 import com.stockmarket.www.entity.Upjong;
 import com.stockmarket.www.service.AssetTrendService;
 import com.stockmarket.www.service.HaveStockService;
+import com.stockmarket.www.service.RecordAssetService;
 import com.stockmarket.www.service.SystemService;
 
 @Service
-public class BasicSystemService implements SystemService{
+public class BasicSystemService implements SystemService {
 	// <th> 회사명|종목코드|업종|주요제품|상장일|결산월|대표자명|홈페이지|지역 </th>
 	private static final int COMPANY_INFO_COLUMN = 9;
 	private List<String[]> companyList;
 	private String[] dataBuffer;
 	private KoreaStocks koreaStocks;
-	
+
 	@Autowired
 	private MemberDao memberDao;
-	
+
 	@Autowired
-	private RecordAssetDao recordAssetDao;
-	
+	private RecordAssetService recordAssetServicec;
+
 	@Autowired
 	private StockDetailDao stockDetailDao;
-	
+
 	@Autowired
 	private UpjongDao upjongDao;
-	
+
 	@Autowired
 	private KoreaStocksDao koreaStocksDao;
-	
-	@Autowired
-	private HaveStockService haveStockService;
-	
+
 	@Autowired
 	private AssetTrendService assetTrendService;
 
@@ -81,7 +77,7 @@ public class BasicSystemService implements SystemService{
 
 		// DB 를 참조하여 KOSPI, KOSDAQ 모든 종목에 대한 종목코드를 가져온다
 		stocks = koreaStocksDao.getList();
-		for(KoreaStocks entity : stocks) {
+		for (KoreaStocks entity : stocks) {
 			codeNum.add(entity.getStockCode());
 		}
 
@@ -95,7 +91,7 @@ public class BasicSystemService implements SystemService{
 
 	public void getCurrentStockPrice(List<String> codeNums) throws InterruptedException {
 		Document doc = null;
-	
+
 		for (String codeNum : codeNums) {
 			String url = "https://finance.naver.com/item/main.nhn?code=" + codeNum;
 			try {
@@ -105,13 +101,13 @@ public class BasicSystemService implements SystemService{
 				e.printStackTrace();
 				continue;
 			}
-			if(doc == null) 
-				continue; 
-			
-			if(doc.text().contains("동시에 접속하는 이용자 수가 많거나 인터넷 네트워크 상태가 불안정하여 현재 웹페이지의 접속이 불가합니다")) {
-				continue;	//TODO 해당 codeNum이 검색이 되지 않는 경우
+			if (doc == null)
+				continue;
+
+			if (doc.text().contains("동시에 접속하는 이용자 수가 많거나 인터넷 네트워크 상태가 불안정하여 현재 웹페이지의 접속이 불가합니다")) {
+				continue; // TODO 해당 codeNum이 검색이 되지 않는 경우
 			}
-			
+
 			// 현재가, 상태(상승 or 하락), 금액, +/-, percent 를 가져오는 CSS query 문
 			Elements status = doc.select(".no_today span:eq(0), .no_exday em span:lt(2)");
 			// 호가창 데이터
@@ -121,24 +117,24 @@ public class BasicSystemService implements SystemService{
 //				AppContext.setLog("네이버 금융 크롤링 데이터가 null 일 경우", BasicSystemService.class.getName());
 				continue;
 			}
-			
+
 			Map<Integer, Integer> sell = new LinkedHashMap();
 			Map<Integer, Integer> buy = new LinkedHashMap();
-			if(trade.text().length() >100) { //거래정지된 목록의 호가창을 배제하기 위해서... TODO 다른 방법을 찾기
+			if (trade.text().length() > 100) { // 거래정지된 목록의 호가창을 배제하기 위해서... TODO 다른 방법을 찾기
 				String buffer = trade.select(".f_down").text().trim().replace(",", "");
 				String buffersDown[] = buffer.split(" ");
-				for(int i = 0; i < buffersDown.length - 1; i=i+2) {
-					if(!buffersDown[i].equals("") && !buffersDown[i+1].equals(""))
-						sell.put(Integer.parseInt(buffersDown[i+1]), Integer.parseInt(buffersDown[i]));
+				for (int i = 0; i < buffersDown.length - 1; i = i + 2) {
+					if (!buffersDown[i].equals("") && !buffersDown[i + 1].equals(""))
+						sell.put(Integer.parseInt(buffersDown[i + 1]), Integer.parseInt(buffersDown[i]));
 				}
 				buffer = trade.select(".f_up").text().trim().replace(",", "");
 				String buffersUp[] = buffer.split(" ");
-				for(int i = 0; i < buffersUp.length - 1; i=i+2) {
-					if(!buffersUp[i].equals("") && !buffersUp[i+1].equals(""))
-						buy.put(Integer.parseInt(buffersUp[i]), Integer.parseInt(buffersUp[i+1]));
+				for (int i = 0; i < buffersUp.length - 1; i = i + 2) {
+					if (!buffersUp[i].equals("") && !buffersUp[i + 1].equals(""))
+						buy.put(Integer.parseInt(buffersUp[i]), Integer.parseInt(buffersUp[i + 1]));
 				}
 			}
-			
+
 			CurStock curStockInfo = new CurStock();
 			AppContext.getStockMarket().put(codeNum, curStockInfo.parser(codeNum + " " + status.text(), sell, buy));
 //			System.out.println(curStockInfo.toString()); //for debugging
@@ -159,39 +155,39 @@ public class BasicSystemService implements SystemService{
 
 		if (market.equals("KOSDAQ"))
 			type = "kosdaqMkt";
-					
 
 		String url = "http://kind.krx.co.kr/corpgeneral/corpList.do" + "?method=download" + "&searchType=13"
 				+ "&orderMode=3" + "&orderStat=D" + "&marketType=" + type; // stockMkt 코스피 kosdaqMkt 코스닥
 
-		while(doc == null) {	//workaround 처리  가끔 null 반환의 이유를 알수없음 
+		while (doc == null) { // workaround 처리 가끔 null 반환의 이유를 알수없음
 			try {
 				doc = Jsoup.connect(url).ignoreContentType(true).timeout(3000).get();
 			} catch (IOException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 			}
 		}
 
 //		System.out.println(doc);
-		// tr Tag 이하를 선택 
-		Elements contents = doc.select("tr"); 
+		// tr Tag 이하를 선택
+		Elements contents = doc.select("tr");
 		if (contents == null) {
 			return false;
 		}
 
 		// 반복되는 th, td tag 로 sorting 한다
-		//write(contents, "th"); 
+		// write(contents, "th");
 		write(contents, "td");
 
 		return true;
 	}
+
 	private void write(Elements contents, String tag) {
 		int cnt = 0;
 		List<KoreaStocks> koreaList = new ArrayList<>();
 		for (Element element : contents.select(tag)) {
 			dataBuffer[cnt] = element.text();
 			cnt++;
-			
+
 			if (cnt % COMPANY_INFO_COLUMN == 0) {
 				cnt = 0;
 				String[] data = new String[COMPANY_INFO_COLUMN];
@@ -200,57 +196,49 @@ public class BasicSystemService implements SystemService{
 
 				}
 				companyList.add(data);
-				
-				koreaStocks = new KoreaStocks();
-                koreaStocks.setCompanyName(data[0]);
-                koreaStocks.setStockCode(data[1]);
-                koreaStocks.setSectors(data[2]);
-                koreaStocks.setMainProduct(data[3]);
-                koreaStocks.setStockedDay(data[4]);
-                koreaStocks.setSettlementMonth(data[5]);
-                koreaStocks.setRepresentativeName(data[6]);
-                koreaStocks.setWebsite(data[7]);
-                koreaStocks.setLocation(data[8]);
 
-                //System.out.println(koreaStocks.toString());
-                koreaList.add(koreaStocks);
-				
+				koreaStocks = new KoreaStocks();
+				koreaStocks.setCompanyName(data[0]);
+				koreaStocks.setStockCode(data[1]);
+				koreaStocks.setSectors(data[2]);
+				koreaStocks.setMainProduct(data[3]);
+				koreaStocks.setStockedDay(data[4]);
+				koreaStocks.setSettlementMonth(data[5]);
+				koreaStocks.setRepresentativeName(data[6]);
+				koreaStocks.setWebsite(data[7]);
+				koreaStocks.setLocation(data[8]);
+
+				// System.out.println(koreaStocks.toString());
+				koreaList.add(koreaStocks);
+
 			}
 		}
- 
-		//모든 종목을 추가하고 duplicate 시 update 하는 함수 호출
-		koreaStocksDao.insertDuplicate(koreaList);
-		
-		//예외처리
-		koreaStocksDao.update("KT","케이티");
 
-		//상장폐지된 종목 삭제 TODO
+		// 모든 종목을 추가하고 duplicate 시 update 하는 함수 호출
+		koreaStocksDao.insertDuplicate(koreaList);
+
+		// 예외처리
+		koreaStocksDao.update("KT", "케이티");
+
+		// 상장폐지된 종목 삭제 TODO
 	}
 	/*-------------------------- insert Asset Record ----------------------------*/
 
 	@Override
 	public int insertRecordAsset() {
-		int value = 0;
 		int result = 0;
 		SimpleDateFormat date = new SimpleDateFormat("YYMMdd");
 		String regdate = date.format(System.currentTimeMillis());
-		System.out.println(regdate);
+		System.out.println("insertAsset: " + regdate);
 
 		List<Member> memberList = new ArrayList<>();
 		memberList.addAll(memberDao.getMemberList());
 		for (Member memberData : memberList) {
 			int memberId = memberData.getId();
-			List<HaveView> list = new ArrayList<>();
-			list.addAll(haveStockService.getHaveStockList(memberId));
-			for (HaveView data : list) {
-				// (보유종목당 현재가 및 보유수량 확인용)
-				// System.out.println(data.getPrice()+","+data.getQuantity());
-				value += Integer.parseInt(data.getPrice().replaceAll(",", "")) * data.getQuantity();
-				result += recordAssetDao.insert(new RecordAsset(memberId, regdate, value));
-				System.out.println("result:"+result);
-				break;
-			}
+			int value = (int) (assetTrendService.getAssetPresent(memberId));
+			result += recordAssetServicec.insertRecordAsset(new RecordAsset(memberId, regdate, value));
 		}
+		System.out.println("result:" + result);
 		return result;
 	}
 
@@ -258,15 +246,14 @@ public class BasicSystemService implements SystemService{
 	public void setStockDataAll(String codeNum) {
 		Gson gson = new Gson();
 
-		// 일별시세 게시판 
+		// 일별시세 게시판
 		String url = "https://m.stock.naver.com/api/item/getTrendList.nhn?code=" + codeNum + "&size=100";
 		Document doc = naverCrawling(url);
 
-		
 		JsonParser jsonParser = new JsonParser();
 		JsonElement jsonElement = jsonParser.parse(doc.text());
 		String values = jsonElement.getAsJsonObject().get("result").toString();
-		if(values.equals("[]")) //크롤링 데이터가 비어있을시 예외처리 
+		if (values.equals("[]")) // 크롤링 데이터가 비어있을시 예외처리
 			return;
 
 		// 크롤링 데이터를 객체에 저장
@@ -275,14 +262,14 @@ public class BasicSystemService implements SystemService{
 
 		stockDetailDao.insert(list);
 		stockDetailDao.deletePreDate();
- 
+
 	}
-	
+
 	@Override
 	public List<KoreaStocks> getStockAll() {
 		return koreaStocksDao.getList();
 	}
-	
+
 	public List<StockDetail> getStockDetail(String codeNum) {
 		return stockDetailDao.get(codeNum);
 	}
@@ -358,21 +345,18 @@ public class BasicSystemService implements SystemService{
 		upjongDao.insert(upjongList);
 		System.out.println("upgong crawling end");
 	}
-	
-	//네이버 크롤링 GET 방식 LIB 
+
+	// 네이버 크롤링 GET 방식 LIB
 	private static Document naverCrawling(String url) {
-		Document doc = null;	//크롤링 결과를 담는 Document
-		Response response = null; //jsoup connect 결과 반환 
-		
+		Document doc = null; // 크롤링 결과를 담는 Document
+		Response response = null; // jsoup connect 결과 반환
+
 		try {
-			response = Jsoup.connect(url)
-					.ignoreContentType(true)
-					.method(Connection.Method.GET)
-					.execute();
+			response = Jsoup.connect(url).ignoreContentType(true).method(Connection.Method.GET).execute();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			doc = response.parse();
 		} catch (IOException e) {
@@ -380,22 +364,21 @@ public class BasicSystemService implements SystemService{
 		}
 		return doc;
 	}
-	
+
 	@Override
 	public long updateMemberTotalAsset() {
 		List<Member> members = memberDao.getMemberList();
-		
+
 		long cnt = 0;
-		for(Member m : members) {
+		for (Member m : members) {
 			long totalAsset = assetTrendService.getAssetPresent(m.getId());
 			m.setTotalAsset(totalAsset);
 			int result = memberDao.updateMember(m);
-			
+
 			if (result == 1)
 				cnt++;
 		}
 		return cnt;
 	}
 
-		
 }

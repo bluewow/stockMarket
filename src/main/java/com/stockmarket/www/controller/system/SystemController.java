@@ -106,8 +106,9 @@ public class SystemController {
 			}
 		}
 		
+		int insertRecordRs = 0;
 		if(curHour.equals("19") && preHour.equals("18")) {
-			service.insertRecordAsset();
+			insertRecordRs = service.insertRecordAsset();
 		}
 		
 		// 맴버의 총자산 업데이트
