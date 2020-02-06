@@ -39,14 +39,6 @@ window.addEventListener("load", function() {
 		color : { pattern : [ "#FED201"] },
 	});
 	
-	chartF = bb.generate({	//결과
-//		data: {
-//			type: "pie"
-//		},
-		bindto : "#chartF",
-		color : { pattern : [ "#FF4040"] },
-	});
-	
 	updatePrice();
 	chartUpdate();
 	captureAction();
@@ -142,8 +134,9 @@ function chartUpdate() {
 	var ajax = new XMLHttpRequest();
 	let trend, contents, supply, scale, influence, result;
 
-	ajax.open("GET", "../../card/trade/chartUpdate?codeNum=" + codeNum, false);
+	ajax.open("GET", "/card/trade/chartUpdate?codeNum=" + codeNum, false);
     ajax.onload = function() {
+    	console.log(ajax.responseText);
     	let obj = JSON.parse(ajax.responseText);
     	trend = obj.trend;
     	supply = obj.supply;
@@ -169,10 +162,6 @@ function chartUpdate() {
 		});
 		bb.instance[4].load({
 			columns : [ [ "", scale ] ]
-		});
-		bb.instance[5].load({
-			title: "Title Text",
-			columns : [ [ "투자위험", 100 ] ]
 		});
 	}, 0);
 }

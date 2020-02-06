@@ -54,7 +54,9 @@
 				<br>
 				<div class="chart-string">거래비율<div id="chartE"></div></div>
 				<br>
-				<div class="chart-string">분석결과<div id="chartF"></div></div>
+				<div>분석결과</div>
+				<input class="analysis-result" type="button" value="투자 경고">
+				<!-- <div class="chart-string">분석결과<div id="chartF"></div></div> -->
 			</div> 
 	    </div>
 	</section>
