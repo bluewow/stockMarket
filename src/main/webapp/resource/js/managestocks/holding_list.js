@@ -133,8 +133,20 @@ function holdingListProto(){
 
    
    getHoldingLoad();
+   
+   
+   tbody.onclick = function (e) {
+	      e.preventDefault();
+	      if (event.target.className == "holdingName") {
 
+	         var holdingStockName = e.target.innerText;
 
+	          var frame = parent.document.querySelector("#companyListWindow");
+	 	      frame.contentWindow.postMessage(
+	 	      holdingStockName, "http://localhost:8080/card/company/list");
+
+	     }
+  }
 }
 
 
@@ -151,6 +163,6 @@ window.addEventListener("load", function() {
 
 setInterval(function() {
 	 holdingListProto();  
-},  1000 * 10);
+},  1000 * 60 * 5);
 
 

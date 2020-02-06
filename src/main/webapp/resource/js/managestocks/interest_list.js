@@ -89,22 +89,21 @@ function interestLoadProto(){
              {
             	 tbody.innerHTML = '<tr> <td colspan="5">관심종목이 없습니다</td> </tr>'
              }
+             
+            var frame = parent.document.querySelector("#companyListWindow");
+ 	        frame.contentWindow.postMessage(
+ 	        		delStockName, "http://localhost:8080/card/company/list");
+ 	        }
           }
           delRequest.send(sendData);
-//         if (delRequest.responseText == -1) {
-//        	 console.log("실행");
-//        	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'
-//            return;
-//         }
-//         else{
-//        	 return;
-//         }
+
       }
 
-   };
-}
+ };
+
 
 window.addEventListener("message", function (e) {
+	console.log(e.target);
    if (e.data && (e.data.length == 6)) {
       interestLoadProto();
    }
@@ -117,4 +116,4 @@ window.addEventListener("load", function () {
 
 setInterval(function () {
 	interestLoadProto();
- }, 1000 * 10);
+ }, 1000 * 60 * 5);
