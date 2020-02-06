@@ -9,13 +9,14 @@ public class Analysis {
 	int contents;
 	int scale;
 	int result;
+	String company;
 	
 	public Analysis() {
 	}
 	
 	public Analysis(String codeNum, String record_date, 
 			int supply, int influence, int trend, 
-			int contents, int scale, int result) {
+			int contents, int scale, int result, String company) {
 		super();
 		this.codeNum = codeNum;
 		this.record_date = record_date;
@@ -25,6 +26,7 @@ public class Analysis {
 		this.contents = contents;
 		this.scale = scale;
 		this.result = result;
+		this.company = company;
 	}
 	public String getCodeNum() {
 		return codeNum;
@@ -74,13 +76,24 @@ public class Analysis {
 	public void calculateResultValue() {
 		result = supply + influence + trend + contents + scale;
 	}
-	
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	@Override
 	public String toString() {
 		return "Analysis [codeNum=" + codeNum + ", record_date=" + record_date + ", supply=" + supply + ", influence="
 				+ influence + ", trend=" + trend + ", contents=" + contents + ", scale=" + scale + ", result=" + result
-				+ "]";
+				+ ", company=" + company + "]";
 	}
+	
+	
+	
 	
 	
 }

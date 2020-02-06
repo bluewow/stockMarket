@@ -17,30 +17,33 @@
 			stockCode, 
 			supply, 
 			influence, 
-			trend, 
+ 			trend,  
 			contents, 
 			scale, 
 			result, 
-			recordDate
+			recordDate,
+			company
 		)
 		VALUES
 		(	
 			#{codeNum}, 
 			#{supply}, 
 			#{influence}, 
-			#{trend}, 
+ 			#{trend},  
 			#{contents}, 
 			#{scale}, 
 			#{result}, 
-			#{record_date}
+			#{record_date},
+			#{company}
 		)
 		ON DUPLICATE KEY UPDATE 
 			supply = VALUES(supply),
 			influence = VALUES(influence),
-			trend = VALUES(trend),
+ 			trend = VALUES(trend), 
 			contents = VALUES(contents),
 			scale = VALUES(scale),
-			result = VALUES(result);
+			result = VALUES(result),
+			company = VALUES(company);
 	</insert>
 	
 	<insert id="insertAll" parameterType="com.stockmarket.www.entity.Analysis">
@@ -53,7 +56,8 @@
 			contents, 
 			scale, 
 			result, 
-			recordDate
+			recordDate,
+			company
 		)
 		VALUES
 		<foreach collection="list" item="obj" separator="," index="index">
@@ -65,7 +69,8 @@
 			#{obj.contents}, 
 			#{obj.scale}, 
 			#{obj.result}, 
-			#{obj.record_date}
+			#{obj.record_date},
+			#{obj.company}
 		)
 		</foreach>
 		ON DUPLICATE KEY UPDATE 
@@ -74,7 +79,8 @@
 			trend = VALUES(trend),
 			contents = VALUES(contents),
 			scale = VALUES(scale),
-			result = VALUES(result);
+			result = VALUES(result),
+			company = VALUES(company);
 	</insert>
 	
 	<delete id="delete">
