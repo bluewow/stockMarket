@@ -167,7 +167,7 @@ function buttonEvent() {
 
 	        var frame = parent.document.querySelector("#holding-window");
 	        frame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist.jsp");
+	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist");
 	    }
 	    ajax.send();
 		
