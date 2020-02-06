@@ -88,13 +88,13 @@ window.addEventListener("load", function() {
 				.querySelector("#interestlist-window");
 
 				stockBoardWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/board/stock_board.jsp");
+						"http://localhost:8080/card/board/stock_board");
 				analysisWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/trade/analysis.jsp");
+						"http://localhost:8080/card/trade/analysis");
 				tradeWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/trade/trading.jsp");
+						"http://localhost:8080/card/trade/trading");
 				interestWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/managestocks/interestlist.jsp");
+						"http://localhost:8080/card/managestocks/interestlist");
 				
 			}
 		}
