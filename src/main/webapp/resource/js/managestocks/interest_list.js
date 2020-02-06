@@ -62,9 +62,6 @@ function interestLoadProto(){
 
    interestLoad();
 
-   setInterval(function () {
-      interestLoad();
-   }, 1000 * 60 * 5);
 
    tbody.onclick = function (e) {
       e.preventDefault();
@@ -117,3 +114,7 @@ window.addEventListener("load", function () {
    interestLoadProto();
    
 });
+
+setInterval(function () {
+	interestLoadProto();
+ }, 1000 * 10);

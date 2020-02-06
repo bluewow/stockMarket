@@ -134,9 +134,7 @@ function holdingListProto(){
    
    getHoldingLoad();
 
-   setInterval(function() {
-	   getHoldingLoad();
-   },  1000 * 60 * 5);
+
 }
 
 
@@ -149,5 +147,10 @@ window.addEventListener("message",function(e) {
 window.addEventListener("load", function() {
    holdingListProto()            
 });
+
+
+setInterval(function() {
+	 holdingListProto();  
+},  1000 * 10);
 
 
