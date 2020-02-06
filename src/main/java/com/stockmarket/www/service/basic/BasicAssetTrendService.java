@@ -35,8 +35,7 @@ public class BasicAssetTrendService implements AssetTrendService {
 		long sum = 0;
 		sum = memberService.getMember(memberId).getvMoney();
 		
-		List<HaveView> list = new ArrayList<>();
-		list.addAll(haveStockService.getHaveStockList(memberId));
+		List<HaveView> list = haveStockService.getHaveStockList(memberId);
 		for (HaveView data : list) {
 			// (보유종목당 현재가 및 보유수량 확인용)
 			// System.out.println(data.getPrice()+","+data.getQuantity()); 

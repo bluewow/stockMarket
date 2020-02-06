@@ -43,6 +43,9 @@ public class BasicSystemAnalysis {
 	@Autowired
 	AnalysisDao analysisDao;
 	
+	public Analysis getAnalysisResult(String codeNum) {
+		return analysisDao.get(codeNum);
+	}
 	public void algorismImpl() throws IOException {
 		List<KoreaStocks> stocks = new ArrayList<>();
 		List<Analysis> analysisList = new ArrayList<>();
@@ -186,7 +189,7 @@ public class BasicSystemAnalysis {
 	
 	private int influence() {
 		//코스피 코스닥 동향
-		return 5;
+		return 50; 
 	}
 	
 	private int trend(String name) throws IOException {

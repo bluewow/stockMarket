@@ -55,7 +55,6 @@ public class StockBoardController {
 		if(query.equals("my")) //쿼리가 my면 닉네임으로 정렬
 			query = loginUser;
 		List<CommunityBoard> list = service.getCommunityBoardList(page, field, query, stockCode, id);
-		System.out.println(list);
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("loginUser", loginUser);
 		hm.put("list", list);
@@ -148,7 +147,6 @@ public class StockBoardController {
 	@ResponseBody
 	@PostMapping("reply_delete")
 	public int ReplyDelete(@RequestParam int replyId) {
-		System.out.println(replyId);
 		int result = service.deleteReply(replyId);
 
 		return result;

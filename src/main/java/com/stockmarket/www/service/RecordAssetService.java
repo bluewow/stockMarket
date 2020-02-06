@@ -7,5 +7,7 @@ import com.stockmarket.www.entity.RecordAsset;
 public interface RecordAssetService {
 	
 	List<RecordAsset> getRecordAssetList(int memberId);
-
+	
+	int insertRecordAsset(RecordAsset recordAsset);
+	int deleteRecordAsset(int memberId);
 }

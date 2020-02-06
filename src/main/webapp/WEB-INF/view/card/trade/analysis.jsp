@@ -45,14 +45,14 @@
 			<div>
 				<div class="chart-string">종목동향<div id="chartA"></div></div>
 				<br>
-	 			<div class="chart-string">수급<div id="chartB"></div></div>
+	 			<div class="chart-string">개인수급<div id="chartB"></div></div>
 	 			<br>
 	 			<div class="chart-string">영향력<div id="chartC"></div></div>
 			</div>
 			<div>
 				<div class="chart-string">컨텐츠<div id="chartD"></div></div>
 				<br>
-				<div class="chart-string">규모<div id="chartE"></div></div>
+				<div class="chart-string">거래비율<div id="chartE"></div></div>
 				<br>
 				<div class="chart-string">분석결과<div id="chartF"></div></div>
 			</div> 

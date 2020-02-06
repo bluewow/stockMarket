@@ -11,7 +11,45 @@
 <link rel="stylesheet" type="text/css" href="/resource/css/company/list.css">
 
 <script src="/resource/js/company/list.js"></script>
-<!-- <script src="../../js/company/InterestCheck.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+#delay {
+	width: 32px;
+	height: 32px;
+	top:50%;
+	left:50%;
+	position: absolute;
+	opacity: 1;
+	background: white;
+	z-index: 100;
+}
+
+#overlay {
+  display: none;
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0; 
+  top: 0;
+  background-color: rgba(0,0,0,0.1);
+  overflow-x: hidden;
+}
+</style>
+
+<script>
+	$(document).ready(function() {
+		$('#delay').hide();
+		$('button').click(function() {
+			$('#overlay').show();
+			$('#delay').show();
+			return true;
+		})
+		
+	});
+</script>
+
+
 </head>
 <body class="scrollbar custom-scrollbar-style">
 
@@ -26,7 +64,11 @@
 
 		</ul>
 	</section>
-
+	
+	<div id="overlay"></div>
+	<div id="delay">
+		<img src='/resource/images/delay-icon.gif' />
+	</div>
 
 	<div>
 		<section id="search-form">
@@ -36,7 +78,8 @@
 					<!-- <label for= "search-text"> -->
 					<input id="search-text" type="text" name="companyName"
 						value="asdsad">
-					<button class="search-button"></button>
+					<button class="search-button"
+						onclick="this.form.submit(); this.disabled=true;"></button>
 					<!-- </label> -->
 				</div>
 			</form>
