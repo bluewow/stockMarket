@@ -57,7 +57,7 @@ public class BasicCompanyService implements CompanyService {
         		crawlDataOrder.put(entry.getKey(), entry.getValue());
         }
         
-//        System.out.println(crawlDataOrder);		//for debugging
+//        System.out.println(crawlDataOrder);		//for debugging count
         
 		
 		//2차 : 1차 결과의 리스트  1,2,3위의 네이버업종 종목리스트와 일치하는 항목만 최종결과값에 포함한다 
@@ -94,7 +94,8 @@ public class BasicCompanyService implements CompanyService {
 			 "SBS CNBC", "SBS 스페셜", "SBS 쩐의전쟁", "SBS 뉴스", "키움증권 hts", "테스트", 
 			 "테스티아", "키움증권 계좌", ". 키움증권", "키움증권!", "시뮬레이션", "머레이", "동양로",
 			 "동양동", "핸드폰디자인", "두산백과통신", "ssg", "SSG", "대상으로", "라디오", "비디오",
-			 "YTN", "한국경제TV언론사", "한국경제TV - ","말레이시아", "컬러레이"}; //크롤링 결과의 제거 대상. 지속적인 업데이트 필요
+			 "YTN", "한국경제TV언론사", "한국경제TV - ","말레이시아", "컬러레이", "SBS언론사",
+			 "ksbs", "SBS 1일전", "디자인은", "디자인이" }; //크롤링 결과의 제거 대상. 지속적인 업데이트 필요
 		
 		List<KoreaStocks> stockList = koreaStockDao.getList();
 		
@@ -147,7 +148,7 @@ public class BasicCompanyService implements CompanyService {
 					}
 				}
 				
-				if(index >= 3) {	//count 수 기준으로 1, 2 등까지 적용한다
+				if(index >= 4) {	//count 수 기준으로 1, 2 등까지 적용한다
 					if(limit.size() == index) //마지막 list 시 바로 종료한다
 						break;
 					
