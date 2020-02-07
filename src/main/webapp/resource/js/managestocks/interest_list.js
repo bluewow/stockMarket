@@ -92,15 +92,14 @@ function interestLoadProto(){
              }
              
             var frame = parent.document.querySelector("#companyListWindow");
-            console.log("delStockName:"+delStockName)
+            console.log("delStockName:"+1+delStockName)
  	        frame.contentWindow.postMessage(
- 	        		delStockName, "http://localhost:8080/card/company/list");
+ 	        		1+delStockName, "http://localhost:8080/card/company/list");
  	        }
           }
           delRequest.send(sendData);
 
       }
-
  };
 
 
