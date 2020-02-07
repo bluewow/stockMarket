@@ -168,6 +168,9 @@ function buttonEvent() {
 	        var frame = parent.document.querySelector("#holding-window");
 	        frame.contentWindow.postMessage(
 	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist");
+	        var myassetFrame = parent.document.querySelector("#myAsset");
+	        myassetFrame.contentWindow.postMessage(
+	        		codeNum, "http://localhost:8080/card/asset/myAsset");
 	    }
 	    ajax.send();
 		
