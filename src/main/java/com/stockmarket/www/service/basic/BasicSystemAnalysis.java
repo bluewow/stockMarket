@@ -137,8 +137,6 @@ public class BasicSystemAnalysis {
 			return 60;
 		else if(result <= 75)
 			return 80;
-		else if(result >= 100) //100%을 illegal 로 보고 처리...개선이 필요하다
-			return 0;
 		else
 			return 100;
 		
@@ -163,7 +161,7 @@ public class BasicSystemAnalysis {
 		}
 
 //		System.out.println("avg : " + avgTradeVolume/15 + "tradeVolume : " + lastTradeVolume);
-		double result = lastTradeVolume / ((double)avgTradeVolume/15) * 100;
+		double result = ((double)avgTradeVolume/15) / lastTradeVolume * 100;
 		result = result - 100;
 		if(Double.isNaN(result))
 			result = 0;
@@ -186,8 +184,6 @@ public class BasicSystemAnalysis {
 			return 60;
 		else if(result <= 75)
 			return 80;
-		else if(result >= 100)	//마찬가지로 예외처리
-			return 0;
 		else
 			return 100;
 	}
@@ -296,6 +292,9 @@ public class BasicSystemAnalysis {
 		if(month.equals(""))
 			month = "1";
 		
+		if(oneDay.equals("1") && month.equals("1"))
+			return 0;
+		
 //		System.out.println("oneDay : " + oneDay + " month : " + month);  
 		double result = Double.parseDouble(oneDay) / Double.parseDouble(month);
 		result = result * 100;
@@ -310,8 +309,6 @@ public class BasicSystemAnalysis {
 			return 60;
 		else if(result <= 50)
 			return 80;
-		else if(result >= 100)	//예외처리 
-			return 0;
 		else 
 			return 100;
 	}
