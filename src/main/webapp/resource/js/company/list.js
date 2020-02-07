@@ -88,13 +88,13 @@ window.addEventListener("load", function() {
 				.querySelector("#interestlist-window");
 
 				stockBoardWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/board/stock_board");
+						parent.stockURL + "/card/board/stock_board");
 				analysisWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/trade/analysis");
+						parent.stockURL + "/card/trade/analysis");
 				tradeWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/trade/trading");
+						parent.stockURL + "/card/trade/trading");
 				interestWindow.contentWindow.postMessage(codenum,
-						"http://localhost:8080/card/managestocks/interestlist");
+						parent.stockURL + "/card/managestocks/interestlist");
 				
 			}
 		}
@@ -125,7 +125,7 @@ window.addEventListener("load", function() {
 				//console.log(attention);
 
 				interestlistWindow.contentWindow.postMessage(attention,
-						"http://localhost:8080/card/board/stock_board.jsp");
+						parent.stockURL + "/card/board/stock_board.jsp");
 
 				// ajax로 종목 코드를 컨트롤러에 전달한 뒤에 데이터 베이스에 저장하는 코드
 

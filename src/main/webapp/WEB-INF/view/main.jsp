@@ -49,6 +49,13 @@
 }
 </style>
 
+<script>
+var stockURL = "http://localhost:8080";
+//for relealse
+//var stockURL = "http://stockmarket.iptime.org";
+
+
+</script>
 
 </head>
 

@@ -153,7 +153,7 @@ function holdingListProto(){
 	         
 	          var frame = parent.document.querySelector("#companyListWindow");
 	 	      frame.contentWindow.postMessage(
-	 	      {holdingStockName,holdingStockName}, "http://localhost:8080/card/company/list");
+	 	      {holdingStockName,holdingStockName}, parent.stockURL + "/card/company/list");
 
 	     }
   }

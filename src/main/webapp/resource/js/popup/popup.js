@@ -413,7 +413,7 @@ window.addEventListener("load", function(){
 			    var rankingBoardWindow = parent.document.querySelector("#ranking-board-window");
 			    var sendData = ["selectPhoto", selectPhoto]
 			    rankingBoardWindow.contentWindow.postMessage(sendData,
-				"http://localhost:8080/card/rank/ranking.jsp");
+			    	parent.stockURL + "/card/rank/ranking");
 		
 				sectionImg.style.visibility = "hidden";
 			}

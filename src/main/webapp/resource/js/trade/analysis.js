@@ -96,7 +96,7 @@ function captureAction() {
 			var frame = parent.document.querySelector("#capture-window");
 			frame.contentWindow.postMessage(
 					{capture: ajax.responseText }, 
-					"http://localhost:8080/card/capturememo/captureMemo");
+					parent.stockURL + "/card/capturememo/captureMemo");
 //					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
 			
 			//캡쳐버튼시 카드이동

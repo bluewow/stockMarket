@@ -167,10 +167,10 @@ function buttonEvent() {
 
 	        var frame = parent.document.querySelector("#holding-window");
 	        frame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist");
+	        		codeNum, parent.stockURL + "/card/managestocks/holdinglist");
 	        var myassetFrame = parent.document.querySelector("#myAsset");
 	        myassetFrame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/asset/myAsset");
+	        		codeNum, parent.stockURL + "/card/asset/myAsset");
 	    }
 	    ajax.send();
 		
@@ -208,10 +208,10 @@ function buttonEvent() {
 
 	        var holdingFrame = parent.document.querySelector("#holding-window");
 	        holdingFrame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist");
+	        		codeNum, parent.stockURL + "/card/managestocks/holdinglist");
 	        var myassetFrame = parent.document.querySelector("#myAsset");
 	        myassetFrame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/asset/myAsset");
+	        		codeNum, parent.stockURL + "/card/asset/myAsset");
 	    }
 	    ajax.send();
 	}
