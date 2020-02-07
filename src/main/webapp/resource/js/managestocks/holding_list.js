@@ -140,7 +140,8 @@ function holdingListProto(){
 	      if (event.target.className == "holdingName") {
 
 	         var holdingStockName = e.target.innerText;
-
+	         console.log("holdingStockName:"+holdingStockName)
+	         
 	          var frame = parent.document.querySelector("#companyListWindow");
 	 	      frame.contentWindow.postMessage(
 	 	      holdingStockName, "http://localhost:8080/card/company/list");
@@ -163,6 +164,6 @@ window.addEventListener("load", function() {
 
 setInterval(function() {
 	 holdingListProto();  
-},  1000 * 60 * 5);
+},  1000 * 60 *5);
 
 
