@@ -97,8 +97,6 @@ body::-webkit-scrollbar {
 }
 
 #index-navigator .circle.active {
-  width: 24px;
-  height: 24px;
   background-color: #35cebe;
 }
 /* 2번째 sub-page============================================ */
