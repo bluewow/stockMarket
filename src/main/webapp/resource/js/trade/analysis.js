@@ -42,7 +42,35 @@ window.addEventListener("load", function() {
 	updatePrice();
 	chartUpdate();
 	captureAction();
+	textToggle();
 });
+
+function textToggle() {
+	let button = document.querySelectorAll(".analysis-result");
+	
+	console.log(button);
+	
+	button[0].onclick = function() {
+		if(button[0].value == "투자 경고") 
+			button[0].value = "±15%~30%";
+		else 
+			button[0].value = "투자 경고";
+	};
+	
+	button[1].onclick = function() {
+		if(button[1].value == "투자 주의") 
+			button[1].value = "±5%~±15%";
+		else 
+			button[1].value = "투자 주의";
+	};
+	
+	button[2].onclick = function() {
+		if(button[2].value == "투자 안전") 
+			button[2].value = "±0% ~ ±5%";
+		else 
+			button[2].value = "투자 안전";
+	};
+}
 
 function updatePrice() {
 	var ajax = new XMLHttpRequest();
@@ -133,10 +161,10 @@ bb.defaults({
 function chartUpdate() {
 	var ajax = new XMLHttpRequest();
 	let trend, contents, supply, scale, influence, result;
-
+	let color = document.querySelectorAll(".analysis-result");
+	
 	ajax.open("GET", "/card/trade/chartUpdate?codeNum=" + codeNum, false);
     ajax.onload = function() {
-    	console.log(ajax.responseText);
     	let obj = JSON.parse(ajax.responseText);
     	trend = obj.trend;
     	supply = obj.supply;
@@ -147,6 +175,17 @@ function chartUpdate() {
     }
 	ajax.send();
 	
+	color[0].style.backgroundColor = "#DDDDDD";
+	color[1].style.backgroundColor = "#DDDDDD";
+	color[2].style.backgroundColor = "#DDDDDD";
+	console.log("result : " + result);
+	if(result > 60)
+		color[0].style.backgroundColor = "#FF4040"; 
+	else if(result > 40)
+		color[1].style.backgroundColor = "#FF7F0E"; 
+	else
+		color[2].style.backgroundColor = "#2CA02C"; 
+		
 	setTimeout(function() {
 		bb.instance[0].load({
 			columns : [ [ "", trend ] ]

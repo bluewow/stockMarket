@@ -19,8 +19,8 @@ import com.stockmarket.www.service.basic.BasicSystemAnalysis;
 
 @Controller
 public class SystemController {
-	static boolean oneShotFlag;
-	static String preHour; 
+	private static boolean oneShotFlag;
+	private static String preHour; 
 	
 	@Autowired
 	private SystemService service;
@@ -43,7 +43,7 @@ public class SystemController {
 			return "index";
 		}
 		oneShotFlag = true;
-
+		
 		Thread thread = new Thread(()->{
 			try {
 				while(!Thread.currentThread().isInterrupted())
@@ -82,14 +82,16 @@ public class SystemController {
 		//10분주기 - refreshStockPrice 함수실행시 약 7분소요로 10분주기로 변경
 		
 		//오전 5시 하루에 한번 KOSPI, KOSDAQ DB 업종- TEST 완료
-		if(curHour.equals("5") && preHour.equals("4")) {
+		if(curHour.equals("05") && preHour.equals("04")) {
+			System.out.println("update-1");
 			service.updateMarket("KOSPI");
 			service.updateMarket("KOSDAQ");
 			service.upjongCrawling();
 		}
 
 		//매일 오전 8시 분석데이터 갱신
-		if(curHour.equals("8") && preHour.equals("7")) {
+		if(curHour.equals("08") && preHour.equals("07")) {
+			System.out.println("update-2");
 			systemAnalysis.algorismImpl();
 		}
 		
@@ -98,8 +100,9 @@ public class SystemController {
 			service.refreshStockPrice();
 		}
 
-		//장종료후 20시 주식데이터 갱신 StockDetail 데이터 갱신 - TEST 완료
+		//장종료후 20시 주식데이터 갱신 StockDetail 데이터 갱신 
 		if(curHour.equals("20") && preHour.equals("19")) {
+			System.out.println("update-3");
 			List<KoreaStocks> stocks = service.getStockAll();
 			for(KoreaStocks stock : stocks) {
 				service.setStockDataAll(stock.getStockCode());
@@ -108,12 +111,15 @@ public class SystemController {
 		
 		int insertRecordRs = 0;
 		if(curHour.equals("19") && preHour.equals("18")) {
+			System.out.println("update-4");
 			insertRecordRs = service.insertRecordAsset();
 		}
 		
 		// 맴버의 총자산 업데이트
-		if(curHour.equals("19") && preHour.equals("18"))
+		if(curHour.equals("19") && preHour.equals("18")) {
+			System.out.println("update-5");
 			service.updateMemberTotalAsset();
+		}
 		
 		//현재 시간을 preHour flag 에 저장
 		preHour = curHour;
