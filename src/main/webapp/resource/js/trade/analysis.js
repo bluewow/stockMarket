@@ -48,8 +48,6 @@ window.addEventListener("load", function() {
 function textToggle() {
 	let button = document.querySelectorAll(".analysis-result");
 	
-	console.log(button);
-	
 	button[0].onclick = function() {
 		if(button[0].value == "투자 경고") 
 			button[0].value = "±15%~30%";
@@ -178,7 +176,6 @@ function chartUpdate() {
 	color[0].style.backgroundColor = "#DDDDDD";
 	color[1].style.backgroundColor = "#DDDDDD";
 	color[2].style.backgroundColor = "#DDDDDD";
-	console.log("result : " + result);
 	if(result > 60)
 		color[0].style.backgroundColor = "#FF4040"; 
 	else if(result > 40)
