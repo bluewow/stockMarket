@@ -8,7 +8,6 @@ function interestLoadProto(){
    
    function interestLoad() {
 	   
-
       var interestAjax = new XMLHttpRequest();
       interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
       // 서블릿의 실행이 완료되었을때 실행   
@@ -64,6 +63,7 @@ function interestLoadProto(){
 
 
    tbody.onclick = function (e) {
+
       e.preventDefault();
       if (event.target.nodeName == "BUTTON") {
 
@@ -89,25 +89,22 @@ function interestLoadProto(){
              {
             	 tbody.innerHTML = '<tr> <td colspan="5">관심종목이 없습니다</td> </tr>'
              }
+             
+            var frame = parent.document.querySelector("#companyListWindow");
+            console.log("delStockName:"+1+delStockName)
+ 	        frame.contentWindow.postMessage(
+ 	        		1+delStockName, parent.stockURL + "/card/company/list");
+ 	        }
           }
           delRequest.send(sendData);
-//         if (delRequest.responseText == -1) {
-//        	 console.log("실행");
-//        	 tbody.firstElementChild.innerHTML = '<td colspan="5">관심종목이 없습니다</td>'
-//            return;
-//         }
-//         else{
-//        	 return;
-//         }
-      }
 
-   };
-}
+      }
+ };
+
 
 window.addEventListener("message", function (e) {
-   if (e.data && (e.data.length == 6)) {
       interestLoadProto();
-   }
+
 });
 
 window.addEventListener("load", function () {
@@ -117,4 +114,4 @@ window.addEventListener("load", function () {
 
 setInterval(function () {
 	interestLoadProto();
- }, 1000 * 10);
+ }, 1000 * 60 *5);

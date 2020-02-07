@@ -39,18 +39,36 @@ window.addEventListener("load", function() {
 		color : { pattern : [ "#FED201"] },
 	});
 	
-	chartF = bb.generate({	//결과
-//		data: {
-//			type: "pie"
-//		},
-		bindto : "#chartF",
-		color : { pattern : [ "#FF4040"] },
-	});
-	
 	updatePrice();
 	chartUpdate();
 	captureAction();
+	textToggle();
 });
+
+function textToggle() {
+	let button = document.querySelectorAll(".analysis-result");
+	
+	button[0].onclick = function() {
+		if(button[0].value == "변동성 높음") 
+			button[0].value = "±15%~30%";
+		else 
+			button[0].value = "변동성 높음";
+	};
+	
+	button[1].onclick = function() {
+		if(button[1].value == "변동성 중간") 
+			button[1].value = "±5%~±15%";
+		else 
+			button[1].value = "변동성 중간";
+	};
+	
+	button[2].onclick = function() {
+		if(button[2].value == "변동성 낮음") 
+			button[2].value = "±0% ~ ±5%";
+		else 
+			button[2].value = "변동성 낮음";
+	};
+}
 
 function updatePrice() {
 	var ajax = new XMLHttpRequest();
@@ -78,7 +96,7 @@ function captureAction() {
 			var frame = parent.document.querySelector("#capture-window");
 			frame.contentWindow.postMessage(
 					{capture: ajax.responseText }, 
-					"http://localhost:8080/card/capturememo/captureMemo");
+					parent.stockURL + "/card/capturememo/captureMemo");
 //					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
 			
 			//캡쳐버튼시 카드이동
@@ -141,8 +159,9 @@ bb.defaults({
 function chartUpdate() {
 	var ajax = new XMLHttpRequest();
 	let trend, contents, supply, scale, influence, result;
-
-	ajax.open("GET", "../../card/trade/chartUpdate?codeNum=" + codeNum, false);
+	let color = document.querySelectorAll(".analysis-result");
+	
+	ajax.open("GET", "/card/trade/chartUpdate?codeNum=" + codeNum, false);
     ajax.onload = function() {
     	let obj = JSON.parse(ajax.responseText);
     	trend = obj.trend;
@@ -154,6 +173,16 @@ function chartUpdate() {
     }
 	ajax.send();
 	
+	color[0].style.backgroundColor = "#DDDDDD";
+	color[1].style.backgroundColor = "#DDDDDD";
+	color[2].style.backgroundColor = "#DDDDDD";
+	if(result > 70)
+		color[0].style.backgroundColor = "#FF4040"; 
+	else if(result > 50)
+		color[1].style.backgroundColor = "#FF7F0E"; 
+	else
+		color[2].style.backgroundColor = "#2CA02C"; 
+		
 	setTimeout(function() {
 		bb.instance[0].load({
 			columns : [ [ "", trend ] ]
@@ -169,10 +198,6 @@ function chartUpdate() {
 		});
 		bb.instance[4].load({
 			columns : [ [ "", scale ] ]
-		});
-		bb.instance[5].load({
-			title: "Title Text",
-			columns : [ [ "투자위험", 100 ] ]
 		});
 	}, 0);
 }

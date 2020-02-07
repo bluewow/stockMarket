@@ -22,7 +22,8 @@ public class AuthenticationFilter implements Filter{
 			//TODO
 			"/card/company/list",
 			"/card/trade/analysis",
-			"/card/trade/analysisUpdate", 
+			"/card/trade/analysisUpdate",
+			"/card/trade/chartUpdate", 
 			"/card/board/news_board",
 			};
 	

@@ -167,7 +167,10 @@ function buttonEvent() {
 
 	        var frame = parent.document.querySelector("#holding-window");
 	        frame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist.jsp");
+	        		codeNum, parent.stockURL + "/card/managestocks/holdinglist");
+	        var myassetFrame = parent.document.querySelector("#myAsset");
+	        myassetFrame.contentWindow.postMessage(
+	        		codeNum, parent.stockURL + "/card/asset/myAsset");
 	    }
 	    ajax.send();
 		
@@ -203,9 +206,12 @@ function buttonEvent() {
 	        buttonStatusUpdate();
 	        alert("체결이 완료되었습니다");
 
-	        var frame = parent.document.querySelector("#holding-window");
-	        frame.contentWindow.postMessage(
-	        		codeNum, "http://localhost:8080/card/managestocks/holdinglist");
+	        var holdingFrame = parent.document.querySelector("#holding-window");
+	        holdingFrame.contentWindow.postMessage(
+	        		codeNum, parent.stockURL + "/card/managestocks/holdinglist");
+	        var myassetFrame = parent.document.querySelector("#myAsset");
+	        myassetFrame.contentWindow.postMessage(
+	        		codeNum, parent.stockURL + "/card/asset/myAsset");
 	    }
 	    ajax.send();
 	}

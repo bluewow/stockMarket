@@ -29,10 +29,15 @@ import com.stockmarket.www.entity.StockDetail;
 
 @Service
 public class BasicSystemAnalysis {
-	private static String clientId = "qcb_heUiOwEgQEvETpk8";// 애플리케이션 클라이언트 아이디값";;
-	private static String clientSecret = "HopZWjJ6Qf";		// 애플리케이션 클라이언트 시크릿값";
+	private static int trendCnt = 0; //trend 1일 1000회 제한으로 인하여 3개의 아이디를 사용하기 위한 cnt
+	private static int trendPos = 0;
+	private static String[] clientId = 
+		{"qcb_heUiOwEgQEvETpk8", "2gUQhD6td5vlHrP6MjeV", "hnnWnViiaFyiPPbJcidc"};// 애플리케이션 클라이언트 아이디값";;
+	private static String[] clientSecret = 
+		{"HopZWjJ6Qf", "lO2jeqCSD0", "Txmxj3zA8Z"};		// 애플리케이션 클라이언트 시크릿값";
 	private static String apiURL = "https://openapi.naver.com/v1/datalab/search";
 	private static final int INDEX_ZERO = 0;	//네이버 트렌드 key 값에 대한 반환
+	
 	
 	@Autowired
 	KoreaStocksDao koreaStockDao;
@@ -65,30 +70,26 @@ public class BasicSystemAnalysis {
 			
 			analysis.setCodeNum(code);
 			analysis.setRecord_date(date.format(System.currentTimeMillis()));
-			if(analysisDao.get(code) != null && analysisDao.get(code).getTrend() != -1) {//일일 1000회 limit 로 인한 workaround
-				int trend = trend(company);
-				if(trend == -1)
-					analysis.setTrend(-1);
-				else 
-					analysis.setTrend((int)(trend * 0.2));
-			}
+			
+			analysis.setTrend((int)(trend(company) * 0.2));
 			analysis.setSupply((int)(supply(code) * 0.20));
 			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
 			analysis.setContents((int)(contents(company) * 0.30));
-			analysis.setInfluence(influence);
-//			analysis.setInfluence((int)(influence * 0.15));
+			analysis.setInfluence((int)(influence * 0.15));
+			analysis.setCompany(company);
+//			analysis.setInfluence(influence);
 			analysis.calculateResultValue();
 			
-			//1) Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
-//			analysisList.add(analysis);
+			//1) (현재 사용하지 않음)Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
+//			analysisList.add(analysis); 
 			
 			//2) 즉시 DB 에 upload 한다
 			analysisDao.insert(analysis);
 			cnt++;
-			System.out.println("분석..." + cnt);
+			System.out.println("company " + company + " 분석..." + cnt);
 		}
 			
-//		analysisDao.insertAll(analysisList);
+//		(현재 사용하지 않음) analysisDao.insertAll(analysisList);
 		System.out.println("analysisList upload success");
 	}
 	
@@ -136,7 +137,7 @@ public class BasicSystemAnalysis {
 			return 60;
 		else if(result <= 75)
 			return 80;
-		else 
+		else
 			return 100;
 		
 	}
@@ -160,7 +161,7 @@ public class BasicSystemAnalysis {
 		}
 
 //		System.out.println("avg : " + avgTradeVolume/15 + "tradeVolume : " + lastTradeVolume);
-		double result = lastTradeVolume / ((double)avgTradeVolume/15) * 100;
+		double result = ((double)avgTradeVolume/15) / lastTradeVolume * 100;
 		result = result - 100;
 		if(Double.isNaN(result))
 			result = 0;
@@ -183,7 +184,7 @@ public class BasicSystemAnalysis {
 			return 60;
 		else if(result <= 75)
 			return 80;
-		else 
+		else
 			return 100;
 	}
 	
@@ -195,15 +196,24 @@ public class BasicSystemAnalysis {
 	private int trend(String name) throws IOException {
 		int value = 0;
 		
-		//오늘날짜
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		String today = date.format(System.currentTimeMillis());
+		if(trendCnt > 800) { //일 1000회 제한으로인한 workaround 처리
+			trendCnt = 0;
+			trendPos++;
+			if(trendPos > 2)
+				trendPos = 0;
+		}
+		trendCnt++;
+		
+		//하루 전 날짜
+		Calendar date = Calendar.getInstance();
+		date.add(Calendar.DATE , -1);
+		String yesterday = new java.text.SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
 		//한달전 날짜
 		Calendar mon = Calendar.getInstance();
 		mon.add(Calendar.MONTH , -1);
 		String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
 		
-		String json = "{\"startDate\":\"" + beforeMonth + "\",\"endDate\":\"" + today + "\""
+		String json = "{\"startDate\":\"" + beforeMonth + "\",\"endDate\":\"" + yesterday + "\""
 				+ ",\"timeUnit\":\"date\","
 				+ "\"keywordGroups\":[{\"groupName\":\"" + name + "\",\"keywords\":[\"" + name + "\",\"" + name + "\"]}"
 				+ "]}";
@@ -212,8 +222,8 @@ public class BasicSystemAnalysis {
 		URL url = new URL(apiURL);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("POST");
-		con.setRequestProperty("X-Naver-Client-Id", clientId);
-		con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+		con.setRequestProperty("X-Naver-Client-Id", clientId[trendPos]);
+		con.setRequestProperty("X-Naver-Client-Secret", clientSecret[trendPos]);
 		con.setRequestProperty("Content-Type", "application/json");
 		con.setDoOutput(true);
 
@@ -225,10 +235,10 @@ public class BasicSystemAnalysis {
 		
 		BufferedReader br;
 		if (con.getResponseCode() == 200) { // 정상 호출
-			System.out.println("success");
 			br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 		} else { // 에러 발생
 			br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
+			System.out.println("trend error");
 			return -1;	//1000 회 조회를 넘긴 상황
 		}
 
@@ -245,6 +255,9 @@ public class BasicSystemAnalysis {
 			JSONArray arrayStep1 = (JSONArray) result.get("results");
 			JSONObject objStep1 = (JSONObject) arrayStep1.get(INDEX_ZERO);
 			JSONArray arrayStep2 = (JSONArray) objStep1.get("data");
+			if(arrayStep2.size() == 0)
+				return 0;
+			
 			JSONObject obj = (JSONObject) arrayStep2.get(arrayStep2.size()-1);
 			value = Math.round(Float.parseFloat(obj.get("ratio").toString()));
 		} catch (ParseException e) {
@@ -278,6 +291,9 @@ public class BasicSystemAnalysis {
 		
 		if(month.equals(""))
 			month = "1";
+		
+		if(oneDay.equals("1") && month.equals("1"))
+			return 0;
 		
 //		System.out.println("oneDay : " + oneDay + " month : " + month);  
 		double result = Double.parseDouble(oneDay) / Double.parseDouble(month);

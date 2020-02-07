@@ -8,9 +8,14 @@ button {
 	
 }
 
+span.holdingName:hover{
+    cursor: pointer;
+};
+
 .holdingList, .interestList {
 	padding-top: 30px;
 	width: 95%;
+    height:100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -111,11 +116,15 @@ tbody tr> :nth-child(6),tbody tr> :nth-child(7),tbody tr> :nth-child(8) {
 	color: #BF737C;
 }
 
-#scroll {
-	max-height: 480px;
-	min-height: 300px;
-	overflow-y: scroll;
+
+.scrollbar {
+	padding-top:20px;	
+    height: 86%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
 
 .card-footer {
 	font-family: "에스코어 드림";

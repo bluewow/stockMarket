@@ -39,6 +39,7 @@
 .page-mid > div {
 	display: flex;
 	justify-content: space-around;
+	text-align: center;
 }
 
 .page-bottom {
@@ -58,4 +59,14 @@
 	font-weight: bold;
 }
 
+.analysis-result {
+	width: 116px;
+	font-size: 0.9em;
+	/* background-color: #13bfd7; */ 
+	color: white;
+	padding: 6px 23px;
+	border-radius: 11px;
+	border: none; 	
+	outline: none;
+}
 

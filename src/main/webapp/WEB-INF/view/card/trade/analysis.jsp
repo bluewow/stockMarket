@@ -52,9 +52,17 @@
 			<div>
 				<div class="chart-string">컨텐츠<div id="chartD"></div></div>
 				<br>
-				<div class="chart-string">거래비율<div id="chartE"></div></div>
+				<div class="chart-string">거래량<div id="chartE"></div></div>
 				<br>
-				<div class="chart-string">분석결과<div id="chartF"></div></div>
+				<!-- <div class="chart-string">분석결과</div> -->
+				<div></div>
+				<br> 
+				<input class="analysis-result" type="button" value="변동성 높음">
+				<div></div><br>
+				<input class="analysis-result" type="button" value="변동성 중간">
+				<div></div><br>
+				<input class="analysis-result" type="button" value="변동성 낮음">
+				<!-- <div class="chart-string">분석결과<div id="chartF"></div></div> -->
 			</div> 
 	    </div>
 	</section>

@@ -15,8 +15,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 
-<body class="scrollbar custom-scrollbar-style">
-<div class="holdingList">
+<body>
+<div class="holdingList scrollbar custom-scrollbar-style">
 <!-- <button class="updateButton">
 데이터 갱신
 </button> -->
@@ -39,7 +39,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
    <template class="template" >
    <tr>
       <td style="text-align: center">
-         <span>stockName</span>
+         <span class="holdingName">stockName</span>
       </td>
 
       <td class="up">
