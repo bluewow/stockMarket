@@ -252,7 +252,7 @@
                         <div class="tab-content" id="myTabContent">
                            <div class="tab-pane fade show active" id="assetgraph"
                               role="tabpanel" aria-labelledby="assetgraph-tab">
-                              <iframe src="./card/asset/myAsset">
+                              <iframe id="myAsset" src="./card/asset/myAsset">
                               </iframe></div>
 
                         </div>
