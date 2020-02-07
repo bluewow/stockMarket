@@ -52,10 +52,16 @@
 			<div>
 				<div class="chart-string">컨텐츠<div id="chartD"></div></div>
 				<br>
-				<div class="chart-string">거래비율<div id="chartE"></div></div>
+				<div class="chart-string">거래량<div id="chartE"></div></div>
 				<br>
-				<div>분석결과</div>
+				<!-- <div class="chart-string">분석결과</div> -->
+				<div></div>
+				<br> 
 				<input class="analysis-result" type="button" value="투자 경고">
+				<div></div><br>
+				<input class="analysis-result" type="button" value="투자 주의">
+				<div></div><br>
+				<input class="analysis-result" type="button" value="투자 안전">
 				<!-- <div class="chart-string">분석결과<div id="chartF"></div></div> -->
 			</div> 
 	    </div>
