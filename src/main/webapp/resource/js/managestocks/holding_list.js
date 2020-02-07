@@ -53,27 +53,36 @@ function holdingListProto(){
             allIncome += income;
             allSum += list[i].sum;
             allIncomePercent += incomePercent;
-
-            income = addComma(income);
             list[i].sum = addComma(list[i].sum);
-
             tds[0].firstElementChild.innerText = list[i].stockName;
 
+            stringIncome = addComma(income);
+            
+            if(income>0){
+                tds[5].firstElementChild.innerText = stringIncome;
+                tds[5].lastElementChild.innerText = incomePercent;
+                }
+                else if(income<0){
+                    tds[6].firstElementChild.innerText = stringIncome;
+                    tds[6].lastElementChild.innerText = incomePercent;
+                }
+                else{
+                    tds[7].firstElementChild.innerText = stringIncome;
+                    tds[7].lastElementChild.innerText = incomePercent;
+                }
+            
             if (list[i].gain == "상승") {
                tds[1].firstElementChild.innerText = list[i].price;
                tds[1].lastElementChild.innerText = list[i].percent;
-               tds[5].firstElementChild.innerText = income;
-               tds[5].lastElementChild.innerText = incomePercent;
+
             } else if (list[i].gain == "하락") {
                tds[2].firstElementChild.innerText = list[i].price;
                tds[2].lastElementChild.innerText = list[i].percent;
-               tds[6].firstElementChild.innerText = income;
-               tds[6].lastElementChild.innerText = incomePercent;
+
             } else {
                tds[3].firstElementChild.innerText = list[i].price;
                tds[3].lastElementChild.innerText = list[i].percent;
-               tds[7].firstElementChild.innerText = income;
-               tds[7].lastElementChild.innerText = incomePercent;
+
             }
 
             for (var j = 1; j < 8; j++) {
@@ -144,7 +153,7 @@ function holdingListProto(){
 	         
 	          var frame = parent.document.querySelector("#companyListWindow");
 	 	      frame.contentWindow.postMessage(
-	 	      holdingStockName, "http://localhost:8080/card/company/list");
+	 	      {holdingStockName,holdingStockName}, "http://localhost:8080/card/company/list");
 
 	     }
   }
