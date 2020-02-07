@@ -57,11 +57,11 @@
 				<!-- <div class="chart-string">분석결과</div> -->
 				<div></div>
 				<br> 
-				<input class="analysis-result" type="button" value="투자 경고">
+				<input class="analysis-result" type="button" value="변동성 높음">
 				<div></div><br>
-				<input class="analysis-result" type="button" value="투자 주의">
+				<input class="analysis-result" type="button" value="변동성 중간">
 				<div></div><br>
-				<input class="analysis-result" type="button" value="투자 안전">
+				<input class="analysis-result" type="button" value="변동성 낮음">
 				<!-- <div class="chart-string">분석결과<div id="chartF"></div></div> -->
 			</div> 
 	    </div>
