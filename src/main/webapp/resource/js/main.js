@@ -107,7 +107,6 @@ window.addEventListener("load", function() {
 //		targetCardPos.append(currentCard);
 //        currentCardPos.append(tempCard);
         var data = "cardPos=" + JSON.stringify(list);
-        console.log(data);
         var request = new XMLHttpRequest();
         request.open("POST", "../main-json", true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
