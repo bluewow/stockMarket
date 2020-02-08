@@ -148,11 +148,11 @@ function holdingListProto(){
    tbody.onclick = function (e) {
       e.preventDefault();
       if (event.target.className == "holdingName") {
-         var holdingStockName = e.target.innerText;
-         
-          var frame = parent.document.querySelector("#companyListWindow");
+         var codeNum = e.target.dataset.codenum;
+
+         var frame = parent.document.querySelector("#companyListWindow");
  	      frame.contentWindow.postMessage(
- 	      {holdingStockName,holdingStockName}, parent.stockURL + "/card/company/list");
+ 	      {holdingStockName, codeNum}, parent.stockURL + "/card/company/list");
 
      }
   }
