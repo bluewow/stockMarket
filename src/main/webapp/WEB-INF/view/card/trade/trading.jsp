@@ -10,7 +10,7 @@
 <!-- CSS Reset -->
 <link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
 <!-- download fontawesome.com -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../../../resource/css/font-awesome.min.css">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="../../../../resource/css/billboard.css">
