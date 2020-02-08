@@ -14,7 +14,7 @@
 
 <!-- Template Styles -->
 <link rel="stylesheet" type="text/css"
-	href="../../css/font-awesome.min.css">
+	href="../../../../resource/css/font-awesome.min.css">
 
 <!-- CSS Reset -->
 <link rel="stylesheet" type="text/css" href="/resource/css/normalize.css">
