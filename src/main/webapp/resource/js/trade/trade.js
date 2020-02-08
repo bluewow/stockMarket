@@ -109,6 +109,24 @@ function buttonEvent() {
 	var buy = document.querySelector("#buy");
 	var sell = document.querySelector("#sell");
 	var data = document.querySelectorAll(".data");
+	var sellBar = document.querySelector("#chartSell");
+	var buyBar = document.querySelector("#chartBuy");
+	
+	sellBar.onclick = function(e) { //sell bar 선택시 단가 변경
+		var price = sellBar.querySelectorAll("tspan");
+		if(e.path[0].__data__.index == undefined)
+			return;
+		text[0].value = price[e.path[0].__data__.index].innerHTML;
+		priceObj.setIndex(e.path[0].__data__.index);
+	}
+	
+	buyBar.onclick = function(e) { //buy bar 선택시 단가 변경
+		var price = buyBar.querySelectorAll("tspan");
+		if(e.path[0].__data__.index == undefined)
+			return;
+		text[0].value = price[e.path[0].__data__.index].innerHTML;
+		priceObj.setIndex(e.path[0].__data__.index + 10); //price index 의 범위는 0~19
+	}
 	
 
 	arrow[0].onclick = function(e) {	//단가 up
