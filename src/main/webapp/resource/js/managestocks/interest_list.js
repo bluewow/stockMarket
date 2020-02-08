@@ -91,9 +91,8 @@ function interestLoadProto(){
              }
              
             var frame = parent.document.querySelector("#companyListWindow");
-            console.log("delStockName:"+1+delStockName)
  	        frame.contentWindow.postMessage(
- 	        		1+delStockName, parent.stockURL + "/card/company/list");
+ 	        		"del,"+delStockName, parent.stockURL + "/card/company/list");
  	        }
           }
           delRequest.send(sendData);
