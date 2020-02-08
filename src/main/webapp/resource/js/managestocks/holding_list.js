@@ -54,6 +54,7 @@ function holdingListProto(){
             allSum += list[i].sum;
             allIncomePercent += incomePercent;
             list[i].sum = addComma(list[i].sum);
+            tds[0].firstElementChild.setAttribute("data-codenum", list[i].stockCode);
             tds[0].firstElementChild.innerText = list[i].stockName;
 
             stringIncome = addComma(income);
@@ -145,17 +146,15 @@ function holdingListProto(){
    
    
    tbody.onclick = function (e) {
-	      e.preventDefault();
-	      if (event.target.className == "holdingName") {
+      e.preventDefault();
+      if (event.target.className == "holdingName") {
+         var holdingStockName = e.target.innerText;
+         
+          var frame = parent.document.querySelector("#companyListWindow");
+ 	      frame.contentWindow.postMessage(
+ 	      {holdingStockName,holdingStockName}, parent.stockURL + "/card/company/list");
 
-	         var holdingStockName = e.target.innerText;
-	         console.log("holdingStockName:"+holdingStockName)
-	         
-	          var frame = parent.document.querySelector("#companyListWindow");
-	 	      frame.contentWindow.postMessage(
-	 	      {holdingStockName,holdingStockName}, parent.stockURL + "/card/company/list");
-
-	     }
+     }
   }
 }
 
