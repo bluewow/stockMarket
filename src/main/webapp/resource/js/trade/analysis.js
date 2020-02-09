@@ -57,14 +57,14 @@ function textToggle() {
 	
 	button[1].onclick = function() {
 		if(button[1].value == "변동성 중간") 
-			button[1].value = "±5%~±15%";
+			button[1].value = "±5% ~ 15%";
 		else 
 			button[1].value = "변동성 중간";
 	};
 	
 	button[2].onclick = function() {
 		if(button[2].value == "변동성 낮음") 
-			button[2].value = "±0% ~ ±5%";
+			button[2].value = "±0% ~ 5%";
 		else 
 			button[2].value = "변동성 낮음";
 	};
