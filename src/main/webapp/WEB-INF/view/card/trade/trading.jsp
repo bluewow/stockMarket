@@ -27,6 +27,7 @@
 	<!-- --------------- page-top -------------- -->
 	<header class="page-top">
 		<div id="title">호가창</div>
+		<i class="fa fa-bell-o fa-2x animation-3" aria-hidden="true"></i>
 		<div id="title-ass"></div>
 	</header>
 	<!-- --------------- page-mid -------------- -->
