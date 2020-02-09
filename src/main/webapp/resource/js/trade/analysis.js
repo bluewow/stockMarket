@@ -122,7 +122,7 @@ function curStockUpdateForm(obj) {
 		stockNameSpan[0].classList.add("fa", "fa-caret-down");
 	
 	stockNameSpan[1].innerHTML = obj.gain;
-	stockNameSpan[2].innerHTML = "(+"+ obj.ratio + "%)";
+	stockNameSpan[2].innerHTML = "(" + obj.mark + obj.ratio + "%)";
 	for(var i = 0; i < stockNameSpan.length; i++) {
 		if(obj.status == "상승")
 			stockNameSpan[i].style.color = "red";
