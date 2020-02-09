@@ -104,13 +104,31 @@ bb.defaults({
 
 
 function buttonEvent() {
-	var arrow = document.querySelectorAll("i");
+	var arrow = document.querySelectorAll(".page-bottom i");
 	var text = document.querySelectorAll(".text");
 	var buy = document.querySelector("#buy");
 	var sell = document.querySelector("#sell");
 	var data = document.querySelectorAll(".data");
 	var sellBar = document.querySelector("#chartSell");
 	var buyBar = document.querySelector("#chartBuy");
+	var tbody = document.querySelector("table tbody");
+	var bell = document.querySelector(".bell"); //미체결 상태를 보기위한 toggle button
+	
+	bell.onclick = function(e) {
+		let mid = document.querySelector(".page-mid");
+		let bottom = document.querySelector(".page-bottom");
+		let waitTradeWindow = document.querySelector("#waitTradeWindow");
+		
+		if(mid.style.display == "none") {
+			mid.style.display = "flex";
+			bottom.style.display = "block";
+			waitTradeWindow.style.display = "none";
+		} else {
+			mid.style.display = "none";
+			bottom.style.display = "none";
+			waitTradeWindow.style.display = "block";
+		}
+	}
 	
 	sellBar.onclick = function(e) { //sell bar 선택시 단가 변경
 		var price = sellBar.querySelectorAll("tspan");
@@ -135,7 +153,7 @@ function buttonEvent() {
 			priceObj.index--;
 			text[0].value = priceObj.getPrice(priceObj.index);
 		}
-	};
+	}
 	arrow[1].onclick = function(e) {	//단가 down
 		var index = priceObj.getIndex() + 1;
 		if(priceObj.getPrice(index) != null) {
@@ -170,6 +188,23 @@ function buttonEvent() {
 			return;
 		}
 		
+		for(var i = 0; i < 5; i++) {
+			 var template = document.querySelector("#waitTradeWindow .template");
+			 console.log(template);
+			 var cloneTr = document.importNode(template.content, true);
+			 var tds = cloneTr.querySelectorAll("td");
+			 
+			 tds[0].innerText = "AAA";
+			 tds[1].innerText = "BBB";
+			 tds[2].innerText = "CCC";
+			 tds[3].innerText = "DDD";
+			 tds[4].innerText = "EEE";
+			 
+			 tbody.append(cloneTr);
+		}
+		//체결대기상황 처리 
+		
+		//체결상황 처리
 		var ajax = new XMLHttpRequest();
 	    ajax.open("GET", "../../card/trade/buy?&qty=" + qty + "&codeNum=" + codeNum + "&price=" + price );
 	    ajax.onload = function() {
@@ -235,6 +270,30 @@ function buttonEvent() {
 	}
 }
 
+function buttonStatusUpdate() {
+	var button = document.querySelector("#page-bottom-box");
+	var data = button.querySelectorAll(".data");
+	var sellButton = button.querySelector("#sell");
+	var buyButton = button.querySelector("#buy");
+	let titleAss = document.querySelector("#title-ass");
+	
+	if(titleAss.innerHTML != "") {
+		sellButton.className = "event button button-button shadow";
+		sellButton.disabled = true;
+		buyButton.className = "event button button-button shadow";
+		buyButton.disabled = true;
+	} else {
+		sellButton.className = "event button button-button animation";
+		sellButton.disabled = false;
+		buyButton.className = "event button button-button animation";
+		buyButton.disabled = false;
+	}
+	
+	if(data[1].value == 0) {    	//보유수량에 따른 버튼 상태체크
+		sellButton.className = "event button button-button shadow";
+		sellButton.disabled = true;
+	}
+}
 
 function update() {
 	var button = document.querySelector("#page-bottom-box");
@@ -298,30 +357,7 @@ function update() {
     ajax.send();
 }
 
-function buttonStatusUpdate() {
-	var button = document.querySelector("#page-bottom-box");
-	var data = button.querySelectorAll(".data");
-	var sellButton = button.querySelector("#sell");
-	var buyButton = button.querySelector("#buy");
-	let titleAss = document.querySelector("#title-ass");
-	
-	if(titleAss.innerHTML != "") {
-		sellButton.className = "event button button-button shadow";
-		sellButton.disabled = true;
-		buyButton.className = "event button button-button shadow";
-		buyButton.disabled = true;
-	} else {
-		sellButton.className = "event button button-button animation";
-		sellButton.disabled = false;
-		buyButton.className = "event button button-button animation";
-		buyButton.disabled = false;
-	}
-	
-	if(data[1].value == 0) {    	//보유수량에 따른 버튼 상태체크
-		sellButton.className = "event button button-button shadow";
-		sellButton.disabled = true;
-	}
-}
+
 
 function tick() {
 	let titleAss = document.querySelector("#title-ass");
