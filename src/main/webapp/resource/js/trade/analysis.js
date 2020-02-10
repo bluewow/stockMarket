@@ -14,29 +14,29 @@ window.addEventListener("load", function() {
     
 	chartA = bb.generate({	//종목동향
 		bindto : "#chartA",
-		color : { pattern : [ "#FF7F0E"] },
+		color : { pattern : [ "#c36464"] },
 	});
 
 	chartB = bb.generate({	//수급
 		bindto : "#chartB",
-		color : { pattern : [ "#1F77B4"] },
+		color : { pattern : [ "#609a62"] },
 	});
 	
 
 	chartC = bb.generate({	//영향력
 		bindto : "#chartC",
-		color : { pattern : [ "#FF4040"] },
+		color : { pattern : [ "#676277"] },
 	});
 
 	chartD = bb.generate({	//컨텐츠
 		bindto : "#chartD",
-		color : { pattern : [ "#2CA02C"] },
+		color : { pattern : [ "#e88964"] },
 		
 	});
 	
 	chartE = bb.generate({	//규모
 		bindto : "#chartE",
-		color : { pattern : [ "#FED201"] },
+		color : { pattern : [ "#607d9a"] },
 	});
 	
 	updatePrice();
@@ -125,11 +125,11 @@ function curStockUpdateForm(obj) {
 	stockNameSpan[2].innerHTML = "(" + obj.mark + obj.ratio + "%)";
 	for(var i = 0; i < stockNameSpan.length; i++) {
 		if(obj.status == "상승")
-			stockNameSpan[i].style.color = "red";
+			stockNameSpan[i].style.color = "#BF737C";
 		if(obj.status == "하락")
-			stockNameSpan[i].style.color = "blue";
+			stockNameSpan[i].style.color = "#689ABC";
 		if(obj.status == "보합")
-			stockNameSpan[i].style.color = "black";
+			stockNameSpan[i].style.color = "#585B5E";
 	}
 }
 
@@ -177,11 +177,11 @@ function chartUpdate() {
 	color[1].style.backgroundColor = "#DDDDDD";
 	color[2].style.backgroundColor = "#DDDDDD";
 	if(result > 70)
-		color[0].style.backgroundColor = "#FF4040"; 
+		color[0].style.backgroundColor = "#e88964"; 
 	else if(result > 50)
-		color[1].style.backgroundColor = "#FF7F0E"; 
+		color[1].style.backgroundColor = "#585B5E"; 
 	else
-		color[2].style.backgroundColor = "#2CA02C"; 
+		color[2].style.backgroundColor = "#689ABC"; 
 		
 	setTimeout(function() {
 		bb.instance[0].load({
