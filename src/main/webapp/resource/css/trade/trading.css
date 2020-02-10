@@ -167,6 +167,7 @@ input::-webkit-inner-spin-button {
     font-weight: bold;
     color : red; 
     padding-left: 5%;
+    width: fit-content;
 }
 
 

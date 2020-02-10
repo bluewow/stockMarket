@@ -280,7 +280,6 @@ function myAsset(){
 	    request.send();
 	  };
 	  load();	
-	  console.log("어디냣");
 }
 
 window.addEventListener("message",function(e) {
