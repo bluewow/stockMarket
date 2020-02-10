@@ -4,10 +4,11 @@ function myAsset(){
 	google.charts.load('current', { 'packages': ['corechart'] });
 	  // google.charts.load('current', { packages: ['corechart', 'line'] });
 	  google.charts.setOnLoadCallback(load);
+	  
+	  var prsentValue = this.document.querySelector("#present-value");
 
 	  var section = this.document.querySelector("#card");
 	  var tbody = section.querySelector("table tbody");
-	  var updateButton = section.querySelector("#card-bottom");
 
 	  var load = function () {
 	    var request = new XMLHttpRequest();
@@ -17,8 +18,12 @@ function myAsset(){
 //	      console.log(request.responseText);
 
 	      var list = JSON.parse(request.responseText);
-//	      console.log(typeof list);
-//	      console.log(list);
+	      
+	      function numberWithCommas(x) {
+	          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	      }
+	      
+	      prsentValue.innerText = numberWithCommas(list.assetPresent);
 
 	      let tDataReg = new Array();
 	      let tDataValue = new Array();
@@ -51,9 +56,7 @@ function myAsset(){
 	      for (i = 1; i < tDataValue.length; i++) {
 
 	        valueList.push(tDataValue[i])
-	        // Asset Value : trendData.wg[0].c[1].v
 	      }
-	      //console.log(valueList)
 
 	      // find Max Asset 
 	      max = valueList[0];

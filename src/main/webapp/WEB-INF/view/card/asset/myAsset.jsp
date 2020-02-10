@@ -39,7 +39,8 @@
 							<li><a href="">월봉</a></li>
 						</ul>
 					</div>
-					<p><fmt:formatNumber value="${assetPresent}"/></p>
+					<%-- <p><fmt:formatNumber value="${assetPresent}"/></p> --%>
+					<p id="present-value">데이터를 불러오는 중입니다.</p>
 				</div>
 			</div>
 			<div id="assetTrend">
