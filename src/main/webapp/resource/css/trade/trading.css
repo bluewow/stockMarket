@@ -153,16 +153,16 @@ input::-webkit-inner-spin-button {
 
 #chartSell {
 	margin-top: 10px;
-	border: 3px solid #2D9AF2;
+	/* border: 3px solid #2D9AF2; */
     border-radius: 10px;
-    background: #2D9AF222;
+    background: #c9c9c950;
 }
 
 #chartBuy {
 	margin-top: 10px;
-	border: 3px solid #F40006;
+	/* border: 3px solid #F40006; */
     border-radius: 10px;
-    background: #F4000622;
+    background: #c9c9c950;
 }
 
 .chart-string {
