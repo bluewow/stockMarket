@@ -21,8 +21,8 @@
 	
 	.page-top > #stockName {
 		text-align:left;
-		font-weight: bold;
-		font-size: 26px;
+		font-weight: 800;
+		font-size: 1.5em;
 		line-height: 150%;
 		padding-top: 5%;
 		font-family: "에스코어 드림";
@@ -33,8 +33,10 @@
 	}
 	.page-top #capture {
 		font-size: 0.9em;
+		font-weight: 500;
 		background-color: #13bfd7; 
 		color: white;
+		margin-top: 0.5em;
 		padding: 6px 23px;
 		border-radius: 11px;
 		border: none; 	
@@ -63,6 +65,8 @@
 .chart-string {
 	text-align: center;
 	font-weight: bold;
+	color: #585B5E;
+    font-family: 서울한강체;
 }
 
 .analysis-result {

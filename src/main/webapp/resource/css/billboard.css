@@ -202,7 +202,9 @@
   fill: #777; }
 
 .bb-chart-arc .bb-gauge-value {
-  fill: #000; }
+  fill: #585B5E;
+    font-family: 제주;
+    font-weight: bold; }
 
 /*-- Radar --*/
 .bb-chart-radars .bb-levels polygon {
