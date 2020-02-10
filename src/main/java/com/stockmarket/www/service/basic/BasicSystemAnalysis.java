@@ -55,13 +55,11 @@ public class BasicSystemAnalysis {
 		List<KoreaStocks> stocks = new ArrayList<>();
 		List<Analysis> analysisList = new ArrayList<>();
 		List<String> codeNum = new ArrayList<>();
-		int influence = 0;
 		
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); //날짜정보를 가져온다
 //		System.out.println(date.format(System.currentTimeMillis()));
 		
 		stocks = koreaStockDao.getList();	//종목코드, 이름을 가져온다
-		influence = influence();
 		int cnt = 0;
 		for(KoreaStocks stock : stocks) {
 			Analysis analysis = new Analysis();
@@ -71,11 +69,12 @@ public class BasicSystemAnalysis {
 			analysis.setCodeNum(code);
 			analysis.setRecord_date(date.format(System.currentTimeMillis()));
 			
-			analysis.setTrend((int)(trend(company) * 0.2));
+			analysis.setTrend((int)(trend(company) * 0.15));
 			analysis.setSupply((int)(supply(code) * 0.20));
 			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
 			analysis.setContents((int)(contents(company) * 0.30));
-			analysis.setInfluence((int)(influence * 0.15));
+			analysis.setInfluence((int)(influence(code) * 0.20));
+			System.out.println((int)(influence(code) * 0.20));
 			analysis.setCompany(company);
 			analysis.calculateResultValue();
 			
@@ -85,7 +84,7 @@ public class BasicSystemAnalysis {
 			//2) 즉시 DB 에 upload 한다
 			analysisDao.insert(analysis);
 			cnt++;
-			System.out.println("company " + company + " 분석..." + cnt);
+//			System.out.println("company " + company + " 분석..." + cnt);
 		}
 			
 //		(현재 사용하지 않음) analysisDao.insertAll(analysisList);
@@ -187,9 +186,37 @@ public class BasicSystemAnalysis {
 			return 100;
 	}
 	
-	private int influence() {
-		//코스피 코스닥 동향
-		return 50; 
+	private int influence(String code) {
+		Document doc = null;
+		
+		String url = "https://finance.naver.com/item/main.nhn?code=" + code;
+		doc = crawling(url);
+		
+		String data = doc.select("#tab_con1 .first tbody tr:nth-child(2) td em").text();
+		if(data.contains(",")) 
+			return 0;
+		
+		// 영향력 점수
+		// 100위 	0
+		// 300위	  	20
+		// 500위		40
+		// 700위		60
+		// 900위	    80
+		// 1100위	100
+		int result = Integer.parseInt(data);
+		if(result <= 100)
+			return 0;
+		else if(result <= 300)
+			return 20;
+		else if(result <= 500)
+			return 40;
+		else if(result <= 700)
+			return 60;
+		else if(result <= 900)
+			return 80;
+		else
+			return 100;
+
 	}
 	
 	private int trend(String name) throws IOException {

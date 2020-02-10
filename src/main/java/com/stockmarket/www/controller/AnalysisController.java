@@ -85,11 +85,11 @@ public class AnalysisController {
 		Analysis analysis = systemAnalysisService.getAnalysisResult(codeNum);
 		
 		//백분율 원복
-		analysis.setTrend(analysis.getTrend() * 5);
+		analysis.setTrend((int)(analysis.getTrend() * 6.6));
 		analysis.setSupply((int)(analysis.getSupply() * 5));
 		analysis.setScale((int)(analysis.getScale() * 6.6));
 		analysis.setContents((int)(analysis.getContents() * 3.3));
-		analysis.setInfluence(analysis.getInfluence());
+		analysis.setInfluence((int)(analysis.getInfluence() * 5));
 		Gson gson = new Gson();
 		String json = gson.toJson(analysis);
 		return json;
