@@ -22,7 +22,8 @@ public class AuthenticationFilter implements Filter{
 			//TODO
 			"/card/company/list",
 			"/card/trade/analysis",
-			"/card/trade/analysisUpdate", 
+			"/card/trade/analysisUpdate",
+			"/card/trade/chartUpdate", 
 			"/card/board/news_board",
 			};
 	
@@ -41,12 +42,11 @@ public class AuthenticationFilter implements Filter{
 			for(String url : noAuthUrls) {
 				// 1. /card 외에는 bypass
 				// 2. noAuthUrls path 는 bypass
-				if(!urlPath.substring(0, 5).equals("/card") || url.equals(urlPath)) {
+				if(urlPath.equals("/") || !urlPath.substring(0, 5).equals("/card") || url.equals(urlPath)) {
 					filterPass = true;
 					break;
 				}
 			}
-			
 			if(filterPass == true) 
 				chain.doFilter(request, response);
 			else  {

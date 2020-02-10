@@ -15,12 +15,14 @@ function enterkey() {
 window.addEventListener("mousewheel", function(e) {
     var currentPosition = Math.round(window.pageYOffset / innerHeight);
     var stage = document.querySelectorAll(".page");
+    var navigation = document.querySelector("#index-navigator");
+    var circles = navigation.querySelectorAll(".circle");
     var targetPage = 0;
     
     if(timer != null)
         return;
         
-    timer = setTimeout(function(){
+    timer = setTimeout(() => {
         // 아래로 내리기
         if(e.deltaY > 0 || e.wheelDelta < 0) {
             if(currentPosition + 1 >= stage.length)
@@ -32,12 +34,17 @@ window.addEventListener("mousewheel", function(e) {
                 targetPage = 0;
             else
                 targetPage = currentPosition - 1;
-    }
+        }
     
-    scrollingPage(targetPage);
-    
-    clearTimeout(timer);
-    timer = null;
+	    scrollingPage(targetPage);
+	    
+	    for(let i = 0; i < circles.length; i++)
+	    	circles[i].className = "circle";
+	    	
+	    circles[targetPage].className  = "circle active";
+	    
+	    clearTimeout(timer);
+	    timer = null;
     },250);
 });
 
@@ -59,7 +66,12 @@ window.addEventListener("load", function() {
         if (clickCircle.nodeName != "DIV") {
             return;
         }
-
+        
+        for(let i = 0; i < circles.length; i++)
+        	circles[i].className = "circle";
+        	
+        clickCircle.className  = "circle active";
+        
         var body = document.querySelector("body");
         var circleTop = window.getComputedStyle(clickCircle).top;
         var circleIndex = parseInt(circleTop) / 25;

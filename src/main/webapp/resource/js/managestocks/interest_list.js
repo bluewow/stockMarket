@@ -8,7 +8,6 @@ function interestLoadProto(){
    
    function interestLoad() {
 	   
-	   console.log("---------------------------------------");
       var interestAjax = new XMLHttpRequest();
       interestAjax.open("GET", "../../card/managestocks/interest_list_json", true);
       // 서블릿의 실행이 완료되었을때 실행   
@@ -92,9 +91,8 @@ function interestLoadProto(){
              }
              
             var frame = parent.document.querySelector("#companyListWindow");
-            console.log("delStockName:"+1+delStockName)
  	        frame.contentWindow.postMessage(
- 	        		1+delStockName, "http://localhost:8080/card/company/list");
+ 	        		"del,"+delStockName, parent.stockURL + "/card/company/list");
  	        }
           }
           delRequest.send(sendData);
@@ -104,7 +102,6 @@ function interestLoadProto(){
 
 
 window.addEventListener("message", function (e) {
-	console.log(e.data);
       interestLoadProto();
 
 });

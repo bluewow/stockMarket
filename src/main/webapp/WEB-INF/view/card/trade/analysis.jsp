@@ -10,7 +10,7 @@
 <!-- CSS Reset --> 
 <link rel="stylesheet" type="text/css" href="../../../../resource/css/normalize.css">
 <!-- download fontawesome.com -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../../../resource/css/font-awesome.min.css">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="../../../../resource/css/billboard.css">
@@ -57,11 +57,11 @@
 				<!-- <div class="chart-string">분석결과</div> -->
 				<div></div>
 				<br> 
-				<input class="analysis-result" type="button" value="투자 경고">
+				<input class="analysis-result" type="button" value="변동성 높음">
 				<div></div><br>
-				<input class="analysis-result" type="button" value="투자 주의">
+				<input class="analysis-result" type="button" value="변동성 중간">
 				<div></div><br>
-				<input class="analysis-result" type="button" value="투자 안전">
+				<input class="analysis-result" type="button" value="변동성 낮음">
 				<!-- <div class="chart-string">분석결과<div id="chartF"></div></div> -->
 			</div> 
 	    </div>

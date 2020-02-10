@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="/resource/css/company/list.css">
 
 <script src="/resource/js/company/list.js"></script>
+<script src="/resource/js/company/listPostMessage.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 #delay {

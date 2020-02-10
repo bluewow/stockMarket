@@ -64,13 +64,14 @@ public class AnalysisController {
 		}
 		
 		if(curStock == null)
-			curStock = new CurStock(codeNum, "[데이터 수집중...]", "보합", "0", "none", "0");
+			curStock = new CurStock(codeNum, "[데이터 수집중...]", "보합", "0", "", "0");
 		
 //		System.out.println(curStock.toString());  //for debugging
 		map.put("name", service.getStockName(codeNum));
 		map.put("price", curStock.getPrice());
 		map.put("status", curStock.getGain()); // 상승, 보합, 하락
 		map.put("gain", curStock.getGainPrice());
+		map.put("mark", curStock.getSignMark());
 		map.put("ratio", curStock.getPercent());
 		
 		Gson gson = new Gson();

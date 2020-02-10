@@ -41,7 +41,7 @@
    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
    <![endif]-->
 <style>
-@media only screen and (min-width:800px) and (max-width: 1200px) {
+@media all and (max-width: 1100px) {
 	.row .column.column-33, .row .column.column-34 {
 		flex: none;
 		max-width: 49.3333%;
@@ -49,6 +49,13 @@
 }
 </style>
 
+<script>
+var stockURL = "http://localhost:8080";
+//for relealse
+//var stockURL = "http://stockmarket.iptime.org";
+
+
+</script>
 
 </head>
 

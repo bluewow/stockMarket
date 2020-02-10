@@ -17,7 +17,7 @@ public class IndexController {
 	@Autowired 
 	private HttpServletRequest res;
 	
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String index() {
 
 		return "redirect:system";

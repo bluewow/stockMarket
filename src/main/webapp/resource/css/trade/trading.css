@@ -6,6 +6,14 @@
 	button 기능 : https://nanati.me/css-button-design/
  */
 
+/*overwrite managestocks.css */
+header {
+	width: auto; 
+}
+tbody tr> :nth-child(1) {
+    padding: inherit !important;;
+}
+
 /* ----------- button ------------ */
 .button {
 	background-color: rgb(242, 242, 242);
@@ -86,6 +94,10 @@
 }
 .animation-2:active {
 	top: 16px;
+}
+.animation-3:active {
+	position: relative;
+	top: 3px;
 }
 
 /* Chrome, Safari, Edge, Opera */

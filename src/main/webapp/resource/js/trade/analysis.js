@@ -49,24 +49,24 @@ function textToggle() {
 	let button = document.querySelectorAll(".analysis-result");
 	
 	button[0].onclick = function() {
-		if(button[0].value == "투자 경고") 
+		if(button[0].value == "변동성 높음") 
 			button[0].value = "±15%~30%";
 		else 
-			button[0].value = "투자 경고";
+			button[0].value = "변동성 높음";
 	};
 	
 	button[1].onclick = function() {
-		if(button[1].value == "투자 주의") 
-			button[1].value = "±5%~±15%";
+		if(button[1].value == "변동성 중간") 
+			button[1].value = "±5% ~ 15%";
 		else 
-			button[1].value = "투자 주의";
+			button[1].value = "변동성 중간";
 	};
 	
 	button[2].onclick = function() {
-		if(button[2].value == "투자 안전") 
-			button[2].value = "±0% ~ ±5%";
+		if(button[2].value == "변동성 낮음") 
+			button[2].value = "±0% ~ 5%";
 		else 
-			button[2].value = "투자 안전";
+			button[2].value = "변동성 낮음";
 	};
 }
 
@@ -96,7 +96,7 @@ function captureAction() {
 			var frame = parent.document.querySelector("#capture-window");
 			frame.contentWindow.postMessage(
 					{capture: ajax.responseText }, 
-					"http://localhost:8080/card/capturememo/captureMemo");
+					parent.stockURL + "/card/capturememo/captureMemo");
 //					"http://stockmarket.iptime.org:8080//card/capturememo/captureMemo.jsp");
 			
 			//캡쳐버튼시 카드이동
@@ -122,7 +122,7 @@ function curStockUpdateForm(obj) {
 		stockNameSpan[0].classList.add("fa", "fa-caret-down");
 	
 	stockNameSpan[1].innerHTML = obj.gain;
-	stockNameSpan[2].innerHTML = "(+"+ obj.ratio + "%)";
+	stockNameSpan[2].innerHTML = "(" + obj.mark + obj.ratio + "%)";
 	for(var i = 0; i < stockNameSpan.length; i++) {
 		if(obj.status == "상승")
 			stockNameSpan[i].style.color = "red";
@@ -176,9 +176,9 @@ function chartUpdate() {
 	color[0].style.backgroundColor = "#DDDDDD";
 	color[1].style.backgroundColor = "#DDDDDD";
 	color[2].style.backgroundColor = "#DDDDDD";
-	if(result > 60)
+	if(result > 70)
 		color[0].style.backgroundColor = "#FF4040"; 
-	else if(result > 40)
+	else if(result > 50)
 		color[1].style.backgroundColor = "#FF7F0E"; 
 	else
 		color[2].style.backgroundColor = "#2CA02C"; 
