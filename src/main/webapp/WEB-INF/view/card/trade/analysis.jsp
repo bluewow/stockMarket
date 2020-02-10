@@ -43,7 +43,7 @@
 	<section class="page-mid">
 		<div>
 			<div>
-				<div class="chart-string">종목동향<div id="chartA"></div></div>
+				<div class="chart-string">트렌드<div id="chartA"></div></div>
 				<br>
 	 			<div class="chart-string">개인수급<div id="chartB"></div></div>
 	 			<br>
