@@ -14,6 +14,10 @@ tbody tr> :nth-child(1) {
     padding: inherit !important;;
 }
 
+.fa-2x {
+    font-size: 1.4em;
+}
+
 /* ----------- button ------------ */
 .button {
 	background-color: rgb(242, 242, 242);
