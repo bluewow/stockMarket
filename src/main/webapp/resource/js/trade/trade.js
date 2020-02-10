@@ -360,27 +360,27 @@ function update() {
 
 
 function tick() {
-//	let titleAss = document.querySelector("#title-ass");
-//	let date = new Date();
-//	let week = ['일', '월', '화', '수', '목', '금', '토'];
-//	var dayOfWeek = week[date.getDay()];
-//	
-//	buttonStatusUpdate();
-//	if(dayOfWeek == '일' || dayOfWeek =="토") {
-//		titleAss.innerHTML = "휴장일 입니다";
-//		return;
-//	}
-//
-//	if(date.getHours() >= 9 && date.getHours() <=15) {	//9:00 ~ 15:20 거래시간
-//		titleAss.innerHTML = "";
-//		if(date.getHours() == 15 && date.getMinutes() >= 20) {
-//			titleAss.innerHTML = "거래종료 (오픈시간 09:00~15:20)";
-//			return;
-//		}
-//	} else {
-//		titleAss.innerHTML = "거래종료 (오픈시간 09:00~15:20)";
-//		return;
-//	}
+	let titleAss = document.querySelector("#title-ass");
+	let date = new Date();
+	let week = ['일', '월', '화', '수', '목', '금', '토'];
+	var dayOfWeek = week[date.getDay()];
+	
+	buttonStatusUpdate();
+	if(dayOfWeek == '일' || dayOfWeek =="토") {
+		titleAss.innerHTML = "휴장일 입니다";
+		return;
+	}
+
+	if(date.getHours() >= 9 && date.getHours() <=15) {	//9:00 ~ 15:20 거래시간
+		titleAss.innerHTML = "";
+		if(date.getHours() == 15 && date.getMinutes() >= 20) {
+			titleAss.innerHTML = "거래종료 (오픈시간 09:00~15:20)";
+			return;
+		}
+	} else {
+		titleAss.innerHTML = "거래종료 (오픈시간 09:00~15:20)";
+		return;
+	}
 	
 }
 
