@@ -77,7 +77,6 @@ public class BasicSystemAnalysis {
 			analysis.setContents((int)(contents(company) * 0.30));
 			analysis.setInfluence((int)(influence * 0.15));
 			analysis.setCompany(company);
-//			analysis.setInfluence(influence);
 			analysis.calculateResultValue();
 			
 			//1) (현재 사용하지 않음)Analysis 결과를 entity 에 저장하여 최종 DB 로 넘겨준다
@@ -275,9 +274,9 @@ public class BasicSystemAnalysis {
 		doc = crawling(url);
 		String month = doc.select(".title_desc.all_my").text().replaceAll("[\\d]+[-][\\d]+","").replace("/","").replace(",","").replace("건","");
 		
-		url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + name + "&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=4";
+		url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + name + "&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=1";
 		doc = crawling(url);
-		String oneDay = doc.select(".title_desc.all_my").text().replaceAll("[\\d]+[-][\\d]+","").replace("/","").replace(",","").replace("건","");
+		String oneWeek = doc.select(".title_desc.all_my").text().replaceAll("[\\d]+[-][\\d]+","").replace("/","").replace(",","").replace("건","");
 		//한달기준 1일분량의 기사 검색 (세분화 필요)
 		//  0점   	0  ~   2%
 		// 20점	  	3% ~   6%
@@ -286,17 +285,17 @@ public class BasicSystemAnalysis {
 		// 80점	   24% ~  50%
 		//100점	   60% ~ 100%
 		
-		if(oneDay.equals(""))
-			oneDay = "1";
+		if(oneWeek.equals(""))
+			oneWeek = "1";
 		
 		if(month.equals(""))
 			month = "1";
 		
-		if(oneDay.equals("1") && month.equals("1"))
+		if(oneWeek.equals("1") && month.equals("1"))
 			return 0;
 		
-//		System.out.println("oneDay : " + oneDay + " month : " + month);  
-		double result = Double.parseDouble(oneDay) / Double.parseDouble(month);
+//		System.out.println("oneWeek : " + oneWeek + " month : " + month);  
+		double result = Double.parseDouble(oneWeek) / Double.parseDouble(month);
 		result = result * 100;
 		
 		if(result <= 2)

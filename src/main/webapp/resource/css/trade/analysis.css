@@ -25,6 +25,11 @@
 		font-size: 26px;
 		line-height: 150%;
 		padding-top: 5%;
+		font-family: "에스코어 드림";
+    	color: #585B5E; 
+	}
+	.page-top > #stockName:nth-child(1){
+	
 	}
 	.page-top #capture {
 		font-size: 0.9em;
@@ -34,6 +39,7 @@
 		border-radius: 11px;
 		border: none; 	
 		outline: none;
+		float: right;
 	}
 
 .page-mid > div {
