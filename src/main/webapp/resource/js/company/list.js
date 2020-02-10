@@ -158,7 +158,7 @@ window.addEventListener("load", function() {
 					var data = [ [ "attention", attention ],
 							[ "status", "delete" ] ]
 					var sendData = [];
-					console.log(attention);
+					//console.log(attention);
 					for (var i = 0; i < data.length; i++) {
 						sendData[i] = data[i].join("=");
 					}
