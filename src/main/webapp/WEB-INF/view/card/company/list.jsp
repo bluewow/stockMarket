@@ -79,7 +79,7 @@
 				<div id="search-div">
 					<!-- <label for= "search-text"> -->
 					<input id="search-text" type="text" name="companyName"
-						value="asdsad">
+						>
 					<button class="search-button"
 						onclick="this.form.submit(); this.disabled=true;"></button>
 					<!-- </label> -->
