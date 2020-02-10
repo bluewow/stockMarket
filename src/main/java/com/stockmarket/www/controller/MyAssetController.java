@@ -40,6 +40,8 @@ public class MyAssetController {
 		model.addAttribute("assetPresent", assetPresent);
 		model.addAttribute("trendList", trendList);
 		model.addAttribute("distrList", distrList);
+		
+		System.out.println("나 호출하냐 ??");
 
 		return "card/asset/myAsset";
 	}

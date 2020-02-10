@@ -68,7 +68,6 @@ function myAsset(){
 	          continue;
 	        }
 	      }
-
 	      // console.log("max: " + max);
 	      // make tick max
 	      let maxLength = max.toString().length;
@@ -278,9 +277,11 @@ function myAsset(){
 	    request.send();
 	  };
 	  load();	
+	  console.log("어디냣");
 }
 
 window.addEventListener("message",function(e) {
+	console.log(e.data);
 	   if(e.data && (e.data.length == 6)){
 		   myAsset();
 	   }
@@ -292,5 +293,5 @@ window.addEventListener("load", function () {
 
 
 setInterval(function () {
-	  load();
+	myAsset();
  }, 1000 * 60 * 5);
