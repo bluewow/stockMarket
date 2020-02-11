@@ -39,10 +39,17 @@ div {
 
 #captureTable thead td{
     padding: 5px;
+        font-family: "에스코어 드림";
+    font-weight: 500;
+    color: #585b5e;
 }
 
 .parent {
     cursor:pointer;
+    font-family: 서울한강체;
+    font-weight: lighter;
+    font-size: 0.9em;
+    color: #585b5e;
 }
 
 .del-button{
@@ -134,15 +141,23 @@ div {
     padding-right: 10px;
     width: 100%;
     height: 100%;
+    font-family: "에스코어 드림";
+    font-weight: 500;
+    font-size: 1em;
+    color: #585b5e;
 }
 
 #memo-content{
-    width: 100%;
+        width: 100%;
     height: 60%;
     resize: none;
     border: none;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 0.6em;
+    font-family: 서울한강체;
+    color: #585b5e;
+    font-size: 0.9em;
 }
 
 .buttons{
