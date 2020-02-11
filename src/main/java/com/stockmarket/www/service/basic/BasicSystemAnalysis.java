@@ -65,7 +65,7 @@ public class BasicSystemAnalysis {
 			Analysis analysis = new Analysis();
 			String code = stock.getStockCode();
 			String company = stock.getCompanyName();
-			
+
 			analysis.setCodeNum(code);
 			analysis.setRecord_date(date.format(System.currentTimeMillis()));
 			
@@ -74,7 +74,6 @@ public class BasicSystemAnalysis {
 			analysis.setScale((int)(volume(code) * 0.15));	//tradeVolume
 			analysis.setContents((int)(contents(company) * 0.30));
 			analysis.setInfluence((int)(influence(code) * 0.20));
-			System.out.println((int)(influence(code) * 0.20));
 			analysis.setCompany(company);
 			analysis.calculateResultValue();
 			
@@ -159,8 +158,7 @@ public class BasicSystemAnalysis {
 		}
 
 //		System.out.println("avg : " + avgTradeVolume/15 + "tradeVolume : " + lastTradeVolume);
-		double result = ((double)avgTradeVolume/15) / lastTradeVolume * 100;
-		result = result - 100;
+		double result = lastTradeVolume / ((double)avgTradeVolume/15)  * 100;
 		if(Double.isNaN(result))
 			result = 0;
 

@@ -178,7 +178,7 @@ function chartUpdate() {
 	color[2].style.backgroundColor = "#DDDDDD";
 	if(result > 70)
 		color[0].style.backgroundColor = "#e88964"; 
-	else if(result > 50)
+	else if(result > 60)
 		color[1].style.backgroundColor = "#585B5E"; 
 	else
 		color[2].style.backgroundColor = "#689ABC"; 
