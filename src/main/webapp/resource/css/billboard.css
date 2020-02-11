@@ -31,7 +31,9 @@
   -moz-user-select: none;
   user-select: none;
   color: #585B5E;
-  fill: #585B5E; }
+  fill: #585B5E;
+      font-family: 제주;
+    font-weight: bold; }
 
 .bb-legend-item-tile,
 .bb-xgrid-focus,

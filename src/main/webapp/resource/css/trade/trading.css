@@ -34,11 +34,18 @@ tbody tr> :nth-child(1) {
 .button-status {
     padding: 1% 18%;
     margin: 5% 0 5% 0;
+    font-family: 서울한강체;
+    color: #585B5E;
+    font-size: 0.7em;
 }
 
 .button-button {
-    padding: 5% 18%;
+    padding: 5% 16%;
     margin: 8% 0 5% 0;
+    font-family: 서울한강체;
+    font-weight: bold;
+    color: #585B5E;
+    font-size: 0.75em;
 }
 
 .shadow {
@@ -47,14 +54,18 @@ tbody tr> :nth-child(1) {
 }
 
 .text {
-	width: 30%;
-	border: 1px solid #ccc;
-  	border-radius: 4px;
-	outline: none;
-	text-align: center;
-	background: none;
-	height: 30px;
- 	margin-right: 10px
+	width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    text-align: right;
+    background: none;
+    height: 30px;
+    margin-right: 10px;
+    font-family: "에스코어 드림";
+    font-size: 1.2em;
+    color: #585b5e;
+    padding-right: 0.2em;
 }
 
 .caret-up {
@@ -132,15 +143,21 @@ input::-webkit-inner-spin-button {
  		display: flex;
 		justify-content: space-between;
 		text-align: center;
+		font-family: "에스코어 드림";
+    font-weight: 700;
+    color: #585b5e;
+    font-size: 1.2em;
 	}
 	.page-bottom #page-bottom-box .show-button-align {
 		width: 50%;
 	} 
 
 #title {
-    font-size: 26px;
-    font-weight: bold; 
+    font-size: 1.4em;
+    font-weight: 800;
     padding-top: 5%;
+    font-family: "에스코어 드림";
+    color: #585B5E;
 }
 
 #title-ass {
@@ -153,21 +170,24 @@ input::-webkit-inner-spin-button {
 
 
 #chartSell {
-	margin-top: 10px;
+	margin-top: 3px;
 	/* border: 3px solid #2D9AF2; */
     border-radius: 10px;
     background: #c9c9c950;
 }
 
 #chartBuy {
-	margin-top: 10px;
+	margin-top: 3px;
 	/* border: 3px solid #F40006; */
     border-radius: 10px;
     background: #c9c9c950;
 }
 
 .chart-string {
-	text-align: center;
 	font-weight: bold;
+    text-align: right;
+    font-family: 서울한강체;
+    color: #585B5E;
+    font-size: 0.8em;
 }
 
