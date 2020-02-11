@@ -94,7 +94,8 @@ class CaptureMemo {
 					["현재", data2.PER, data2.PBR, data2.ROE, data2.debtRatio, data2.foreignInvestors]
 				],
 				type: "bar",
-				labels: true
+				labels: true,
+				colors:{"캡쳐일":"#689ABC","현재":"#BF737C"}
 			},
 			axis: {
 			    x: {
