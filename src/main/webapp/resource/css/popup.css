@@ -63,6 +63,11 @@
     margin-bottom: 0px;
 }
 
+.pop-up-context .box{
+	font-size: 0.7em;
+	padding: 1.2em 1em 1.2em 1em;
+}
+
 .pop-up-context .box:hover {
 	border-radius: 10px;
     border: 2px solid #35CEBE !important;
@@ -184,7 +189,7 @@ input.top-bottom-margin {
  }
 
 .pop-up-top-subline {
-	font-size : 0.9em;
+	font-size : 0.7em;
 	position : relative;
 	top: -5px;
 }
@@ -209,7 +214,7 @@ input.top-bottom-margin {
 .pop-up-profile-image {
     background-color: rgb(19, 191, 215);
     min-height: 17%;
-    height:50%;
+    height:65%;
     color: white;
     font-weight: bold;
     font-size: 1.8em;
