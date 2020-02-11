@@ -93,8 +93,6 @@ window.addEventListener("load", function() {
 						parent.stockURL + "/card/trade/analysis");
 				tradeWindow.contentWindow.postMessage(codenum,
 						parent.stockURL + "/card/trade/trading");
-				interestWindow.contentWindow.postMessage(codenum,
-						parent.stockURL + "/card/managestocks/interestlist");
 				
 			}
 		}
