@@ -110,13 +110,13 @@ public class SystemController {
 		}
 		
 		int insertRecordRs = 0;
-		if(curHour.equals("19") && preHour.equals("18")) {
+		if(curHour.equals("20") && preHour.equals("19")) {
 			System.out.println("update-4");
-			insertRecordRs = service.insertRecordAsset();
+//			insertRecordRs = service.insertRecordAsset();
 		}
 		
 		// 맴버의 총자산 업데이트
-		if(curHour.equals("19") && preHour.equals("18")) {
+		if(curHour.equals("20") && preHour.equals("19")) {
 			System.out.println("update-5");
 			service.updateMemberTotalAsset();
 		}
